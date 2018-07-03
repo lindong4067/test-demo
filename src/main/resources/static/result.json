@@ -1,0 +1,199 @@
+{
+    "success": true,
+    "response": "",
+    "authToken": "",
+    "loginInfo": {
+        "userInfo": {
+            "userId": "SmpcAdmin",
+            "userName": "SMPC Cell Data Admin",
+            "userRole": "smpc_celldata_admin"
+        },
+        "menuInfo": [
+            {
+                "group": {
+                    "id": 10100,
+                    "name": "Dashboard",
+                    "functionId": [
+                        "dashboard"
+                    ]
+                }
+            },
+            {
+                "group": {
+                    "id": 10800,
+                    "name": "Feature Workflow",
+                    "group": [
+                        {
+                            "id": 10801,
+                            "name": "General Setup",
+                            "functionId": [
+                                "generalsetup"
+                            ],
+                            "license": "",
+                            "access_key": ""
+                        },
+                        {
+                            "id": 10802,
+                            "name": "SMLC",
+                            "functionId": [
+                                "smlc"
+                            ],
+                            "license": "",
+                            "access_key": ""
+                        },
+                        {
+                            "id": 10803,
+                            "name": "SAS",
+                            "functionId": [
+                                "sas"
+                            ],
+                            "license": "",
+                            "access_key": ""
+                        },
+                        {
+                            "id": 10804,
+                            "name": "E-SMLC",
+                            "functionId": [
+                                "esmlc"
+                            ],
+                            "license": "",
+                            "access_key": ""
+                        },
+                        {
+                            "id": 10805,
+                            "name": "RAN Passive Location",
+                            "functionId": [
+                                "passivelocation"
+                            ],
+                            "license": "",
+                            "access_key": ""
+                        },
+                        {
+                            "id": 10806,
+                            "name": "AECID Fingerprinting",
+                            "functionId": [
+                                "aecidsetup"
+                            ],
+                            "license": "",
+                            "access_key": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "group": {
+                    "id": 10200,
+                    "name": "Software Management",
+                    "group": []
+                }
+            },
+            {
+                "group": {
+                    "id": 10300,
+                    "name": "Data Management",
+                    "group": [
+                        {
+                            "id": 10301,
+                            "name": "Cell Data",
+                            "functionId": [
+                                "SMPCDMCellDataManagement"
+                            ],
+                            "license": "0",
+                            "access_key": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "group": {
+                    "id": 10400,
+                    "name": "Positioning Method Control",
+                    "group": []
+                }
+            },
+            {
+                "group": {
+                    "id": 10500,
+                    "name": "Networking Connections",
+                    "group": []
+                }
+            },
+            {
+                "group": {
+                    "id": 10600,
+                    "name": "System Records",
+                    "group": []
+                }
+            },
+            {
+                "group": {
+                    "id": 10700,
+                    "name": "System Monitor",
+                    "group": []
+                }
+            },
+            {
+                "group": {
+                    "id": 10900,
+                    "name": "User Management",
+                    "functionId": [
+                        "SMPCUM"
+                    ]
+                }
+            },
+            {
+                "group": {
+                    "id": 70100,
+                    "name": "General Setup",
+                    "group": [
+                        {
+                            "id": 70101,
+                            "name": "Reference",
+                            "functionId": [
+                                "SMPCFWGSREFERENCE"
+                            ],
+                            "license": "",
+                            "access_key": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "group": {
+                    "id": 70200,
+                    "name": "Positioning Methods",
+                    "group": []
+                }
+            },
+            {
+                "group": {
+                    "id": 70300,
+                    "name": "Positioning Methods",
+                    "group": []
+                }
+            },
+            {
+                "group": {
+                    "id": 70400,
+                    "name": "E-SMLC",
+                    "group": []
+                }
+            },
+            {
+                "group": {
+                    "id": 70500,
+                    "name": "RAN Passive Location",
+                    "group": []
+                }
+            },
+            {
+                "group": {
+                    "id": 70600,
+                    "name": "AECID Setup",
+                    "group": []
+                }
+            }
+        ],
+        "remark": {}
+    }
+}
