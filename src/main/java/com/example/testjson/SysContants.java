@@ -1,5 +1,24 @@
+/*
+ *         File : SysContants.java
+ *    Classname : SysContants
+ *    Author(s) : gupingbo
+ *      Created : 2017-10-25
+ *
+ * Copyright (c) 2017 Ericsson AB, Sweden.
+ * All rights reserved.
+ * The Copyright to the computer program(s) herein is the property of
+ * Ericsson AB, Sweden.
+ * The program(s) may be used and/or copied with the written permission
+ * from Ericsson AB or in accordance with the terms and conditions
+ * stipulated in the agreement/contract under which the program(s)
+ * have been supplied.
+ *
+ */
 package com.example.testjson;
 
+/**
+ * Sys Contants
+ */
 public class SysContants {
     // /auth/users/
     public static final String COMMON_AUTH_USERS = "/auth/users/";
@@ -93,10 +112,26 @@ public class SysContants {
     public static final String COMMON_SMPC = "smpc";
     // aecid
     public static final String COMMON_AECID = "aecid";
+    // "dataValues/AlarmErrorMessageGMPC.json"
+    public static final String COMMON_ALARM_ERROR_MESS_GMPC = "dataValues/AlarmErrorMessageGMPC.json";
+    // "dataValues/AlarmErrorMessageSMPC.json"
+    public static final String COMMON_ALARM_ERROR_MESS_SMPC = "dataValues/AlarmErrorMessageSMPC.json";
     // menuFile/gmpc_menu.json
     public static final String COMMON_GMPC_MENU_FILE = "menuFile/gmpc_menu.json";
+    // menuFile/gmpc_menu.json
+    public static final String COMMON_GMPC_MENU_FILE_NO_LICENSE = "menuFile/gmpc_menu_no_license.json";
+    // menuFile/gmpc_menu.json
+    public static final String COMMON_GMPC_MENU_FILE_SYSTEM_LICENSE = "menuFile/gmpc_menu_system_license.json";
+    // menuFile/gmpc_menu.json
+    public static final String COMMON_GMPC_MENU_FILE_VP_LICENSE = "menuFile/gmpc_menu_vp_license.json";
     // menuFile/smpc_menu.json
     public static final String COMMON_SMPC_MENU_FILE = "menuFile/smpc_menu.json";
+    // menuFile/smpc_menu.json
+    public static final String COMMON_SMPC_MENU_FILE_NO_LICENSE = "menuFile/smpc_menu_no_license.json";
+    // menuFile/smpc_menu.json
+    public static final String COMMON_SMPC_MENU_FILE_SYSTEM_LICENSE = "menuFile/smpc_menu_system_license.json";
+    // menuFile/smpc_menu.json
+    public static final String COMMON_SMPC_MENU_FILE_VP_LICENSE = "menuFile/smpc_menu_vp_license.json";
     // group
     public static final String COMMON_GROUP = "group";
     // license
@@ -172,7 +207,7 @@ public class SysContants {
     // "components"
     public static final String COMMON_COMPONENTS = "components";
     // Components
-    public static final String COMMON_COMPONENTS_LOGIN = "Components";
+    public static final String COMMON_COMPONENTS_LOGIN = "GMPC Components";
     // SMPC Components"
     public static final String COMMON_SMPC_COMPONENTS = "SMPC Components";
     // AECID Components
@@ -261,6 +296,8 @@ public class SysContants {
     public static final String COMMON_TEXT = "text";
     // "number"
     public static final String COMMON_NUMBER = "number";
+    // "double"
+    public static final String COMMON_DOUBLE = "double";
     // "minimum"
     public static final String COMMON_MINIMUM = "minimum";
     // "maximum"
@@ -343,6 +380,8 @@ public class SysContants {
     public static final String COMMON_SIGN = "%";
     // active
     public static final String COMMON_ACTIVE = "active";
+    // alarmListActive
+    public static final String COMMON_ALARMLIST_ACTIVE = "alarmListActive";
     // yes
     public static final String COMMON_YES_SMALL = "yes";
     // no
@@ -361,6 +400,10 @@ public class SysContants {
     public static final String COMMON_ALARM_LIST_JSON = "testFile/alarmList.json";
     // alarmSetting.json
     public static final String COMMON_ALARM_SETTING_JSON = "testFile/alarmSetting.json";
+    // alarmSetting
+    public static final String COMMON_ALARM_SETTING_LIST = "alarmSetting";
+    // alarmList
+    public static final String COMMON_ALARM_LIST_LIST = "alarmList";
     // alarm_message
     public static final String COMMON_ALARM_MESSAGE = "alarm_message";
     // "text/html"
@@ -417,8 +460,6 @@ public class SysContants {
     public static final String COMMON_FALSE_MAP = "0, off, OFF, Off, no, NO, No, false, FALSE, False, n, N, disable, DISABLE, Disable";
     // "1, on, ON, On, yes, YES, Yes, true, TRUE, True, y, Y, enable, ENABLE, Enable"
     public static final String COMMON_TRUE_MAP = "1, on, ON, On, yes, YES, Yes, true, TRUE, True, y, Y, enable, ENABLE, Enable";
-    // "prefer_async, protocol, url, poi_agreement, key, password, id"
-    public static final String COMMON_OBJECT_MAP = "prefer_async, protocol, url, poi_agreement, key, password, id, low_delay, delay_tolerant, low_delay_horizontal_unspecified, delay_tolerant_horizontal_unspecified, low_delay_horizontal_range_1, delay_tolerant_horizontal_range_1, low_delay_horizontal_range_2, delay_tolerant_horizontal_range_2, low_delay_horizontal_range_3, delay_tolerant_horizontal_range_3, response_time, permit_return_accuracy_not_fulfill, shape_convert, polygon, ellipsoid_arc, ellipsoid_point, ellipsoid_point_with_uncertainty_circle, ellipsoid_point_with_uncertainty_ellipse, ellipsoid_point_with_altitude, ellipsoid_point_with_altitude_and_uncertainty_ellipsoid, horizontal_1, horizontal_2, gnss, otdoa, mbs, hybrid_avail_at_single, enable_barometric_sensor, hybrid_selected_tech";
     // "/value/*"
     public static final String COMMON_VALUE_ALL = "/value/*";
     // apn
@@ -446,17 +487,19 @@ public class SysContants {
     // "70101"
     public static final String COMMON_REFERENCE_MENU = "70101";
 
-//    public static final String COMMON_SYSTEM_ADMIN = "System Administrator";
-    public static final String COMMON_SYSTEM_ADMIN = "system_admin";
-
-//    public static final String COMMON_ACCOUNT_ADMIN = "Account Administrator";
     public static final String COMMON_ACCOUNT_ADMIN = "account_admin";
 
-//    public static final String COMMON_STATISTICS_ADMIN = "Statistics Administrator";
     public static final String COMMON_STATISTICS_ADMIN = "statistics_admin";
 
-//    public static final String COMMON_SMPC_CELL_DATA_ADMIN = "SMPC Cell Data Admin";
     public static final String COMMON_SMPC_CELL_DATA_ADMIN = "smpc_celldata_admin";
+
+    public static final String COMMON_GMPC_CELL_DATA_ADMIN = "gmpc_celldata_admin";
+
+    public static final String COMMON_GMPC_NETWORK_ADMIN = "gmpc_network_admin";
+
+    public static final String COMMON_GMPC_CLIENT_ADMIN = "gmpc_client_admin";
+
+    public static final String COMMON_SYSTEM_OBSERVER = "system_observer";
 
     public static final String COMMON_USER_MANAGEMENT = "User Management";
 
@@ -467,6 +510,12 @@ public class SysContants {
     public static final String COMMON_DATA_MANAGEMENT = "Data Management";
 
     public static final String COMMON_CELL_DATA = "Cell Data";
+
+    public static final String COMMON_NETWORK_DATA = "Network Data";
+
+    public static final String COMMON_CLIENT_DATA = "Client Data";
+
+    public static final String COMMON_ROLRNAME = "userRole";
 
 
 }

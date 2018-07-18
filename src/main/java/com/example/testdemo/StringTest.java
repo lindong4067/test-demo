@@ -1,9 +1,17 @@
 
 package com.example.testdemo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import static org.apache.commons.lang3.StringUtils.isNumeric;
+
+@Slf4j
 public class StringTest {
     @Test
     public void stringBuilderTest2() {
@@ -26,5 +34,153 @@ public class StringTest {
         Integer integer = null;
         String value = String.valueOf(integer);
         Assert.assertEquals(value, "null");
+    }
+
+    @Test
+    public void test03(){
+        String str = "{ \n" +
+        "\t\"mcc\": \"302\",\n" +
+                "\t\"mnc\": \"720\",\n" +
+                "\t\"cid\": \"117\",\n" +
+                "\t\"enodeb_id\": \"370856\",\n" +
+                "\t\"latitude\": \"53643298\",\n" +
+                "\t\"longitude\": \"-69395452\",\n" +
+                "\t\"altitude\": 14,\n" +
+                "\t\"polygon\": \"\",\n" +
+                "\t\"cell_opening_angle\": 1200,\n" +
+                "\t\"cell_bearing\": 1200,\n" +
+                "\t\"cell_radius\": 5000,\n" +
+                "\t\"tac\": 3,\n" +
+                "\t\"power\": 46,\n" +
+                "\t\"earfcn_dl\": 400,\n" +
+                "\t\"earfcn_ul\": 18040,\n" +
+                "\t\"otdoa_supl_active\": \"true\",\n" +
+                "\t\"physical_id\": 302,\n" +
+                "\t\"antenna_gain\": 19,\n" +
+                "\t\"antenna_tilt\": 16,\n" +
+                "\t\"gps_time_sfn0_seconds\": 1090854369,\n" +
+                "\t\"gps_time_sfn0_decimal_second\": 0,\n" +
+                "\t\"prs_config_index_mapped\": 90,\n" +
+                "\t\"dl_channel_bandwidth\": 3000,\n" +
+                "\t\"no_consecutive_subframes\": 2,\n" +
+                "\t\"no_of_tx_antennas\": 1,\n" +
+                "\t\"timestamp\": \"\",\n" +
+                "\t\"mme_gi_list_lte_related\": 1,\n" +
+                "\t\"femto_cell_type\": \"\",\n" +
+                "\t\"prs_muting_info\": 0,\n" +
+                "\t\"cell_portion_available_flag\": false\n" +
+                "}"
+        ;
+
+        System.out.println(str);
+
+        log.info("LCSController.deleteBarredMSISDN (cluster:{}; clientId:{}; msisdn:{}; fromFile:{})", "18-cluster-smpc", "01", "123", "import.txt");
+        log.info("LCSController.searchBarredIMSI (cluster:{}; clientId:{}; imsi:{}; toFile:{})", "18-cluster-smpc", "01", "123", "export.txt");
+
+    }
+
+    @Test
+    public void test04(){
+        // [-32768.0 , 32767]
+        Float f1 = -32768.0f;
+        Float f2 = 32767f;
+        Double d1 = -32768.0;
+        Double d2 = 32767d;
+        System.out.println(f1);
+        System.out.println(f2);
+        System.out.println(d1);
+        System.out.println(d2);
+        System.out.println(Float.MAX_VALUE);
+        System.out.println(Float.MIN_VALUE);
+    }
+
+    @Test
+    public void test05(){
+        String mcc = "aaa";
+        String mnc = "111";
+        if (!isNumeric(mcc) || !isNumeric(mnc)) {
+            System.out.println("\"mcc\" or \"mnc\" contains non-numeric characters.");
+        }
+    }
+
+    @Test
+    public void test06(){
+        StringBuilder value = new StringBuilder("123456789");
+        String v = value.substring(0, value.length() - 1);
+        System.out.println(v);
+    }
+
+    @Test
+    public void test07() throws UnknownHostException {
+        String hostAddress = InetAddress.getLocalHost().getHostAddress();
+        System.out.println(hostAddress);
+    }
+
+    @Test
+    public void consul() {
+
+//        Console c = System.console();
+//
+//        String username = c.readLine("User name:");
+//
+//        c.printf("user:" + username+"\n");
+//
+//        char[] passwd = c.readPassword("Password:");
+//
+//        c.printf(String.valueOf(passwd));
+
+    }
+
+    @Test
+    public void testvalue(){
+//        String theValue = "null";
+//
+//        String value = theValue == null ? "" : theValue;
+//        Assert.assertEquals("null", value);
+        String a = "a";
+        String b = "a";
+        boolean boo = !(a != null && a.equals(b) && b != null && b.equals(a));
+        Assert.assertEquals(true, boo);
+    }
+
+    @Test
+    public void testfile(){
+
+        boolean isModify = false;
+        String fileName = "C:\\Temp\\msc.test";
+        File file = new File("C:\\Temp\\msc.test");
+        String modifyName = fileName + "." + System.currentTimeMillis();
+        if (file.exists()){
+            file.renameTo(new File(modifyName));
+            isModify = true;
+        }
+        System.out.println("Operation File!");
+        if(isModify){
+            File modifyFile = new File(modifyName);
+            modifyFile.renameTo(new File(fileName));
+//            modifyFile.delete();
+        }
+    }
+
+    @Test
+    public void testRex(){
+        String mscNumber = "ALL+ALL";
+        String[] split = mscNumber.split("\\+");
+        Assert.assertTrue("ALL".equalsIgnoreCase(split[0]));
+        Assert.assertTrue("ALL".equalsIgnoreCase(split[1]));
+    }
+
+    enum Color {
+        RED,
+        BLUE,
+        YELLOW,
+        NULL,
+        BBB
+    }
+    @Test
+    public void testEum(){
+        Assert.assertEquals("NULL", Color.NULL.name());
+        Assert.assertEquals("NULL", Color.NULL.toString());
+//        Assert.assertEquals("NULL", Color.valueOf(""));
     }
 }

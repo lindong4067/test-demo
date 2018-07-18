@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 public class TestBEJson {
     public static void main(String[] args) throws IOException {
-        ClassPathResource classPathResource = new ClassPathResource("static/result.json");
+        ClassPathResource classPathResource = new ClassPathResource("static/result_gmpc.json");
         // InputStream
         InputStream in = classPathResource.getInputStream();
         byte[] b = new byte[1024];
@@ -26,12 +26,13 @@ public class TestBEJson {
         JsonElement jsonElement = parser.parse(result);
         JsonObject jsonObject = jsonElement.getAsJsonObject();
 
-        filterResultData("smpc_celldata_admin", jsonObject);
+        filterResultData("gmpc_client_admin", jsonObject);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         System.out.println(gson.toJson(jsonObject));
     }
+
 
     private static void filterResultData(String roleId, JsonObject jsonObject) {
         if (jsonObject == null){
@@ -47,7 +48,6 @@ public class TestBEJson {
             return;
         }
         if (SysContants.COMMON_ACCOUNT_ADMIN.equals(roleId)){
-            System.out.println(menuInfo);
             for (int i = menuInfo.size() - 1; i >= 0; i--) {
                 JsonElement jsonElement = menuInfo.get(i);
                 JsonObject menu = jsonElement.getAsJsonObject();
@@ -60,7 +60,6 @@ public class TestBEJson {
             }
 
         }else if (SysContants.COMMON_STATISTICS_ADMIN.equals(roleId)){
-            System.out.println(menuInfo);
             for (int i = menuInfo.size() - 1; i >= 0; i--) {
                 JsonElement jsonElement = menuInfo.get(i);
                 JsonObject menu = jsonElement.getAsJsonObject();
@@ -82,8 +81,7 @@ public class TestBEJson {
 
             }
 
-        }else if(SysContants.COMMON_SMPC_CELL_DATA_ADMIN.equals(roleId)){
-            System.out.println(menuInfo);
+        }else if(SysContants.COMMON_SMPC_CELL_DATA_ADMIN.equals(roleId) || SysContants.COMMON_GMPC_CELL_DATA_ADMIN.equals(roleId)){
             for (int i = menuInfo.size() - 1; i >= 0; i--) {
                 JsonElement jsonElement = menuInfo.get(i);
                 JsonObject menu = jsonElement.getAsJsonObject();
@@ -104,7 +102,58 @@ public class TestBEJson {
                 }
             }
 
+        }else if(SysContants.COMMON_GMPC_NETWORK_ADMIN.equals(roleId)){
+            for (int i = menuInfo.size() - 1; i >= 0; i--) {
+                JsonElement jsonElement = menuInfo.get(i);
+                JsonObject menu = jsonElement.getAsJsonObject();
+                JsonObject group = menu.getAsJsonObject(SysContants.COMMON_GROUP);
+                String name = group.get(SysContants.COMMON_NAME).getAsString();
+                if (SysContants.COMMON_DATA_MANAGEMENT.equals(name)){
+                    JsonArray groupArray = group.getAsJsonArray(SysContants.COMMON_GROUP);
+                    for (int j = groupArray.size() - 1; j >= 0; j--) {
+                        JsonElement element = groupArray.get(j);
+                        JsonObject ele = element.getAsJsonObject();
+                        String na = ele.get(SysContants.COMMON_NAME).getAsString();
+                        if (!SysContants.COMMON_NETWORK_DATA.equals(na)){
+                            groupArray.remove(element);
+                        }
+                    }
+                }else {
+                    menuInfo.remove(jsonElement);
+                }
+            }
+
+        }else if(SysContants.COMMON_GMPC_CLIENT_ADMIN.equals(roleId)){
+            for (int i = menuInfo.size() - 1; i >= 0; i--) {
+                JsonElement jsonElement = menuInfo.get(i);
+                JsonObject menu = jsonElement.getAsJsonObject();
+                JsonObject group = menu.getAsJsonObject(SysContants.COMMON_GROUP);
+                String name = group.get(SysContants.COMMON_NAME).getAsString();
+                if (SysContants.COMMON_DATA_MANAGEMENT.equals(name)){
+                    JsonArray groupArray = group.getAsJsonArray(SysContants.COMMON_GROUP);
+                    for (int j = groupArray.size() - 1; j >= 0; j--) {
+                        JsonElement element = groupArray.get(j);
+                        JsonObject ele = element.getAsJsonObject();
+                        String na = ele.get(SysContants.COMMON_NAME).getAsString();
+                        if (!SysContants.COMMON_CLIENT_DATA.equals(na)){
+                            groupArray.remove(element);
+                        }
+                    }
+                }else {
+                    menuInfo.remove(jsonElement);
+                }
+            }
+
+        }else if (SysContants.COMMON_SYSTEM_OBSERVER.equals(roleId)){
+            for (int i = menuInfo.size() - 1; i >= 0; i--) {
+                JsonElement jsonElement = menuInfo.get(i);
+                JsonObject menu = jsonElement.getAsJsonObject();
+                JsonObject group = menu.getAsJsonObject(SysContants.COMMON_GROUP);
+                String name = group.get(SysContants.COMMON_NAME).getAsString();
+                if (SysContants.COMMON_USER_MANAGEMENT.equals(name)){
+                    menuInfo.remove(jsonElement);
+                }
+            }
         }
     }
-
 }

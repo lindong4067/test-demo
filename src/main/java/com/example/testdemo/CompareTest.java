@@ -74,5 +74,7 @@ public class CompareTest {
 
         boolean compareListOfMap = compareListOfMap3(list1, list2);
         System.out.println(compareListOfMap);
+//        Object respVal = (Object) null;
+//        System.out.println(respVal.equals(null)); //NullPointerException
     }
 }

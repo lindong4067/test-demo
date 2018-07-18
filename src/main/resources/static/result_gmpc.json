@@ -1,0 +1,725 @@
+{
+  "success": true,
+  "response": "",
+  "authToken": "",
+  "loginInfo": {
+    "userInfo": {
+      "userId": "SmpcAdmin",
+      "userName": "SMPC Cell Data Admin",
+      "userRole": "smpc_celldata_admin"
+    },
+    "menuInfo": [
+      {
+        "group": {
+          "id": 10100,
+          "name": "Dashboard",
+          "functionId": [
+            "dashboard"
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 10700,
+          "name": "Feature Workflow",
+          "group": [
+            {
+              "id": 10701,
+              "name": "General Setup",
+              "functionId": [
+                "generalsetup"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": []
+            },
+            {
+              "id": 10702,
+              "name": "GMLC",
+              "functionId": [
+                "gmlc"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": []
+            },
+            {
+              "id": 10704,
+              "name": "SLP/SPC",
+              "functionId": [
+                "slpspc"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": []
+            },
+            {
+              "id": 10703,
+              "name": "LRF/RDF",
+              "functionId": [
+                "lrfrdf"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": []
+            },
+            {
+              "id": 10705,
+              "name": "Passive Location",
+              "functionId": [
+                "passive"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": []
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 10200,
+          "name": "Software Management",
+          "group": [
+            {
+              "id": 10201,
+              "name": "License",
+              "functionId": [
+                "GMPCSMLicenseManagement"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_license"
+              ]
+            },
+            {
+              "id": 10202,
+              "name": "GMPC Components",
+              "functionId": [
+                "GMPCComponents"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": []
+            },
+            {
+              "id": 10203,
+              "name": "System Settings",
+              "functionId": [
+                "GMPCSMSSSystemSetting"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 10204,
+              "name": "Software Revision",
+              "functionId": [
+                "GMPCHelpSoftwareHistory"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_control"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 10300,
+          "name": "Data Management",
+          "group": [
+            {
+              "id": 10301,
+              "name": "Cell Data",
+              "functionId": [
+                "GMPCDMCellDataManagement"
+              ],
+              "license": [
+                "GMPC Base SW"
+              ],
+              "access_key": [],
+              "authority": [
+                "gmpc_cell"
+              ]
+            },
+            {
+              "id": 10302,
+              "name": "Client Data",
+              "functionId": [
+                "GMPCDMClients"
+              ],
+              "license": [
+                "GMPC Base SW"
+              ],
+              "access_key": [],
+              "authority": [
+                "gmpc_client"
+              ]
+            },
+            {
+              "id": 10303,
+              "name": "Network Data",
+              "functionId": [
+                "GMPCDMNetwork"
+              ],
+              "license": [
+                "GMPC Base SW"
+              ],
+              "access_key": [],
+              "authority": [
+                "gmpc_network_data"
+              ]
+            },
+            {
+              "id": 10304,
+              "name": "PLMN Data",
+              "functionId": [
+                "GMPCDMPLMNCellPLMN"
+              ],
+              "license": [
+                "GMPC Base SW"
+              ],
+              "access_key": [],
+              "authority": [
+                "gmpc_numbering"
+              ]
+            },
+            {
+              "id": 10305,
+              "name": "Privacy Data",
+              "functionId": [
+                "GMPCDMPrivacyData"
+              ],
+              "license": [
+                "GMPC Base SW"
+              ],
+              "access_key": [],
+              "authority": [
+                "gmpc_client",
+                "gmpc_numbering"
+              ]
+            },
+            {
+              "id": 10306,
+              "name": "PSAP Data",
+              "functionId": [
+                "GMPCDMPSAP"
+              ],
+              "license": [
+                "GMPC Base SW",
+                "IMS Emergency VP"
+              ],
+              "access_key": [],
+              "authority": [
+                "gmpc_psap"
+              ]
+            },
+            {
+              "id": 10307,
+              "name": "SUPL Data",
+              "functionId": [
+                "GMPCDMSUPLData"
+              ],
+              "license": [
+                "GMPC Base SW",
+                "A-GNSS or OTDOA VP"
+              ],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration",
+                "gmpc_smpp",
+                "gmpc_numbering"
+              ]
+            },
+            {
+              "id": 10308,
+              "name": "Passive Data",
+              "functionId": [
+                "GMPCPassiveLocation"
+              ],
+              "license": [
+                "GMPC Base SW",
+                "Passive Location VP"
+              ],
+              "access_key": [],
+              "authority": [
+                "",
+                "gmpc_passive"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 10400,
+          "name": "Networking Connections",
+          "group": [
+            {
+              "id": 10401,
+              "name": "Packet Network",
+              "functionId": [
+                "GMPCoreNetwork"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 10402,
+              "name": "GNSS Reference Network",
+              "functionId": [
+                "GMPCNCReference_Broadcom"
+              ],
+              "license": [
+                "GMPC Base SW",
+                "A-GNSS VP"
+              ],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration",
+                "mps_gnss"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 10500,
+          "name": "System Records",
+          "group": [
+            {
+              "id": 10501,
+              "name": "Statistics",
+              "functionId": [
+                "GMPCPMStatics"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_statistics"
+              ]
+            },
+            {
+              "id": 10502,
+              "name": "Positioning Records",
+              "functionId": [
+                "GMPCPMPostionRecord"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 10503,
+              "name": "Billing",
+              "functionId": [
+                "GMPCPMBilling"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 10504,
+              "name": "ISP",
+              "functionId": [
+                "GMPCPMISP"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_isp"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 10600,
+          "name": "System Monitor",
+          "group": [
+            {
+              "id": 10601,
+              "name": "Event Log",
+              "functionId": [
+                "GMPCSystemLogEvent"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_event_manager"
+              ]
+            },
+            {
+              "id": 10602,
+              "name": "Alarm Log",
+              "functionId": [
+                "GMPCSystemLogAlarm"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_alarm_manager"
+              ]
+            },
+            {
+              "id": 10603,
+              "name": "Alarm List",
+              "functionId": [
+                "GMPCSMAMActiveAlarmList"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_alarm_manager"
+              ]
+            },
+            {
+              "id": 10604,
+              "name": "Alarm Settings",
+              "functionId": [
+                "GMPCSMSSAlarmSetting"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_alarm_manager"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 10800,
+          "name": "User Management",
+          "functionId": [
+            "GMPCUM"
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 70100,
+          "name": "",
+          "group": [
+            {
+              "id": 70101,
+              "name": "Reference",
+              "functionId": [
+                "GMPCFWGSREFERENCE"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                ""
+              ]
+            },
+            {
+              "id": 70103,
+              "name": "Other Nodes",
+              "functionId": [
+                "GMPCFWGSOTHERNODES"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 70200,
+          "name": "Parameter Settings",
+          "group": [
+            {
+              "id": 70201,
+              "name": "General Configuration",
+              "functionId": [
+                "GMPCGeneralConfiguration"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70202,
+              "name": "CS/PS/EPS Positing",
+              "functionId": [
+                "GMPCCSPSEPSPositioning"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70203,
+              "name": "ATI Positioning",
+              "functionId": [
+                "GMPCATIPositioning"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70204,
+              "name": "Cached Location",
+              "functionId": [
+                "GMPCCachedLocation"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70205,
+              "name": "GMLC Roaming",
+              "functionId": [
+                "GMPCCPRoaming"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70206,
+              "name": "NILR Push",
+              "functionId": [
+                "GMPCNILRPush"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 70300,
+          "name": "LRF/RDF",
+          "group": [
+            {
+              "id": 70301,
+              "name": "RDF Settings",
+              "functionId": [
+                "GMPCRDFSettings"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70302,
+              "name": "Retrieval Cell ID",
+              "functionId": [
+                "GMPCRetrievalCellID"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70303,
+              "name": "External Query",
+              "functionId": [
+                "GMPCExternalQuery"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70304,
+              "name": "LRF Settings",
+              "functionId": [
+                "GMPCLRFSettings"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70305,
+              "name": "RDF Settings2",
+              "functionId": [
+                "GMPCRDFSettingsPositioning"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70306,
+              "name": "LRF Settings2",
+              "functionId": [
+                "GMPCLRFSettingsPositioning"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 70400,
+          "name": "SLP/SPC",
+          "group": [
+            {
+              "id": 70401,
+              "name": "Parameter Settings",
+              "functionId": [
+                "GMPCParameterSettings"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70402,
+              "name": "ULP Configuration",
+              "functionId": [
+                "GMPCULPConfiguration"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70403,
+              "name": "Parameter Settings LPP",
+              "functionId": [
+                "GMPCParameterSettingsLPP"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70404,
+              "name": "Area Event Trigger",
+              "functionId": [
+                "GMPCAreaEventTrigger"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70405,
+              "name": "ILP Configuration",
+              "functionId": [
+                "GMPCILPConfiguration"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "group": {
+          "id": 70500,
+          "name": "Passive Location",
+          "group": [
+            {
+              "id": 70501,
+              "name": "Parameter Settings",
+              "functionId": [
+                "GMPCFWPLParameterSetting"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70502,
+              "name": "Parameter Settings",
+              "functionId": [
+                "GMPCFWGEOParameterSetting"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "gmpc_client",
+                "mps_component_configuration"
+              ]
+            },
+            {
+              "id": 70503,
+              "name": "Parameter Settings",
+              "functionId": [
+                "GMPCFWLDSParameterSetting"
+              ],
+              "license": [],
+              "access_key": [],
+              "authority": [
+                "mps_component_configuration"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "remark": {}
+  }
+}
