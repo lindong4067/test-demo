@@ -6,8 +6,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
+import java.net.URLEncoder;
 import java.net.UnknownHostException;
+import java.util.Base64;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -182,5 +185,74 @@ public class StringTest {
         Assert.assertEquals("NULL", Color.NULL.name());
         Assert.assertEquals("NULL", Color.NULL.toString());
 //        Assert.assertEquals("NULL", Color.valueOf(""));
+    }
+
+    public static String escapeEncode(String originStr) {
+        String escapedString = originStr;
+        try{
+            escapedString = URLEncoder.encode(originStr, "utf-8");
+        } catch (Exception e) {
+            log.error("Encode failed");
+        }
+        return escapedString;
+    }
+
+    public static String base64Encode(String str){
+        String encodeStr = null;
+        try {
+            encodeStr =  Base64.getEncoder().encodeToString(str.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encodeStr;
+    }
+
+    @Test
+    public void testEncode(){
+        String encode = escapeEncode("https://www.baidu.com");
+        System.out.println(encode);
+        String encode1 = escapeEncode(encode);
+        System.out.println(encode1);
+    }
+
+    @Test
+    public void testBase64Encode(){
+        String encode = base64Encode("bbb");
+        System.out.println(encode);
+    }
+
+    private static int change(int i){
+        if(i >= 3 && i <= 6){
+            return 9 - i;
+        }else {
+            return i;
+        }
+    }
+
+    private static int back(int i){
+        if(i >= 3 && i <= 6){
+            return 9 - i;
+        }else {
+            return i;
+        }
+    }
+//      3 4 5 6 2 1
+//
+//      6 5 4 3 2 1
+    @Test
+    public void testInt(){
+        Assert.assertEquals(6, change(3));
+        Assert.assertEquals(5, change(4));
+        Assert.assertEquals(4, change(5));
+        Assert.assertEquals(3, change(6));
+        Assert.assertEquals(2, change(2));
+        Assert.assertEquals(1, change(1));
+
+        Assert.assertEquals(3, back(6));
+        Assert.assertEquals(4, back(5));
+        Assert.assertEquals(5, back(4));
+        Assert.assertEquals(6, back(3));
+        Assert.assertEquals(2, back(2));
+        Assert.assertEquals(1, back(1));
     }
 }
