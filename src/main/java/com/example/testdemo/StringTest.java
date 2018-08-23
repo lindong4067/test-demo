@@ -6,7 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
@@ -254,5 +257,161 @@ public class StringTest {
         Assert.assertEquals(6, back(3));
         Assert.assertEquals(2, back(2));
         Assert.assertEquals(1, back(1));
+    }
+
+    @Test
+    public void stringFormat(){
+//        String format = String.format("aaa %s bbb cc%s d%sd", "", 1000.1010, "d");
+//        System.out.println(format);
+        String hostname = "linux-tot-49,linux-tot-50,linux-tot-51,linux-tot-52";
+        Long starttime = 1238454723L;
+        Long stoptime = 12383244723L;
+        String[] hosts = hostname.split(",");
+        String sql = "SELECT MODULE_NAME, EVENT_NAME, ORGINATING_SOURCE_IP, ORGINATING_HOSTNAME, CATEGORY, TIME_STAMP, COUNT, EVENT_TYPE, INFORMATION, AFFECTED_OBJECT FROM EventLog WHERE ORGINATING_HOSTNAME NOT IN(%s,%s,%s,%s) AND TIME_STAMP BETWEEN %s AND %s ORDER BY TIME_STAMP DESC";
+        String sqlStatement = String.format(sql, hosts[0], hosts[1], hosts[2], hosts[3], starttime, stoptime);
+        System.out.println(sqlStatement);
+    }
+
+    @Test
+    public void testIP(){
+        try {
+            boolean flag = InetAddress.getByName("CN00212361").isReachable(3000);
+            String hostName = InetAddress.getLocalHost().getHostName();
+            String hostAddress = InetAddress.getLocalHost().getHostAddress();
+            System.out.println(hostName);
+            System.out.println(hostAddress);
+            System.out.println(flag);
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void testBigDecimal(){
+        double d1 = 1.01;
+        double d2 = 2.02;
+        double d3 = d1 + d2;
+        System.out.println(d3);
+
+        BigDecimal b1 = new BigDecimal("1.01");
+        BigDecimal b2 = BigDecimal.valueOf(2.02);
+        BigDecimal b3 = b1.add(b2);
+        System.out.println(b3);
+    }
+
+    @Test
+    public void testRegular(){
+        String ip = "2001:1b70:200:1000::164";
+        String ipv4 = "192.168.0.1";
+        String pattern = "^([\\da-fA-F]{1,4}:){7}[\\da-fA-F]{1,4}$";
+        String pattern2 = "^([\\da-fA-F]{1,4}:){7}[\\da-fA-F]{1,4}$";
+        String pattern3 =  "^\\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$";
+        String pattern4 = "([a-f0-9]{1,4}(:[a-f0-9]{1,4}){7}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){0,7}::[a-f0-9]{0,4}(:[a-f0-9]{1,4}){0,7})";
+        String pattern5 = ".*[a-fA-F].*";
+        boolean matches = ip.matches(pattern5);
+        System.out.println(matches);
+        boolean matches1 = ipv4.matches(pattern5);
+        System.out.println(matches1);
+    }
+
+    @Test
+    public void testHost(){
+        String address = "linux-tot-49.tot";
+        String memberAddress = "linux-tot-49";
+        if(memberAddress != null && !"".equals(memberAddress)){
+            if(address.contains(memberAddress) || memberAddress.contains(address)){
+                System.out.println(address);
+            }
+        }
+    }
+
+    @Test
+    public void testBoolean(){
+        boolean a = true;
+        boolean b = true;
+        boolean c = false;
+        boolean d = true;
+        System.out.println(a || c && d);
+
+    }
+
+    @Test
+    public void testIPV6() throws UnknownHostException {
+        String ipAddr0 = "2001:1b70:200:1000:0:0:0:164";
+        String ipAddr1 = "2001:1b70:200:1000::164";
+        InetAddress inetAddr = InetAddress.getByName(ipAddr1);
+        ipAddr1 = inetAddr.getHostAddress();
+        System.out.println(ipAddr0);
+        System.out.println(ipAddr1);
+
+    }
+
+    @Test
+    public void testIPv4IPv6() throws UnknownHostException {
+        String ipv4 = "192.168.1.1";
+        String ipv6 = "FE80:98FA::B45A";
+        if(!ipv4.matches(".*[a-fA-F].*")){
+            System.out.println(ipv4 + " is IPv4.");
+        }
+        if(ipv6.matches(".*[a-fA-f].*")){
+            System.out.println(ipv6 + " is IPv6.");
+        }
+        String address = InetAddress.getByName(ipv6).getHostAddress();
+        System.out.println(address);
+
+        InetAddress localHost = InetAddress.getLocalHost();
+        String hostAddress = localHost.getHostAddress();
+        System.out.println(hostAddress);
+        InetAddress localHost1 = Inet6Address.getLocalHost();
+        String hostAddress1 = localHost1.getHostAddress();
+        System.out.println(hostAddress1);
+    }
+
+    @Test
+    public void testPlmn(){
+        String plmnValue = "1234567,123;2345678,;,234;";
+        String[] gtspcs = plmnValue.split(";");
+        for (String gtspc : gtspcs) {
+            String[] gs = gtspc.split(",", 2);
+            System.out.println(gs[0]);
+//            System.out.println(gs.length < 2 ? "" : gs[1]);
+            System.out.println(gs[1]);
+            System.out.println("plmn");
+        }
+        String str = "2345678,;";
+        String replace = plmnValue.replace(str, "");
+        System.out.println(str);
+        System.out.println(replace);
+        System.out.println(plmnValue);
+        System.out.println(str.concat(str).concat(str));
+    }
+
+    @Test
+    public void testArray(){
+        //One
+        String[] arr1 = new String[3];
+        arr1[0] = "AAA";
+        arr1[1] = "BBB";
+        arr1[2] = "CCC";
+        for (String s : arr1) {
+            System.out.println(s);
+        }
+        //Two
+        String[] arr2 = {"AAA", "BBB", "CCC"};
+        for (String s : arr2) {
+            System.out.println(s);
+        }
+        //Three
+        String[] arr3 = new String[]{"AAA", "BBB", "CCC"};
+        for (String s : arr3) {
+            System.out.println(s);
+        }
+    }
+
+    @Test
+    public void testRegx(){
+        String reg = "^([0-1](\\.[0-9][0-9]?))$|^([0-2])$";
+        String str = "0:2";
+        boolean matches = str.matches(reg);
+        System.out.println(matches);
     }
 }
