@@ -2,18 +2,20 @@
 package com.example.testdemo;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
-import java.util.Base64;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -413,5 +415,139 @@ public class StringTest {
         String str = "0:2";
         boolean matches = str.matches(reg);
         System.out.println(matches);
+        byte[] buffer = new byte[1024];
+        int length = buffer.length;
+        System.out.println(length);
+    }
+
+    @Test
+    public void testFilePath() throws IOException {
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("test/test_file.txt");
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) != -1){
+            result.write(buffer, 0, length);
+        }
+        String string = result.toString(StandardCharsets.UTF_8.name());
+        System.out.println(string);
+
+    }
+
+    private static String getFormatClusterValue(String cluster) {
+        if(cluster != null && cluster.contains("_")){
+            return cluster.replace("_", "-");
+        }
+        return cluster;
+    }
+
+    @Test
+    public void testCluster(){
+        String cluster1 = "18-smpc-cluster";
+        String cluster2 = "18_smpc-cluster";
+        String cluster3 = "18-smpc_cluster";
+        String cluster4 = "18_smpc_cluster";
+        String cluster5 = "cluster";
+        String v1 = getFormatClusterValue(cluster1);
+        System.out.println(v1);
+        String v2 = getFormatClusterValue(cluster2);
+        System.out.println(v2);
+        String v3 = getFormatClusterValue(cluster3);
+        System.out.println(v3);
+        String v4 = getFormatClusterValue(cluster4);
+        System.out.println(v4);
+        String v5 = getFormatClusterValue(cluster5);
+        System.out.println(v5);
+    }
+
+    @Test
+    public void testParam(){
+        String cluster1 = "18-smpc-cluster";
+        String cluster2 = "18_smpc-cluster";
+        String cluster3 = "18_smpc_cluster";
+        boolean b1 = checkParameter(cluster1);
+        System.out.println(b1);
+        boolean b2 = checkParameter(cluster2);
+        System.out.println(b2);
+        boolean b3 = checkParameter(cluster3);
+        System.out.println(b3);
+    }
+
+    private boolean checkParameter(String cluster) {
+        if(StringUtils.isEmpty(cluster)
+                || (cluster.contains("-")
+                && cluster.split("-").length != 3)
+                || (cluster.contains("_")
+                && cluster.split("_").length != 3)){
+            return false;
+        }
+        return true;
+    }
+
+    public static String getFormatIP(String ip){
+        if(ip == null || "".equals(ip)){
+            return ip;
+        }else if(ip.contains(":")){
+            try {
+                ip = InetAddress.getByName(ip).getHostAddress();
+            } catch (UnknownHostException e) {
+                log.debug(e.getMessage());
+            }
+            return ip;
+        }
+        return ip;
+    }
+
+    @Test
+    public void test10(){
+        String ipv4 = "192.168.1.1";
+        String ipv6 = "[FE80:98FA::B45A]";
+        String ip4 = getFormatIP(ipv4);
+        String ip6 = getFormatIP(ipv6);
+        System.out.println(ip4);
+        System.out.println(ip6);
+    }
+
+    private static List<String> updateMany(List<String> peopleList, Predicate<String> predicate, Consumer<String> consumer) {
+        for (String aPeopleList : peopleList) {
+            if (!predicate.test(aPeopleList)) {
+                consumer.accept(aPeopleList);
+            }
+        }
+        return peopleList;
+    }
+
+    @Test
+    public void testUpdateMany(){
+        List<String> stringList = new ArrayList<>();
+        stringList.add("ABC");
+        stringList.add("ABC");
+        stringList.add("BCD");
+        stringList.add("BCD");
+        stringList.add("CDE");
+        List<String> strings = new ArrayList<>();
+        updateMany(stringList, strings::contains, strings::add);
+        System.out.println(strings);
+    }
+
+    @Test
+    public void testMap(){
+        Map<Object, Object> kvs = new HashMap<>();
+        kvs.put(null, "null");
+        kvs.put("null", null);
+        for (Map.Entry<Object, Object> entry : kvs.entrySet()) {
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (Objects.equals(null, key)){
+                key = "NULL";
+            }
+            if (Objects.equals(null, value)){
+                value = "NULL";
+            }
+            System.out.println(key);
+            System.out.println(value);
+            System.out.println("------");
+        }
     }
 }

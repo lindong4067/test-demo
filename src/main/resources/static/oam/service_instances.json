@@ -1,0 +1,652 @@
+[{
+  "Node": {
+    "ID": "68eeb364-7779-a579-810a-5184089f662a",
+    "Node": "linux-7-180",
+    "Address": "10.170.7.180",
+    "Datacenter": "dc_consul",
+    "TaggedAddresses": {
+      "lan": "10.170.7.180",
+      "wan": "10.170.7.180"
+    },
+    "Meta": {
+      "consul-network-segment": ""
+    },
+    "CreateIndex": 13033,
+    "ModifyIndex": 13037
+  },
+  "Service": {
+    "ID": "oam-fds--fdsserver@10.170.7.180:10000",
+    "Service": "oam-fds--fdsserver",
+    "Tags": [
+      "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-180\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+    ],
+    "Address": "10.170.7.180",
+    "Meta": {
+      "Info": "[{\"CheckID\": \"oam-fds--fdsserver@10.170.7.180:10000\", \"Args\": [\"/opt/consul/script/notify/health_check.py\"], \"Interval\": \"15s\"}, {\"Name\": \"host rescource view check\", \"CheckID\": \"host rescource view check@10.170.7.180:10000\", \"Args\": [\"/opt/consul/script/check_mem.py\"], \"Interval\": \"15s\"}]"
+    },
+    "Port": 10000,
+    "EnableTagOverride": false,
+    "CreateIndex": 13432,
+    "ModifyIndex": 724553
+  },
+  "Checks": [{
+    "Node": "linux-7-180",
+    "CheckID": "10.170.7.180:esa/check",
+    "Name": "esa-check",
+    "Status": "passing",
+    "Notes": "",
+    "Output": "",
+    "ServiceID": "",
+    "ServiceName": "",
+    "ServiceTags": [],
+    "Definition": {},
+    "CreateIndex": 13081,
+    "ModifyIndex": 693908
+  },
+    {
+      "Node": "linux-7-180",
+      "CheckID": "serfHealth",
+      "Name": "Serf Health Status",
+      "Status": "passing",
+      "Notes": "",
+      "Output": "Agent alive and reachable",
+      "ServiceID": "",
+      "ServiceName": "",
+      "ServiceTags": [],
+      "Definition": {},
+      "CreateIndex": 13033,
+      "ModifyIndex": 395196
+    },
+    {
+      "Node": "linux-7-180",
+      "CheckID": "host rescource view check@10.170.7.180:10000",
+      "Name": "host rescource view check",
+      "Status": "passing",
+      "Notes": "",
+      "Output": "             total       used       free     shared    buffers     cached\nMem:        128416      65271      63144         30        313      17754\n-/+ buffers/cache:      47204      81212\nSwap:         4095          0       4095\nprocs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----\n r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st\n 4  0      0 64660200 320756 18180156    0    0     1  1136    6    7 10  6 84  0  0\n 3  0      0 64631368 320756 18183244    0    0     0   908 120436 252221  3  3 95  0  0\nLinux 4.4.140-94.42.1.15821.2.PTF.1102797-default (linux-7-180) \t09/06/18 \t_x86_64_\t(48 CPU)\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n           9.99    0.08    5.80    0.02    0.00   84.12\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.02    87.56    0.33  264.73    32.12 52447.50   395.97     0.38    1.46    7.58    1.45   0.08   2.19\ndm-0              0.00     0.00    0.28   49.55    28.59  1023.21    42.21     0.02    0.38    9.67    0.33   0.05   0.24\ndm-1              0.00     0.00    0.00    0.00     0.04     0.00    51.00     0.00    7.66    7.66    0.00   5.59   0.00\ndm-2              0.00     0.00    0.01  155.98     3.44 51424.28   659.37     0.20    1.31   26.50    1.31   0.13   2.01\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n           3.84    0.00    3.63    0.00    0.00   92.53\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.00    58.50    0.00   26.50     0.00  1632.00   123.17     0.00    0.00    0.00    0.00   0.00   0.00\ndm-0              0.00     0.00    0.00   28.50     0.00  1338.00    93.89     0.00    0.00    0.00    0.00   0.00   0.00\ndm-1              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00\ndm-2              0.00     0.00    0.00   56.50     0.00   294.00    10.41     0.00    0.00    0.00    0.00   0.00   0.00\n\n2018-09-06 15:28:22\n",
+      "ServiceID": "oam-fds--fdsserver@10.170.7.180:10000",
+      "ServiceName": "oam-fds--fdsserver",
+      "ServiceTags": [
+        "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-180\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+      ],
+      "Definition": {},
+      "CreateIndex": 13432,
+      "ModifyIndex": 769553
+    },
+    {
+      "Node": "linux-7-180",
+      "CheckID": "oam-fds--fdsserver@10.170.7.180:10000",
+      "Name": "Service 'oam-fds--fdsserver' check",
+      "Status": "passing",
+      "Notes": "",
+      "Output": "Thu Sep  6 15:28:26 2018 [DEBUG] FDSServer aaaaaaaaaaaa: tcp        0      0 10.170.7.180:10000      0.0.0.0:*               LISTEN      4572/FDSServer      \n\nfds service_ip: '10.170.7.180'\nThu Sep  6 15:28:29 2018 [DEBUG] PUT https://10.170.7.180:8088/v1/agent/service/register\nThu Sep  6 15:28:29 2018 [DEBUG] HTTP response: 200\nfds-service state: 0\n",
+      "ServiceID": "oam-fds--fdsserver@10.170.7.180:10000",
+      "ServiceName": "oam-fds--fdsserver",
+      "ServiceTags": [
+        "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-180\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+      ],
+      "Definition": {},
+      "CreateIndex": 13432,
+      "ModifyIndex": 769565
+    }
+  ]
+},
+  {
+    "Node": {
+      "ID": "ac9cf3a1-2a55-c062-7b23-93047526e179",
+      "Node": "linux-7-198",
+      "Address": "10.170.7.198",
+      "Datacenter": "dc_consul",
+      "TaggedAddresses": {
+        "lan": "10.170.7.198",
+        "wan": "10.170.7.198"
+      },
+      "Meta": {
+        "consul-network-segment": ""
+      },
+      "CreateIndex": 389705,
+      "ModifyIndex": 389719
+    },
+    "Service": {
+      "ID": "oam-fds--fdsserver@10.170.7.198:10000",
+      "Service": "oam-fds--fdsserver",
+      "Tags": [
+        "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-198\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+      ],
+      "Address": "10.170.7.198",
+      "Meta": {
+        "Info": "[{\"CheckID\": \"oam-fds--fdsserver@10.170.7.198:10000\", \"Args\": [\"/opt/consul/script/notify/health_check.py\"], \"Interval\": \"15s\"}, {\"Name\": \"host rescource view check\", \"CheckID\": \"host rescource view check@10.170.7.198:10000\", \"Args\": [\"/opt/consul/script/check_mem.py\"], \"Interval\": \"15s\"}]"
+      },
+      "Port": 10000,
+      "EnableTagOverride": false,
+      "CreateIndex": 389734,
+      "ModifyIndex": 743485
+    },
+    "Checks": [{
+      "Node": "linux-7-198",
+      "CheckID": "10.170.7.198:esa/check",
+      "Name": "esa-check",
+      "Status": "passing",
+      "Notes": "",
+      "Output": "",
+      "ServiceID": "",
+      "ServiceName": "",
+      "ServiceTags": [],
+      "Definition": {},
+      "CreateIndex": 389817,
+      "ModifyIndex": 765265
+    },
+      {
+        "Node": "linux-7-198",
+        "CheckID": "serfHealth",
+        "Name": "Serf Health Status",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Agent alive and reachable",
+        "ServiceID": "",
+        "ServiceName": "",
+        "ServiceTags": [],
+        "Definition": {},
+        "CreateIndex": 389705,
+        "ModifyIndex": 389705
+      },
+      {
+        "Node": "linux-7-198",
+        "CheckID": "host rescource view check@10.170.7.198:10000",
+        "Name": "host rescource view check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "             total       used       free     shared    buffers     cached\nMem:        128416      60177      68238         38        313      19475\n-/+ buffers/cache:      40388      88027\nSwap:         4095          0       4095\nprocs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----\n r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st\n 7  0      0 69875732 321284 19942716    0    0     1  1098    6    2 18 10 72  0  0\n 3  0      0 70881760 321284 18991556    0    0     0 16008 179588 273849  5  6 89  0  0\nLinux 4.4.140-94.42.1.15821.2.PTF.1102797-default (linux-7-198) \t09/06/18 \t_x86_64_\t(48 CPU)\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n          18.20    0.07    9.74    0.02    0.00   71.96\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.02    89.96    0.31  258.41    31.07 51165.37   395.77     0.45    1.73    7.85    1.72   0.09   2.20\ndm-0              0.00     0.00    0.26   66.11    26.98  3603.40   109.40     0.04    0.62   10.27    0.58   0.06   0.43\ndm-1              0.00     0.00    0.00    0.00     0.03     0.00    50.16     0.00    2.56    2.56    0.00   2.20   0.00\ndm-2              0.00     0.00    0.02  146.57     4.01 47561.97   649.00     0.23    1.54   21.40    1.54   0.13   1.85\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n           4.70    0.00    4.99    0.00    0.00   90.31\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.00    32.00    0.00   35.50     0.00   384.00    21.63     0.00    0.00    0.00    0.00   0.00   0.00\ndm-0              0.00     0.00    0.00   20.50     0.00   164.00    16.00     0.00    0.00    0.00    0.00   0.00   0.00\ndm-1              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00\ndm-2              0.00     0.00    0.00   47.00     0.00   220.00     9.36     0.00    0.00    0.00    0.00   0.00   0.00\n\n2018-09-06 15:28:13\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.198:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-198\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 389734,
+        "ModifyIndex": 769529
+      },
+      {
+        "Node": "linux-7-198",
+        "CheckID": "oam-fds--fdsserver@10.170.7.198:10000",
+        "Name": "Service 'oam-fds--fdsserver' check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Thu Sep  6 15:28:13 2018 [DEBUG] FDSServer aaaaaaaaaaaa: tcp        0      0 10.170.7.198:10000      0.0.0.0:*               LISTEN      4646/FDSServer      \n\nfds service_ip: '10.170.7.198'\nThu Sep  6 15:28:21 2018 [DEBUG] PUT https://10.170.7.198:8088/v1/agent/service/register\nThu Sep  6 15:28:21 2018 [DEBUG] HTTP response: 200\nfds-service state: 0\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.198:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-198\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 389734,
+        "ModifyIndex": 769531
+      }
+    ]
+  },
+  {
+    "Node": {
+      "ID": "b80c1070-107f-34af-b79f-a0719c24beed",
+      "Node": "linux-7-20",
+      "Address": "10.170.7.20",
+      "Datacenter": "dc_consul",
+      "TaggedAddresses": {
+        "lan": "10.170.7.20",
+        "wan": "10.170.7.20"
+      },
+      "Meta": {
+        "consul-network-segment": ""
+      },
+      "CreateIndex": 472840,
+      "ModifyIndex": 472850
+    },
+    "Service": {
+      "ID": "oam-fds--fdsserver@10.170.7.20:10000",
+      "Service": "oam-fds--fdsserver",
+      "Tags": [
+        "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-20\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+      ],
+      "Address": "10.170.7.20",
+      "Meta": {
+        "Info": "[{\"CheckID\": \"oam-fds--fdsserver@10.170.7.20:10000\", \"Args\": [\"/opt/consul/script/notify/health_check.py\"], \"Interval\": \"15s\"}, {\"Name\": \"host rescource view check\", \"CheckID\": \"host rescource view check@10.170.7.20:10000\", \"Args\": [\"/opt/consul/script/check_mem.py\"], \"Interval\": \"15s\"}]"
+      },
+      "Port": 10000,
+      "EnableTagOverride": false,
+      "CreateIndex": 472915,
+      "ModifyIndex": 762783
+    },
+    "Checks": [{
+      "Node": "linux-7-20",
+      "CheckID": "10.170.7.20:esa/check",
+      "Name": "esa-check",
+      "Status": "passing",
+      "Notes": "",
+      "Output": "",
+      "ServiceID": "",
+      "ServiceName": "",
+      "ServiceTags": [],
+      "Definition": {},
+      "CreateIndex": 472952,
+      "ModifyIndex": 758001
+    },
+      {
+        "Node": "linux-7-20",
+        "CheckID": "serfHealth",
+        "Name": "Serf Health Status",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Agent alive and reachable",
+        "ServiceID": "",
+        "ServiceName": "",
+        "ServiceTags": [],
+        "Definition": {},
+        "CreateIndex": 472840,
+        "ModifyIndex": 472840
+      },
+      {
+        "Node": "linux-7-20",
+        "CheckID": "host rescource view check@10.170.7.20:10000",
+        "Name": "host rescource view check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "             total       used       free     shared    buffers     cached\nMem:        128416      72208      56207         38        314      23040\n-/+ buffers/cache:      48852      79563\nSwap:         4095          0       4095\nprocs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----\n r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st\n19  0      0 57555628 322376 23593804    0    0     1  1336    3   11  8  5 87  0  0\n16  0      0 57564660 322376 23594876    0    0     0  1902 398896 580880 23  9 68  0  0\nLinux 4.4.140-94.42.1.15821.2.PTF.1102797-default (linux-7-20) \t09/06/18 \t_x86_64_\t(48 CPU)\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n           8.12    0.08    5.05    0.02    0.00   86.73\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.02    95.01    0.47  306.80    47.52 62366.40   406.24     0.49    1.60    7.38    1.59   0.09   2.71\ndm-0              0.00     0.00    0.39   48.98    39.73  1166.03    48.85     0.04    0.78   10.06    0.70   0.06   0.30\ndm-1              0.00     0.00    0.00    0.00     0.03     0.00    50.16     0.00   12.40   12.40    0.00   6.34   0.00\ndm-2              0.00     0.00    0.02  177.96     7.68 61200.37   687.79     0.25    1.42   26.35    1.41   0.14   2.51\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n          23.73    0.00    9.46    0.01    0.00   66.80\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.00    65.00    0.00   41.50     0.00  2186.00   105.35     0.00    0.10    0.00    0.10   0.10   0.40\ndm-0              0.00     0.00    0.00   61.50     0.00  1954.00    63.54     0.00    0.03    0.00    0.03   0.03   0.20\ndm-1              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00\ndm-2              0.00     0.00    0.00   45.00     0.00   232.00    10.31     0.00    0.09    0.00    0.09   0.04   0.20\n\n2018-09-06 15:28:22\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.20:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-20\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 472915,
+        "ModifyIndex": 769563
+      },
+      {
+        "Node": "linux-7-20",
+        "CheckID": "oam-fds--fdsserver@10.170.7.20:10000",
+        "Name": "Service 'oam-fds--fdsserver' check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Thu Sep  6 15:28:26 2018 [DEBUG] FDSServer aaaaaaaaaaaa: tcp        0      0 10.170.7.20:10000       0.0.0.0:*               LISTEN      4476/FDSServer      \n\nfds service_ip: '10.170.7.20'\nThu Sep  6 15:28:31 2018 [DEBUG] PUT https://10.170.7.20:8088/v1/agent/service/register\nThu Sep  6 15:28:31 2018 [DEBUG] HTTP response: 200\nfds-service state: 0\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.20:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-20\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 472915,
+        "ModifyIndex": 769571
+      }
+    ]
+  },
+  {
+    "Node": {
+      "ID": "4695bf08-e1a8-996d-6119-4784fe3d8a45",
+      "Node": "linux-7-203",
+      "Address": "10.170.7.203",
+      "Datacenter": "dc_consul",
+      "TaggedAddresses": {
+        "lan": "10.170.7.203",
+        "wan": "10.170.7.203"
+      },
+      "Meta": {
+        "consul-network-segment": ""
+      },
+      "CreateIndex": 406184,
+      "ModifyIndex": 406191
+    },
+    "Service": {
+      "ID": "oam-fds--fdsserver@10.170.7.203:10000",
+      "Service": "oam-fds--fdsserver",
+      "Tags": [
+        "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-203\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+      ],
+      "Address": "10.170.7.203",
+      "Meta": {
+        "Info": "[{\"CheckID\": \"oam-fds--fdsserver@10.170.7.203:10000\", \"Args\": [\"/opt/consul/script/notify/health_check.py\"], \"Interval\": \"15s\"}, {\"Name\": \"host rescource view check\", \"CheckID\": \"host rescource view check@10.170.7.203:10000\", \"Args\": [\"/opt/consul/script/check_mem.py\"], \"Interval\": \"15s\"}]"
+      },
+      "Port": 10000,
+      "EnableTagOverride": false,
+      "CreateIndex": 406216,
+      "ModifyIndex": 766418
+    },
+    "Checks": [{
+      "Node": "linux-7-203",
+      "CheckID": "10.170.7.203:esa/check",
+      "Name": "esa-check",
+      "Status": "passing",
+      "Notes": "",
+      "Output": "",
+      "ServiceID": "",
+      "ServiceName": "",
+      "ServiceTags": [],
+      "Definition": {},
+      "CreateIndex": 406289,
+      "ModifyIndex": 556547
+    },
+      {
+        "Node": "linux-7-203",
+        "CheckID": "serfHealth",
+        "Name": "Serf Health Status",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Agent alive and reachable",
+        "ServiceID": "",
+        "ServiceName": "",
+        "ServiceTags": [],
+        "Definition": {},
+        "CreateIndex": 406184,
+        "ModifyIndex": 487819
+      },
+      {
+        "Node": "linux-7-203",
+        "CheckID": "host rescource view check@10.170.7.203:10000",
+        "Name": "host rescource view check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "             total       used       free     shared    buffers     cached\nMem:        128416      57674      70742         30        308      17630\n-/+ buffers/cache:      39735      88680\nSwap:         4095          0       4095\nprocs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----\n r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st\n 1  0      0 72438908 315460 18053580    0    0     2  1290   10   10  7  4 88  1  0\n 4  0      0 72423144 315460 18055288    0    0     0  1714 126438 248827  3  5 92  0  0\nLinux 4.4.140-94.42.1.15821.2.PTF.1102797-default (linux-7-203) \t09/06/18 \t_x86_64_\t(48 CPU)\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n           6.53    0.09    4.34    1.33    0.00   87.73\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.03    53.01    0.72  259.60   114.39 60797.73   467.98    23.92   91.90   14.18   92.11   0.54  14.09\ndm-0              0.00     0.00    0.36   44.28    42.04  1073.99    50.00     2.06   46.08   16.12   46.33   2.37  10.56\ndm-1              0.00     0.00    0.00    0.00     0.04     0.00    50.16     0.00    8.13    8.13    0.00   5.89   0.00\ndm-2              0.00     0.00    0.17   94.92    72.25 59723.74  1257.64     6.21   65.30   21.13   65.38   1.45  13.81\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n           3.03    0.00    3.21    0.00    0.00   93.76\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.00    49.50    0.00   22.50     0.00   962.00    85.51     0.00    0.18    0.00    0.18   0.18   0.40\ndm-0              0.00     0.00    0.00   29.00     0.00   728.00    50.21     0.00    0.07    0.00    0.07   0.07   0.20\ndm-1              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00\ndm-2              0.00     0.00    0.00   43.00     0.00   234.00    10.88     0.00    0.05    0.00    0.05   0.05   0.20\n\n2018-09-06 15:28:20\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.203:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-203\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 406216,
+        "ModifyIndex": 769541
+      },
+      {
+        "Node": "linux-7-203",
+        "CheckID": "oam-fds--fdsserver@10.170.7.203:10000",
+        "Name": "Service 'oam-fds--fdsserver' check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Thu Sep  6 15:28:25 2018 [DEBUG] FDSServer aaaaaaaaaaaa: tcp        0      0 10.170.7.203:10000      0.0.0.0:*               LISTEN      4666/FDSServer      \n\nfds service_ip: '10.170.7.203'\nThu Sep  6 15:28:26 2018 [DEBUG] PUT https://10.170.7.203:8088/v1/agent/service/register\nThu Sep  6 15:28:26 2018 [DEBUG] HTTP response: 200\nfds-service state: 0\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.203:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-203\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 406216,
+        "ModifyIndex": 769567
+      }
+    ]
+  },
+  {
+    "Node": {
+      "ID": "1c3c379e-93aa-5c41-28f8-f8d9882210b8",
+      "Node": "linux-7-60",
+      "Address": "10.170.7.60",
+      "Datacenter": "dc_consul",
+      "TaggedAddresses": {
+        "lan": "10.170.7.60",
+        "wan": "10.170.7.60"
+      },
+      "Meta": {
+        "consul-network-segment": ""
+      },
+      "CreateIndex": 3206,
+      "ModifyIndex": 3207
+    },
+    "Service": {
+      "ID": "oam-fds--fdsserver@10.170.7.60:10000",
+      "Service": "oam-fds--fdsserver",
+      "Tags": [
+        "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-60\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+      ],
+      "Address": "10.170.7.60",
+      "Meta": {
+        "Info": "[{\"CheckID\": \"oam-fds--fdsserver@10.170.7.60:10000\", \"Args\": [\"/opt/consul/script/notify/health_check.py\"], \"Interval\": \"15s\"}, {\"Name\": \"host rescource view check\", \"CheckID\": \"host rescource view check@10.170.7.60:10000\", \"Args\": [\"/opt/consul/script/check_mem.py\"], \"Interval\": \"15s\"}]"
+      },
+      "Port": 10000,
+      "EnableTagOverride": false,
+      "CreateIndex": 3272,
+      "ModifyIndex": 714525
+    },
+    "Checks": [{
+      "Node": "linux-7-60",
+      "CheckID": "10.170.7.60:esa/check",
+      "Name": "esa-check",
+      "Status": "passing",
+      "Notes": "",
+      "Output": "",
+      "ServiceID": "",
+      "ServiceName": "",
+      "ServiceTags": [],
+      "Definition": {},
+      "CreateIndex": 3219,
+      "ModifyIndex": 767187
+    },
+      {
+        "Node": "linux-7-60",
+        "CheckID": "serfHealth",
+        "Name": "Serf Health Status",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Agent alive and reachable",
+        "ServiceID": "",
+        "ServiceName": "",
+        "ServiceTags": [],
+        "Definition": {},
+        "CreateIndex": 3206,
+        "ModifyIndex": 385818
+      },
+      {
+        "Node": "linux-7-60",
+        "CheckID": "host rescource view check@10.170.7.60:10000",
+        "Name": "host rescource view check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "             total       used       free     shared    buffers     cached\nMem:        128417      84469      43947         62        317      23459\n-/+ buffers/cache:      60692      67724\nSwap:         4095          0       4095\nprocs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----\n r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st\n 7  0      0 45002132 325100 24022900    0    0     1  1100   10    4 31  9 60  0  0\n21  0      0 45019228 325100 24026180    0    0     0  1530 290428 692018  7  5 88  0  0\nLinux 4.4.73-5-default (linux-7-60) \t09/06/18 \t_x86_64_\t(48 CPU)\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n          30.89    0.07    9.07    0.02    0.00   59.94\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.02    87.03    0.60  282.26    48.80 51372.98   363.59     0.52    1.83    4.23    1.83   0.08   2.33\ndm-0              0.00     0.00    0.00    0.00     0.04     0.00    49.07     0.00    7.82    7.82    0.00   7.04   0.00\ndm-1              0.00     0.00    0.51   81.67    44.43  3249.55    80.17     0.05    0.67    5.19    0.64   0.07   0.57\ndm-2              0.00     0.00    0.02  150.21     4.28 48123.43   640.72     0.25    1.69   19.12    1.69   0.13   1.92\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n           6.72    0.00    5.06    0.00    0.00   88.23\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.00    33.00    0.00   70.00     0.00  2110.00    60.29     0.00    0.03    0.00    0.03   0.03   0.20\ndm-0              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00\ndm-1              0.00     0.00    0.00   56.50     0.00  1882.00    66.62     0.00    0.00    0.00    0.00   0.00   0.00\ndm-2              0.00     0.00    0.00   46.50     0.00   228.00     9.81     0.01    0.22    0.00    0.22   0.04   0.20\n\n2018-09-06 15:27:33\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.60:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-60\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 3272,
+        "ModifyIndex": 769404
+      },
+      {
+        "Node": "linux-7-60",
+        "CheckID": "oam-fds--fdsserver@10.170.7.60:10000",
+        "Name": "Service 'oam-fds--fdsserver' check",
+        "Status": "critical",
+        "Notes": "",
+        "Output": "Timed out (30s) running check",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.60:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-60\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 3272,
+        "ModifyIndex": 767537
+      }
+    ]
+  },
+  {
+    "Node": {
+      "ID": "c273cc35-dde6-5bd3-6135-342e81a8e26a",
+      "Node": "linux-7-69",
+      "Address": "10.170.7.69",
+      "Datacenter": "dc_consul",
+      "TaggedAddresses": {
+        "lan": "10.170.7.69",
+        "wan": "10.170.7.69"
+      },
+      "Meta": {
+        "consul-network-segment": ""
+      },
+      "CreateIndex": 8932,
+      "ModifyIndex": 8934
+    },
+    "Service": {
+      "ID": "oam-fds--fdsserver@10.170.7.69:10000",
+      "Service": "oam-fds--fdsserver",
+      "Tags": [
+        "{\"cluster\": \"cluster\", \"version\": \"18-aecid\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-69\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+      ],
+      "Address": "10.170.7.69",
+      "Meta": {
+        "Info": "[{\"CheckID\": \"oam-fds--fdsserver@10.170.7.69:10000\", \"Args\": [\"/opt/consul/script/notify/health_check.py\"], \"Interval\": \"15s\"}, {\"Name\": \"host rescource view check\", \"CheckID\": \"host rescource view check@10.170.7.69:10000\", \"Args\": [\"/opt/consul/script/check_mem.py\"], \"Interval\": \"15s\"}]"
+      },
+      "Port": 10000,
+      "EnableTagOverride": false,
+      "CreateIndex": 9077,
+      "ModifyIndex": 712731
+    },
+    "Checks": [{
+      "Node": "linux-7-69",
+      "CheckID": "10.170.7.69:esa/check",
+      "Name": "esa-check",
+      "Status": "passing",
+      "Notes": "",
+      "Output": "",
+      "ServiceID": "",
+      "ServiceName": "",
+      "ServiceTags": [],
+      "Definition": {},
+      "CreateIndex": 8965,
+      "ModifyIndex": 749515
+    },
+      {
+        "Node": "linux-7-69",
+        "CheckID": "serfHealth",
+        "Name": "Serf Health Status",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Agent alive and reachable",
+        "ServiceID": "",
+        "ServiceName": "",
+        "ServiceTags": [],
+        "Definition": {},
+        "CreateIndex": 8932,
+        "ModifyIndex": 393605
+      },
+      {
+        "Node": "linux-7-69",
+        "CheckID": "host rescource view check@10.170.7.69:10000",
+        "Name": "host rescource view check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "             total       used       free     shared    buffers     cached\nMem:        128416      74792      53623         38        311      18237\n-/+ buffers/cache:      56243      72172\nSwap:         4095          0       4095\nprocs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----\n r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st\n16  0      0 54910608 319416 18674848    0    0     1  1047    7    4 18  9 72  0  0\n 5  0      0 54903996 319416 18681536    0    0     0  3342 154136 461785 11  7 82  0  0\nLinux 4.4.140-94.42.1.15821.2.PTF.1102797-default (linux-7-69) \t09/06/18 \t_x86_64_\t(48 CPU)\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n          18.18    0.08    9.33    0.01    0.00   72.41\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.02    83.39    0.33  246.37    31.92 48557.15   393.90     0.40    1.64    7.87    1.63   0.08   2.02\ndm-0              0.00     0.00    0.29   49.07    28.33  1505.47    62.16     0.03    0.55    8.81    0.50   0.05   0.26\ndm-1              0.00     0.00    0.00    0.00     0.04     0.00    51.00     0.00    6.47    6.47    0.00   5.00   0.00\ndm-2              0.00     0.00    0.01  146.47     3.49 47051.68   642.47     0.21    1.45   26.15    1.45   0.12   1.81\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n          10.42    0.00    6.98    0.00    0.00   82.60\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.00    39.50    0.00    7.00     0.00   212.00    60.57     0.00    0.00    0.00    0.00   0.00   0.00\ndm-0              0.00     0.00    0.00   25.50     0.00   102.00     8.00     0.00    0.00    0.00    0.00   0.00   0.00\ndm-1              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00\ndm-2              0.00     0.00    0.00   21.00     0.00   110.00    10.48     0.00    0.00    0.00    0.00   0.00   0.00\n\n2018-09-06 15:28:24\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.69:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-69\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 9077,
+        "ModifyIndex": 769554
+      },
+      {
+        "Node": "linux-7-69",
+        "CheckID": "oam-fds--fdsserver@10.170.7.69:10000",
+        "Name": "Service 'oam-fds--fdsserver' check",
+        "Status": "critical",
+        "Notes": "",
+        "Output": "Timed out (30s) running check",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.69:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-smpc\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-69\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 9077,
+        "ModifyIndex": 753121
+      }
+    ]
+  },
+  {
+    "Node": {
+      "ID": "f90e0ae9-6bb1-e256-5d08-4656262684c1",
+      "Node": "linux-7-80",
+      "Address": "10.170.7.80",
+      "Datacenter": "dc_consul",
+      "TaggedAddresses": {
+        "lan": "10.170.7.80",
+        "wan": "10.170.7.80"
+      },
+      "Meta": {
+        "consul-network-segment": ""
+      },
+      "CreateIndex": 11579,
+      "ModifyIndex": 11586
+    },
+    "Service": {
+      "ID": "oam-fds--fdsserver@10.170.7.80:10000",
+      "Service": "oam-fds--fdsserver",
+      "Tags": [
+        "{\"cluster\": \"cluster\", \"version\": \"18-aecid\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-80\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+      ],
+      "Address": "10.170.7.80",
+      "Meta": {
+        "Info": "[{\"CheckID\": \"oam-fds--fdsserver@10.170.7.80:10000\", \"Args\": [\"/opt/consul/script/notify/health_check.py\"], \"Interval\": \"15s\"}, {\"Name\": \"host rescource view check\", \"CheckID\": \"host rescource view check@10.170.7.80:10000\", \"Args\": [\"/opt/consul/script/check_mem.py\"], \"Interval\": \"15s\"}]"
+      },
+      "Port": 10000,
+      "EnableTagOverride": false,
+      "CreateIndex": 11798,
+      "ModifyIndex": 585598
+    },
+    "Checks": [{
+      "Node": "linux-7-80",
+      "CheckID": "10.170.7.80:esa/check",
+      "Name": "esa-check",
+      "Status": "passing",
+      "Notes": "",
+      "Output": "",
+      "ServiceID": "",
+      "ServiceName": "",
+      "ServiceTags": [],
+      "Definition": {},
+      "CreateIndex": 11619,
+      "ModifyIndex": 762598
+    },
+      {
+        "Node": "linux-7-80",
+        "CheckID": "serfHealth",
+        "Name": "Serf Health Status",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Agent alive and reachable",
+        "ServiceID": "",
+        "ServiceName": "",
+        "ServiceTags": [],
+        "Definition": {},
+        "CreateIndex": 11579,
+        "ModifyIndex": 393485
+      },
+      {
+        "Node": "linux-7-80",
+        "CheckID": "host rescource view check@10.170.7.80:10000",
+        "Name": "host rescource view check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "             total       used       free     shared    buffers     cached\nMem:        128416      61694      66721         38        312      18465\n-/+ buffers/cache:      42917      85498\nSwap:         4095          0       4095\nprocs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----\n r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st\n 2  0      0 68321972 319604 18908564    0    0     1  1055    9    5 28 10 62  0  0\n 1  0      0 68360552 319604 18889192    0    0     0  2270 128851 248380  3  3 93  0  0\nLinux 4.4.140-94.42.1.15821.2.PTF.1102797-default (linux-7-80) \t09/06/18 \t_x86_64_\t(48 CPU)\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n          27.49    0.08   10.31    0.05    0.00   62.07\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.02    71.30    0.34  238.81    32.56 49180.29   411.56     1.10    4.62    7.20    4.61   0.10   2.30\ndm-0              0.00     0.00    0.28   46.02    28.20  1297.80    57.27     0.09    2.04    9.25    2.00   0.11   0.50\ndm-1              0.00     0.00    0.00    0.00     0.04     0.00    51.00     0.00   12.44   12.44    0.00   5.25   0.00\ndm-2              0.00     0.00    0.02  126.86     4.26 47882.48   754.86     0.38    2.98   23.26    2.97   0.16   2.06\n\navg-cpu:  %user   %nice %system %iowait  %steal   %idle\n           3.73    0.00    6.27    0.00    0.00   90.00\n\nDevice:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util\nsda               0.00    47.50    0.00   15.00     0.00  1678.00   223.73     0.00    0.13    0.00    0.13   0.13   0.20\ndm-0              0.00     0.00    0.00   62.50     0.00  1678.00    53.70     0.00    0.06    0.00    0.06   0.03   0.20\ndm-1              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00\ndm-2              0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00\n\n2018-09-06 15:28:34\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.80:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-aecid\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-80\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 11798,
+        "ModifyIndex": 769574
+      },
+      {
+        "Node": "linux-7-80",
+        "CheckID": "oam-fds--fdsserver@10.170.7.80:10000",
+        "Name": "Service 'oam-fds--fdsserver' check",
+        "Status": "passing",
+        "Notes": "",
+        "Output": "Thu Sep  6 15:28:23 2018 [DEBUG] FDSServer aaaaaaaaaaaa: tcp        0      0 10.170.7.80:10000       0.0.0.0:*               LISTEN      4752/FDSServer      \n\nfds service_ip: '10.170.7.80'\nThu Sep  6 15:28:25 2018 [DEBUG] PUT https://10.170.7.80:8088/v1/agent/service/register\nThu Sep  6 15:28:25 2018 [DEBUG] HTTP response: 200\nfds-service state: 0\n",
+        "ServiceID": "oam-fds--fdsserver@10.170.7.80:10000",
+        "ServiceName": "oam-fds--fdsserver",
+        "ServiceTags": [
+          "{\"cluster\": \"cluster\", \"version\": \"18-aecid\", \"oam-fds--fdsserver\": {\"fds\": \"passing\", \"hostname\": \"linux-7-80\", \"components\": {\"Statistics\": \"ACTIVE\", \"Billing\": \"ACTIVE\", \"LocationDataStream\": \"ACTIVE\", \"ESABridge\": \"ACTIVE\", \"dgpscontroller\": \"ACTIVE\", \"FSC-SystemMonitor\": \"ACTIVE\", \"AssistanceDataHandler\": \"ACTIVE\", \"Map\": \"ACTIVE\", \"FSC-EventLog\": \"ACTIVE\", \"FSC-CGIEventLog\": \"ACTIVE\", \"lanmonitor\": \"ACTIVE\", \"FSC-Event\": \"ACTIVE\", \"FSC-LTEEventLog\": \"ACTIVE\", \"PPE112\": \"ACTIVE\", \"PPRouter\": \"ACTIVE\", \"SOAPServer\": \"ACTIVE\", \"HTTPServer\": \"ACTIVE\", \"RANEventLocation\": \"ACTIVE\", \"RequestMonitor\": \"ACTIVE\", \"EBMServer\": \"ACTIVE\", \"FSC-OMEventLog\": \"ACTIVE\", \"MLP\": \"ACTIVE\", \"CWSL\": \"ACTIVE\", \"Wireline\": \"ACTIVE\", \"AnyPhone\": \"ACTIVE\", \"ppgps\": \"ACTIVE\", \"GnssAssistanceDataHandler\": \"ACTIVE\", \"FSC-AdminGUIEventLog\": \"ACTIVE\", \"Diameter\": \"ACTIVE\", \"OM\": \"ACTIVE\", \"AllPhone\": \"ACTIVE\", \"ss7manager\": \"ACTIVE\", \"PPATI\": \"ACTIVE\", \"FSC-SAIEventLog\": \"ACTIVE\", \"Authority\": \"ACTIVE\", \"IMSRDF\": \"ACTIVE\", \"TriggerLocation\": \"ACTIVE\", \"UPEngine\": \"ACTIVE\", \"PacketLocationFeeder\": \"ACTIVE\", \"NetworkStorage\": \"ACTIVE\"}}}"
+        ],
+        "Definition": {},
+        "CreateIndex": 11798,
+        "ModifyIndex": 769574
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 
 package com.example.testdemo;
 
-import com.example.testbean.HelloWorld;
+import com.example.testframe.bean.HelloWorld;
 
 public class VariableLengthParameter {
     private VariableLengthParameter(){
