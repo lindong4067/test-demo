@@ -16,6 +16,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -82,8 +84,8 @@ public class StringTest {
 
         System.out.println(str);
 
-        log.info("LCSController.deleteBarredMSISDN (cluster:{}; clientId:{}; msisdn:{}; fromFile:{})", "18-cluster-smpc", "01", "123", "import.txt");
-        log.info("LCSController.searchBarredIMSI (cluster:{}; clientId:{}; imsi:{}; toFile:{})", "18-cluster-smpc", "01", "123", "export.txt");
+//        log.info("LCSController.deleteBarredMSISDN (cluster:{}; clientId:{}; msisdn:{}; fromFile:{})", "18-cluster-smpc", "01", "123", "import.txt");
+//        log.info("LCSController.searchBarredIMSI (cluster:{}; clientId:{}; imsi:{}; toFile:{})", "18-cluster-smpc", "01", "123", "export.txt");
 
     }
 
@@ -549,5 +551,123 @@ public class StringTest {
             System.out.println(value);
             System.out.println("------");
         }
+    }
+
+    @Test
+    public void testNull(){
+        List list = new ArrayList();
+        // list = null;
+        //NullPointerException
+        for (Object o : list) {
+            System.out.println(o.toString());
+        }
+    }
+
+    @Test
+    public void testEnv(){
+        String oam_center_ip = EnvironmentVariables.get("OAM_Center_IP");
+        String oam_center_local_ip = EnvironmentVariables.get("OAM_Center_Local_IP");
+        String oam_center_local_vip = EnvironmentVariables.get("OAM_Center_Local_VIP");
+        System.out.println(oam_center_ip);
+        System.out.println(oam_center_local_ip);
+        System.out.println(oam_center_local_vip);
+    }
+
+    private static long num;
+    private static Boolean sended = false;
+
+    @Test
+    public void testStatic(){
+        num++;
+        num++;
+        //It's OK.
+        sended = true;
+        //It's OK.
+        log.debug("Num : {}", num);
+        log.debug("Sended : {}", sended);
+    }
+
+    @Test
+    public void testInter() throws UnknownHostException {
+        String originIp = "192.168.0.1";
+//        String originIp = null;
+//        Assert.assertNull(InetAddress.getByName(null));
+        InetAddress address = InetAddress.getByName(originIp);
+
+        String hostAddress = address.getHostAddress();
+        String hostName = address.getHostName();
+
+        log.debug(address.toString());
+        log.debug(hostAddress);
+        log.debug(hostName);
+
+        log.debug("\nOAM center cannot access Consul, raise an alarm({}) : \nModuleId : {} \nErrorCode : {} \nDescription : {}",
+                "consulAlarmNum", "OAM_CENTER", 643, "RAISE_ALARM_DB");
+    }
+
+    public static boolean raisedDB = false;
+    public static boolean clearedDB = false;
+
+    public static void raiseAlarm(){
+        if (!raisedDB) {
+            log.info("Raise an Alarm...");
+            raisedDB = true;
+            clearedDB = false;
+        }
+    }
+
+    public static void clearAlarm(){
+        if (!clearedDB) {
+            log.info("Clear an Alarm...");
+            clearedDB = true;
+            raisedDB = false;
+        }
+    }
+
+    @Test
+    public void testAlarm(){
+        log.info("Start...");
+        clearAlarm();
+        clearAlarm();
+        clearAlarm();
+        log.info("******");
+        raiseAlarm();
+        raiseAlarm();
+        raiseAlarm();
+
+
+        log.info("******");
+        raiseAlarm();
+        clearAlarm();
+        raiseAlarm();
+        clearAlarm();
+        raiseAlarm();
+        clearAlarm();
+        log.info("******");
+
+        log.info("Stop...");
+    }
+
+    public static boolean checkByRegex(String myString, String regex){
+        Pattern p = Pattern.compile("^" + regex + "$");
+        Matcher m=p.matcher(myString);
+        boolean result = m.find();
+        return result;
+    }
+
+    @Test
+    public void testregex(){
+        String regex = "((((([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))|((([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))):([0-9]|[1-9]\\d{1}|[1-9]\\d{2}|[1-9]\\d{3}|[1-5]\\d{4}|6[0-4]\\d{3}|65[0-4]\\d{2}|655[0-2]\\d|6553[0-5]));)+";
+        String regex2 = "(\\[(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]:([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])|((([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])):([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))";
+        String str = "[fe80::d88e:b7ff:fe6a:d961]:22";
+        boolean b = checkByRegex(str, regex2);
+        System.out.println(b);
+    }
+
+    @Test
+    public void testNum(){
+        int a = 20;
+        Integer b = 20;
+        System.out.println(b.equals(a));
     }
 }

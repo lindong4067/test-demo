@@ -208,5 +208,31 @@
     "DelegateMin": 2,
     "DelegateMax": 5,
     "DelegateCur": 4
+  },
+  {
+    "Name": "OAMCenter",
+    "Addr": "10.170.7.222",
+    "Port": 8301,
+    "Tags": {
+      "build": "1.1.0:5174058f",
+      "dc": "dc_consul",
+      "id": "96d09487-cbc2-b3cd-b501-7b8d99cf5090",
+      "port": "8300",
+      "raft_vsn": "3",
+      "role": "consul",
+      "segment": "",
+      "use_tls": "1",
+      "vsn": "2",
+      "vsn_max": "3",
+      "vsn_min": "2",
+      "wan_join_port": "8302"
+    },
+    "Status": 1,
+    "ProtocolMin": 1,
+    "ProtocolMax": 5,
+    "ProtocolCur": 2,
+    "DelegateMin": 2,
+    "DelegateMax": 5,
+    "DelegateCur": 4
   }
 ]

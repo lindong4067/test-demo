@@ -113,7 +113,7 @@ public class TestNodeList {
     }
 
     public static void main(String[] args) throws Exception {
-        List<ConsulNode> nodeList = getNodeList("aecid");
+        List<ConsulNode> nodeList = getNodeList("gmpc");
         String json = JsonUtils.toJson(nodeList);
 
         System.out.println(json);
