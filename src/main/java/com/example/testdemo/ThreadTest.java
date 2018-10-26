@@ -1,9 +1,11 @@
 package com.example.testdemo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class ThreadTest {
 
     @Test
@@ -69,4 +71,5 @@ public class ThreadTest {
             System.out.println(thread.getName() + " terminate.");
         }
     }
+
 }

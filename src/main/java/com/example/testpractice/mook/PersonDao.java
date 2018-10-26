@@ -1,4 +1,4 @@
-package com.example.testmock;
+package com.example.testpractice.mook;
 
 public interface PersonDao {
     Person getPerson(int id);

@@ -1,4 +1,4 @@
-package com.example.testmock;
+package com.example.testpractice.mook;
 
 public class Person {
 

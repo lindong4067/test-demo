@@ -15,7 +15,7 @@
  *
  */
 
-package com.example.testmock;
+package com.example.testpractice.mook;
 
 import org.junit.Test;
 

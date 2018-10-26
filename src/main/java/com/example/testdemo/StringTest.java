@@ -1,6 +1,7 @@
 
 package com.example.testdemo;
 
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
@@ -14,12 +15,17 @@ import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
+import static org.apache.commons.lang3.StringUtils.trimToNull;
+import static sun.misc.PostVMInitHook.run;
 
 @Slf4j
 public class StringTest {
@@ -669,5 +675,92 @@ public class StringTest {
         int a = 20;
         Integer b = 20;
         System.out.println(b.equals(a));
+    }
+
+    @Test
+    public void testsubstring(){
+        String str = "123456";
+        String sub = str.substring(0, str.length() - 1);
+        System.out.println(sub);
+    }
+
+    @Test
+    public void testJson(){
+        String info = "[]";
+        List<Map<String, Object>> invocation = new Gson().fromJson(info, List.class);
+        log.info("invocation : {}", invocation);
+    }
+
+    @Test
+    public void testFuture(){
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> System.out.println("Hello"));
+        try {
+            future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean analyzeCache(Map<String, Map<String, Boolean>> ispCache) {
+        boolean status = true;
+        for(Map.Entry<String, Map<String, Boolean>> entry : ispCache.entrySet()) {
+
+            boolean statusOfOneTypeService = false;
+            for(Map.Entry<String, Boolean> entry1 : entry.getValue().entrySet()) {
+                // If any service of the same type is good, this kind of service is considered as good. For example, type oam-fds--fdsserver.
+                if(entry1.getValue()) {
+                    statusOfOneTypeService = true;
+                    break;
+                }
+            }
+            // If any kind of service is not good, system is considered as down
+            if(!statusOfOneTypeService) {
+                status = false;
+                break;
+            }
+        }
+        return status;
+    }
+
+    @Test
+    public void testISP(){
+        Map<String, Map<String, Boolean>> ispCache = new ConcurrentHashMap<>();
+        Map<String, Boolean> fdsmap = new HashMap<>();
+        fdsmap.put("fds-1", true);
+        fdsmap.put("fds-2", true);
+        fdsmap.put("fds-3", false);
+        ispCache.put("fds", fdsmap);
+        Map<String, Boolean> udamap = new HashMap<>();
+        udamap.put("uda-1", false);
+        udamap.put("uda-2", true);
+        udamap.put("uda-3", true);
+        ispCache.put("uda", udamap);
+        Map<String, Boolean> postgremap = new HashMap<>();
+        postgremap.put("postgre-1", false);
+        postgremap.put("postgre-2", false);
+        postgremap.put("postgre-3", false);
+        ispCache.put("postgre", postgremap);
+        boolean cache = analyzeCache(ispCache);
+        System.out.println(cache);
+    }
+
+    @Test
+    public void testSingleBoolen(){
+        String a = null;
+        String b = "";
+
+        if (agency(a) || agency(b)){
+            log.info("Short circuit.\n");
+        }
+        if (agency(a) | agency(b)){
+            log.info("Both sides run.\n");
+        }
+    }
+
+    private boolean agency(String string){
+        log.info("Check parameter : {}", string);
+        return StringUtils.isEmpty(string);
     }
 }
