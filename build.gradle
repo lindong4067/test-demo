@@ -48,5 +48,6 @@ dependencies {
     compile group: 'io.netty', name: 'netty-all', version: '5.0.0.Alpha2'
     compile group: 'com.typesafe.akka', name: 'akka-actor_2.12', version: '2.5.17'
     compile group: 'com.typesafe.akka', name: 'akka-testkit_2.12', version: '2.5.17'
+    compile group: 'com.typesafe.akka', name: 'akka-remote_2.12', version: '2.5.17'
     compile group: 'org.scala-lang.modules', name: 'scala-java8-compat_2.11', version: '0.8.0'
 }
