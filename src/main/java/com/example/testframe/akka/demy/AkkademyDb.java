@@ -1,32 +1,18 @@
-/*
- *         File : AkkademyDb.java
- *    Classname : AkkademyDb
- *    Author(s) : eznlzhi
- *      Created : 2018-10-15
- *
- * Copyright (c) 2017 Ericsson AB, Sweden.
- * All rights reserved.
- * The Copyright to the computer program(s) herein is the property of
- * Ericsson AB, Sweden.
- * The program(s) may be used and/or copied with the written permission
- * from Ericsson AB or in accordance with the terms and conditions
- * stipulated in the agreement/contract under which the program(s)
- * have been supplied.
- *
- */
-
 package com.example.testframe.akka.demy;
 
 import akka.actor.AbstractActor;
-import akka.event.Logging;
-import akka.event.LoggingAdapter;
+import akka.actor.Status;
+//import akka.event.Logging;
+//import akka.event.LoggingAdapter;
 import akka.japi.pf.ReceiveBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 public class AkkademyDb extends AbstractActor {
-    protected final LoggingAdapter log = Logging.getLogger(context().system(), this);
+//    protected final LoggingAdapter log = Logging.getLogger(context().system(), this);
     protected final Map<String, Object> map = new HashMap<>();
 
     @Override
@@ -34,9 +20,20 @@ public class AkkademyDb extends AbstractActor {
         return ReceiveBuilder.create()
                 .match(SetRequest.class, message -> {
                     log.info("Received Set request: {}", message);
-                    map.put(message.getKey(), message.getValue());
+                    map.put(message.key, message.value);
+                    sender().tell(new Status.Success(message.key), self());
                 })
-                .matchAny(o -> log.info("received unknown message: {}", o))
+                .match(GetRequest.class, message -> {
+                    log.info("Received Get request: {}", message);
+                    Object value = map.get(message.key);
+                    Object response = (value != null) ? value
+                            : new Status.Failure(new KeyNotFoundException(message.key));
+                    sender().tell(response, self());
+                })
+                .matchAny(o -> {
+                    log.info("received unknown message: {}", o);
+                    sender().tell(new Status.Failure(new ClassNotFoundException()), self());
+                })
                 .build();
     }
 }
