@@ -20,6 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -762,5 +763,16 @@ public class StringTest {
     private boolean agency(String string){
         log.info("Check parameter : {}", string);
         return StringUtils.isEmpty(string);
+    }
+
+    @Test
+    public void testNotNull(){
+        String s = null;
+        try {
+            Objects.requireNonNull(s, "parameter is not null.");
+        }catch (Exception e){
+            assert(e instanceof NullPointerException);
+        }
+        log.info("go on..."); //not come here
     }
 }
