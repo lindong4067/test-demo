@@ -3,8 +3,6 @@ package com.example.testframe.akka.sample;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 
-import java.io.IOException;
-
 public class AkkaQuickstart {
   public static void main(String[] args) {
     final ActorSystem system = ActorSystem.create("helloakka");
