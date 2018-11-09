@@ -23,10 +23,13 @@ import akka.actor.Props;
 import akka.actor.Terminated;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import akka.remote.WireFormats;
+import scala.concurrent.duration.FiniteDuration;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class DeviceGroup extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
@@ -103,6 +106,7 @@ public class DeviceGroup extends AbstractActor {
 
     final Map<String, ActorRef> deviceIdToActor = new HashMap<>();
     final Map<ActorRef, String> actorToDeviceId = new HashMap<>();
+    final long nextCollectionId = 0L;
 
     @Override
     public void preStart() throws Exception {
@@ -112,6 +116,12 @@ public class DeviceGroup extends AbstractActor {
     @Override
     public void postStop() throws Exception {
         log.info("DeviceGroup {} stopped", groupId);
+    }
+
+    private void onAllTemperatures (RequestAllTemperatures request){
+        Map<ActorRef, String> actorToDeviceIdCopy = new HashMap<>(this.actorToDeviceId);
+        getContext().actorOf(DeviceGroupQuery.props(
+                actorToDeviceIdCopy, request.requestId, getSender(), new FiniteDuration(3, TimeUnit.SECONDS)));
     }
 
     private void onTrackDevice(DeviceManager.RequestTrackDevice trackMsg){
@@ -153,6 +163,7 @@ public class DeviceGroup extends AbstractActor {
                 .match(DeviceManager.RequestTrackDevice.class, this::onTrackDevice)
                 .match(RequestDeviceList.class, this::onDeviceList)
                 .match(Terminated.class, this::onTerminated)
+                .match(RequestAllTemperatures.class, this::onAllTemperatures)
                 .build();
     }
 }
