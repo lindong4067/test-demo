@@ -2,8 +2,10 @@
 package com.example.testdemo;
 
 import com.google.gson.Gson;
+import javafx.concurrent.Task;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.util.Asserts;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,9 +17,7 @@ import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -775,4 +775,111 @@ public class StringTest {
         }
         log.info("go on..."); //not come here
     }
+
+    @Test
+    public void testCompare(){
+        CounterValue value1 = new CounterValue("A");
+        CounterValue value2 = new CounterValue("B");
+        CounterValue value3 = new CounterValue("C");
+        CounterValue value4 = new CounterValue("D");
+        CounterValue value5 = new CounterValue("E");
+
+        List<CounterValue> list1 = new ArrayList<>();
+        list1.add(value5);
+        list1.add(value4);
+        list1.add(value3);
+        list1.add(value2);
+        list1.add(value1);
+        List<CounterValue> list2 = new ArrayList<>();
+//        list2.add(value1);
+//        list2.add(value2);
+//        list2.add(value3);
+//        list2.add(value4);
+//        list2.add(value5);
+        list2.add(value5);
+        list2.add(value4);
+        list2.add(value3);
+        list2.add(value2);
+        list2.add(value1);
+
+        boolean b = compareList(list1, list2);
+        System.out.println(b);
+    }
+
+    public static boolean compareList(List<CounterValue> list1, List<CounterValue> list2) {
+
+        for(CounterValue value : list1) {
+            for(CounterValue value1 : list2) {
+                System.out.println(value + " compare to " + value1);
+                if(null != value){
+                    if(value.equals(value1)) {
+                        list2.remove(value1);
+                        break;
+                    }else{
+                        System.out.println("*******************************************************"+list1);
+                        System.out.println("*******************************************************"+list2);
+                        continue;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    private class CounterValue {
+        private String value;
+
+        @Override
+        public String toString() {
+            return value;
+        }
+
+        public CounterValue(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            CounterValue that = (CounterValue) o;
+            return Objects.equals(value, that.value);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(value);
+        }
+    }
+
+    @Test
+    public void init(){
+//        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        Runnable runnable = () -> log.debug("OK");
+        for (int i = 0; i <= 100; i++){
+//            executorService.execute(runnable);
+            runnable.run();
+        }
+    }
+
+//    public void test(){
+//        Runnable runnable = () -> VariableService.getParameter("OAMCenter");
+//
+//        ExecutorService executorService = Executors.newFixedThreadPool(100);
+//
+//        for (int i = 0; i <= 1000*60*60; i++) {
+//            executorService.execute(runnable);
+//            log.debug("Get Variable Value Times : {}", i);
+//        }
+//
+//        log.debug("Get Variable Value Times Finish!");
+//    }
 }
