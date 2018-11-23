@@ -818,7 +818,10 @@ public class StringTest {
                     }else{
                         System.out.println("*******************************************************"+list1);
                         System.out.println("*******************************************************"+list2);
+<<<<<<< HEAD
+=======
                         continue;
+>>>>>>> 03abf72cbe9508de39f95f56b6317dbe0f92347a
                     }
                 }
             }
@@ -882,4 +885,18 @@ public class StringTest {
 //
 //        log.debug("Get Variable Value Times Finish!");
 //    }
+
+    @Test
+    public void time(){
+        long l = System.currentTimeMillis();
+        System.out.println(l);
+        Date date = new Date(l);
+        System.out.println(date);
+    }
+
+    @Test
+    public void testStatus(){
+        String ssl = System.getProperty("ssl");
+        System.out.println(ssl);
+    }
 }

@@ -15,8 +15,10 @@
  *
  */
 
-package com.example.testframe.netty.getstart;
+package com.example.testframe.netty.getstart._1_discard;
 
+import com.example.testframe.netty.getstart._2_echo.TimeEncoder;
+import com.example.testframe.netty.getstart._2_echo.TimeServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -34,31 +36,28 @@ public class DiscardServer {
     }
 
     public void run() throws Exception {
-        try (EventLoopGroup bossGroup = new NioEventLoopGroup();
-             EventLoopGroup workerGroup = new NioEventLoopGroup()) {
+        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        try{
 
             ServerBootstrap b = new ServerBootstrap();
-
-            b = b.group(bossGroup, workerGroup);
-
-            b = b.channel(NioServerSocketChannel.class);
-
-            b = b.childHandler(new ChannelInitializer<SocketChannel>() {
-                @Override
-                public void initChannel(SocketChannel ch) throws Exception {
-//                    ch.pipeline().addLast(new DiscardServerHandler());// demo1.discard
-//                     ch.pipeline().addLast(new ResponseServerHandler());//demo2.echo
-                     ch.pipeline().addLast(new TimeServerHandler());//demo3.time
-                }
-            });
-
-            b = b.option(ChannelOption.SO_BACKLOG, 128);
-
-            b = b.childOption(ChannelOption.SO_KEEPALIVE, true);
-
+            b.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
+                        @Override
+                        protected void initChannel(SocketChannel ch) throws Exception {
+//                            ch.pipeline().addLast(new DiscardServerHandler());
+//                            ch.pipeline().addLast(new EchoServerHandler());
+                            ch.pipeline().addLast(new TimeEncoder(), new TimeServerHandler());
+                        }
+                    })
+                    .option(ChannelOption.SO_BACKLOG, 128)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true);
             ChannelFuture f = b.bind(port).sync();
-
             f.channel().closeFuture().sync();
+        } finally {
+            workerGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully();
         }
     }
 
@@ -70,6 +69,5 @@ public class DiscardServer {
             port = 8080;
         }
         new DiscardServer(port).run();
-        System.out.println("server run on : " + port);
     }
 }
