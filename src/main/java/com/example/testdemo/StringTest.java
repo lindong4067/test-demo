@@ -818,10 +818,6 @@ public class StringTest {
                     }else{
                         System.out.println("*******************************************************"+list1);
                         System.out.println("*******************************************************"+list2);
-<<<<<<< HEAD
-=======
-                        continue;
->>>>>>> 03abf72cbe9508de39f95f56b6317dbe0f92347a
                     }
                 }
             }
