@@ -895,4 +895,14 @@ public class StringTest {
         String ssl = System.getProperty("ssl");
         System.out.println(ssl);
     }
+
+    @Test
+    public void testUrlMapping(){
+        String uri = "/v1/data/18-gmpc-cluster/gmpc/network/hlrs_hsss_for_imsi";
+        String mspping = "/v1/data/{cluster}/gmpc/network/hlrs_hsss_for_imsi";
+        long timeMillis = System.currentTimeMillis();
+        long timeInMillis = Calendar.getInstance().getTimeInMillis();
+        log.debug("timeMillis : {}", timeMillis);
+        log.debug("timeInMillis : {}", timeInMillis);
+    }
 }
