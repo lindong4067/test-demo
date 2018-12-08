@@ -33,13 +33,13 @@ import java.util.concurrent.Callable;
  * <code>AsyncCallback</code> which can be provided to be executed on task completion and <code>AsyncExecutor</code>
  * that manages the execution of the async tasks.
  * <p>
- * The main method shows example flow of async invocations. The main thread starts multiple tasks with variable
- * durations and then continues its own work. When the main thread has done it's job it collects the results of the
+ * The MyMvcMain method shows example flow of async invocations. The MyMvcMain thread starts multiple tasks with variable
+ * durations and then continues its own work. When the MyMvcMain thread has done it's job it collects the results of the
  * async tasks. Two of the tasks are handled with callbacks, meaning the callbacks are executed immediately when the
  * tasks complete.
  * <p>
  * Noteworthy difference of thread usage between the async results and callbacks is that the async results are collected
- * in the main thread but the callbacks are executed within the worker threads. This should be noted when working with
+ * in the MyMvcMain thread but the callbacks are executed within the worker threads. This should be noted when working with
  * thread pools.
  * <p>
  * Java provides its own implementations of async method invocation pattern. FutureTask, CompletableFuture and

@@ -41,7 +41,7 @@ public class AsynchronousService {
   /*
    * This represents the queuing layer as well as synchronous layer of the pattern. The thread pool
    * contains worker threads which execute the tasks in blocking/synchronous manner. Long running
-   * tasks should be performed in the background which does not affect the performance of main
+   * tasks should be performed in the background which does not affect the performance of MyMvcMain
    * thread.
    */
   private ExecutorService service;

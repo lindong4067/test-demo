@@ -36,7 +36,7 @@ package com.example.testpatterns.mutex;
 public class App {
 
   /**
-   * main method
+   * MyMvcMain method
    */
   public static void main(String[] args) {
     Mutex mutex = new Mutex();

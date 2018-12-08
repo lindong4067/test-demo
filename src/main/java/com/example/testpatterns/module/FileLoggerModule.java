@@ -36,8 +36,8 @@ public final class FileLoggerModule {
 
   private static FileLoggerModule singleton = null;
 
-  private static final String OUTPUT_FILE = "src\\main\\java\\com\\example\\testpatterns\\module\\output.txt";
-  private static final String ERROR_FILE = "src\\main\\java\\com\\example\\testpatterns\\module\\error.txt";
+  private static final String OUTPUT_FILE = "src\\MyMvcMain\\java\\com\\example\\testpatterns\\module\\output.txt";
+  private static final String ERROR_FILE = "src\\MyMvcMain\\java\\com\\example\\testpatterns\\module\\error.txt";
 
   public PrintStream output = null;
   public PrintStream error = null;
