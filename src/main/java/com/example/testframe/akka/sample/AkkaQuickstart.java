@@ -12,7 +12,7 @@ public class AkkaQuickstart {
       final ActorRef howdyGreeter = system.actorOf(Greeter.props("Howdy!", printerActor), "howdyGreeter");
       final ActorRef helloGreeter = system.actorOf(Greeter.props("Hello!", printerActor), "helloGreeter");
       final ActorRef goodDayGreeter = system.actorOf(Greeter.props("Good day!", printerActor), "goodDayGreeter");
-      //#main-send-messages
+      //#MyMvcMain-send-messages
 
       howdyGreeter.tell(new Greeter.WhoToGreet("Akka"), ActorRef.noSender());
       howdyGreeter.tell(new Greeter.Greet(), ActorRef.noSender());
@@ -25,7 +25,7 @@ public class AkkaQuickstart {
 
       goodDayGreeter.tell(new Greeter.WhoToGreet("Play"), ActorRef.noSender());
       goodDayGreeter.tell(new Greeter.Greet(), ActorRef.noSender());
-      //#main-send-messages
+      //#MyMvcMain-send-messages
 
     } finally {
       system.terminate();

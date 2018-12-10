@@ -77,7 +77,7 @@ public class App {
   /**
    * Program entry point
    * @param args arguments
-   * @throws InterruptedException if main thread is interrupted.
+   * @throws InterruptedException if MyMvcMain thread is interrupted.
    * @throws ExecutionException if an execution error occurs.
    */
   public static void main(String[] args) throws InterruptedException, ExecutionException {

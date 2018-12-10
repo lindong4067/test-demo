@@ -25,7 +25,7 @@ package com.example.testpatterns.interceptingfilter;
 /**
  * 
  * When a request enters a Web application, it often must pass several entrance tests prior to the
- * main processing stage. For example, - Has the client been authenticated? - Does the client have a
+ * MyMvcMain processing stage. For example, - Has the client been authenticated? - Does the client have a
  * valid session? - Is the client's IP address from a trusted network? - Does the request path
  * violate any constraints? - What encoding does the client use to send the data? - Do we support
  * the browser type of the client? Some of these checks are tests, resulting in a yes or no answer

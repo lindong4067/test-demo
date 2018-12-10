@@ -57,8 +57,8 @@ import java.util.concurrent.LinkedBlockingQueue;
  * 
  * <p>
  * <i>IMPLEMENTATION</i> <br>
- * The main method creates an asynchronous service which does not block the main thread while the
- * task is being performed. The main thread continues its work which is similar to Async Method
+ * The MyMvcMain method creates an asynchronous service which does not block the MyMvcMain thread while the
+ * task is being performed. The MyMvcMain thread continues its work which is similar to Async Method
  * Invocation pattern. The difference between them is that there is a queuing layer between
  * Asynchronous layer and synchronous layer, which allows for different communication patterns
  * between both layers. Such as Priority Queue can be used as queuing layer to prioritize the way
@@ -78,9 +78,9 @@ public class App {
   public static void main(String[] args) {
     AsynchronousService service = new AsynchronousService(new LinkedBlockingQueue<>());
     /*
-     * A new task to calculate sum is received but as this is main thread, it should not block. So
+     * A new task to calculate sum is received but as this is MyMvcMain thread, it should not block. So
      * it passes it to the asynchronous task layer to compute and proceeds with handling other
-     * incoming requests. This is particularly useful when main thread is waiting on Socket to
+     * incoming requests. This is particularly useful when MyMvcMain thread is waiting on Socket to
      * receive new incoming requests and does not wait for particular request to be completed before
      * responding to new request.
      */
@@ -117,10 +117,10 @@ public class App {
     }
 
     /*
-     * This will be called in context of the main thread where some validations can be done
+     * This will be called in context of the MyMvcMain thread where some validations can be done
      * regarding the inputs. Such as it must be greater than 0. It's a small computation which can
-     * be performed in main thread. If we did validated the input in background thread then we pay
-     * the cost of context switching which is much more than validating it in main thread.
+     * be performed in MyMvcMain thread. If we did validated the input in background thread then we pay
+     * the cost of context switching which is much more than validating it in MyMvcMain thread.
      */
     @Override
     public void onPreCall() {

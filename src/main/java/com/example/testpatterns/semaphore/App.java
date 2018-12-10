@@ -35,7 +35,7 @@ package com.example.testpatterns.semaphore;
 public class App {
     
   /**
-   * main method
+   * MyMvcMain method
    */
   public static void main(String[] args) {
     FruitShop shop = new FruitShop();

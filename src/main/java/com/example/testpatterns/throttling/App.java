@@ -50,7 +50,7 @@ public class App {
 
   /**
    * Application entry point
-   * @param args main arguments
+   * @param args MyMvcMain arguments
    */
   public static void main(String[] args) {
 

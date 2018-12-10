@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
  *
  * The Caching pattern describes how to avoid expensive re-acquisition of resources by not releasing
  * the resources immediately after their use. The resources retain their identity, are kept in some
- * fast-access storage, and are re-used to avoid having to acquire them again. There are four main
+ * fast-access storage, and are re-used to avoid having to acquire them again. There are four MyMvcMain
  * caching strategies/techniques in this pattern; each with their own pros and cons. They are;
  * <code>write-through</code> which writes data to the cache and DB in a single transaction,
  * <code>write-around</code> which writes data immediately into the DB instead of the cache,
@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  * application data. The cache itself is implemented as an internal (Java) data structure. It adopts
  * a Least-Recently-Used (LRU) strategy for evicting data from itself when its full. The four
  * strategies are individually tested. The testing of the cache is restricted towards saving and
- * querying of user accounts from the underlying data store ( {@link DbManager}). The main class (
+ * querying of user accounts from the underlying data store ( {@link DbManager}). The MyMvcMain class (
  * {@link App} is not aware of the underlying mechanics of the application (i.e. save and query) and
  * whether the data is coming from the cache or the DB (i.e. separation of concern). The AppManager
  * ({@link AppManager}) handles the transaction of data to-and-from the underlying data store

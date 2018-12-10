@@ -60,7 +60,7 @@ public final class App {
   }
 
   /**
-   * Following method is main executor
+   * Following method is MyMvcMain executor
    * 
    * @param args for providing default program arguments
    */

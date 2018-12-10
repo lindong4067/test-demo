@@ -68,7 +68,7 @@ public class Validator<T> {
 
   /**
    * @param validation one argument boolean-valued function that
-   *                   represents one step of validation. Adds exception to main validation exception
+   *                   represents one step of validation. Adds exception to MyMvcMain validation exception
    *                   list when single step validation ends with failure.
    * @param message    error message when object is invalid
    * @return this

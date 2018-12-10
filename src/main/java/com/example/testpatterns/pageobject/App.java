@@ -62,7 +62,7 @@ public final class App {
    * the frontend which comprises of a series of HTML, CSS, JS etc...
    *
    * <p>
-   * For illustrations purposes only, a very simple static html app is used here. This main method
+   * For illustrations purposes only, a very simple static html app is used here. This MyMvcMain method
    * just fires up this simple web app in a default browser.
    *
    * @param args arguments

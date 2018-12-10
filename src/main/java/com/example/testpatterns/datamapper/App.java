@@ -37,12 +37,12 @@ public final class App {
     /* Add student in respectibe store */
     mapper.insert(student);
 
-    log.debug("App.main(), student : " + student + ", is inserted");
+    log.debug("App.MyMvcMain(), student : " + student + ", is inserted");
 
     /* Find this student */
     final Optional<Student> studentToBeFound = mapper.find(student.getStudentId());
 
-    log.debug("App.main(), student : " + studentToBeFound + ", is searched");
+    log.debug("App.MyMvcMain(), student : " + studentToBeFound + ", is searched");
 
     /* Update existing student object */
     student = new Student(student.getStudentId(), "AdamUpdated", 'A');
@@ -50,8 +50,8 @@ public final class App {
     /* Update student in respectibe db */
     mapper.update(student);
 
-    log.debug("App.main(), student : " + student + ", is updated");
-    log.debug("App.main(), student : " + student + ", is going to be deleted");
+    log.debug("App.MyMvcMain(), student : " + student + ", is updated");
+    log.debug("App.MyMvcMain(), student : " + student + ", is going to be deleted");
 
     /* Delete student in db */
     mapper.delete(student);
