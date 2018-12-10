@@ -1,0 +1,10 @@
+@startuml
+Bob -> Jim : Hello
+Jim --> Bob : Hi
+actor Foo1
+boundary Foo2
+control Foo3
+entity Foo4
+database Foo5
+collections Foo7
+@enduml

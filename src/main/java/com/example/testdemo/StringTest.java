@@ -905,4 +905,78 @@ public class StringTest {
         log.debug("timeMillis : {}", timeMillis);
         log.debug("timeInMillis : {}", timeInMillis);
     }
+
+    public class Task {
+        public void doOne() {
+            try {
+                log.debug("Before doOne() ");
+                Thread.sleep(1000);
+                log.debug("After doOne() ");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public synchronized void doTwo() {
+            try {
+                log.debug("Before doTwo() ");
+                Thread.sleep(2000);
+                log.debug("After doTwo() ");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void doThree() {
+            synchronized (this) {
+                try {
+                    log.debug("Before doThree() ");
+                    wait(3000);
+                    log.debug("After doThree() ");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        public void doFour() {
+            synchronized (Task.class) {
+                try {
+                    log.debug("Before doFour() ");
+                    wait(4000);
+                    log.debug("After doFour() ");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        public void doFive() {
+            synchronized (Task.class) {
+                try {
+                    log.debug("Before doFour() ");
+                    Thread.sleep(5000);
+                    log.debug("After doFour() ");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testLock(){
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.MONTH, -6);
+        now.set(Calendar.DAY_OF_MONTH, 1);
+        now.set(Calendar.HOUR_OF_DAY, 0);
+        now.set(Calendar.MILLISECOND, 0);
+        now.set(Calendar.MINUTE, 0);
+        now.set(Calendar.SECOND, 0);
+        long time = now.getTimeInMillis();
+        System.out.println(time);
+        long millis = System.currentTimeMillis();
+        System.out.println(millis);
+    }
+
 }
