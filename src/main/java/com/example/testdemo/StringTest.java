@@ -3,6 +3,7 @@ package com.example.testdemo;
 
 import com.google.gson.Gson;
 import javafx.concurrent.Task;
+import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.util.Asserts;
@@ -16,6 +17,8 @@ import java.net.InetAddress;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
@@ -966,17 +969,161 @@ public class StringTest {
 
     @Test
     public void testLock(){
-        Calendar now = Calendar.getInstance();
-        now.add(Calendar.MONTH, -6);
-        now.set(Calendar.DAY_OF_MONTH, 1);
-        now.set(Calendar.HOUR_OF_DAY, 0);
-        now.set(Calendar.MILLISECOND, 0);
-        now.set(Calendar.MINUTE, 0);
-        now.set(Calendar.SECOND, 0);
-        long time = now.getTimeInMillis();
-        System.out.println(time);
-        long millis = System.currentTimeMillis();
-        System.out.println(millis);
+//        Calendar now = Calendar.getInstance();
+//        now.add(Calendar.MONTH, -6);
+//        now.set(Calendar.DAY_OF_MONTH, 1);
+//        now.set(Calendar.HOUR_OF_DAY, 0);
+//        now.set(Calendar.MILLISECOND, 0);
+//        now.set(Calendar.MINUTE, 0);
+//        now.set(Calendar.SECOND, 0);
+//        long time = now.getTimeInMillis();
+//        System.out.println(time);
+//        long millis = System.currentTimeMillis();
+//        System.out.println(millis);
+        getWeekStartDate();
     }
 
+    public static String getFirstAndLastOfWeek(String dataStr) throws ParseException {
+        Calendar cal = Calendar.getInstance();
+
+//        cal.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(dataStr));
+
+        int d;
+        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            d = -6;
+        } else {
+            d = 2 - cal.get(Calendar.DAY_OF_WEEK);
+        }
+        cal.add(Calendar.DAY_OF_WEEK, d);
+        // 所在周开始日期
+        String data1 = new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime());
+        cal.add(Calendar.DAY_OF_WEEK, 6);
+        // 所在周结束日期
+        String data2 = new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime());
+        return data1 + "-" + data2;
+
+    }
+
+    public static Date getWeekStartDate(){
+        Calendar cal = Calendar.getInstance();
+        Date time1 = cal.getTime();
+        System.out.println(time1);
+
+        cal.set(Calendar.DAY_OF_WEEK, 1);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+
+        Date time = cal.getTime();
+        System.out.println(time);
+        cal.add(Calendar.SECOND, -1);
+        Date date = cal.getTime();
+        System.out.println(date);
+
+        cal.set(Calendar.DAY_OF_WEEK, 1);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+
+        Date time2 = cal.getTime();
+        System.out.println(time2);
+        cal.add(Calendar.SECOND, -1);
+        Date date2 = cal.getTime();
+        System.out.println(date2);
+        return date;
+    }
+
+    public enum BreakPointType { MONTHLY, WEEKLY }
+
+    public List<Pair<Long, Long>> getBreakPoints(long oamStartTime, BreakPointType pointsType){
+        int e;
+        boolean flag;
+        if (pointsType.equals(BreakPointType.MONTHLY)){
+            e = 6;
+            flag = true;
+        } else {
+            e = 4;
+            flag = false;
+        }
+        Calendar cal = Calendar.getInstance();
+        long stopTime = cal.getTimeInMillis();
+        if (flag) {
+            cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1, 0, 0, 0);
+        } else {
+            cal.set(Calendar.DAY_OF_WEEK, 1);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+        }
+        long startTime = cal.getTimeInMillis();
+
+        List<Pair<Long, Long>> pairList = new ArrayList<>();
+        for (int i = 0; i <= e; i++){
+            if (startTime > oamStartTime) {
+                Pair<Long, Long> pair = new Pair<>(startTime, stopTime);
+                pairList.add(pair);
+            } else {
+                Pair<Long, Long> pair = new Pair<>(oamStartTime, stopTime);
+                pairList.add(pair);
+                break;
+            }
+
+            cal.add(Calendar.SECOND, -1);
+            stopTime = cal.getTimeInMillis();
+            if (flag) {
+                cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1, 0, 0, 0);
+            } else {
+                cal.set(Calendar.DAY_OF_WEEK, 1);
+                cal.set(Calendar.HOUR_OF_DAY, 0);
+                cal.set(Calendar.MINUTE, 0);
+                cal.set(Calendar.SECOND, 0);
+            }
+            startTime = cal.getTimeInMillis();
+        }
+        return pairList;
+    }
+
+    public Map<Integer, Map<Integer, Pair<Double, Long>>> getDowntimeTree(long startTime, long stopTime, List<DownTimeInfo> downTimeInfoList){
+        long monthDowntimeSum = downTimeInfoList.stream().filter(e ->
+                e.getDownTime() >= startTime && e.getDownTime() <= stopTime)
+                .mapToLong(e -> e.getRestoreTime() - e.getDownTime()).sum();
+        Calendar start = Calendar.getInstance();
+        start.setTime(new Date(startTime));
+        Calendar stop = Calendar.getInstance();
+        stop.setTime(new Date(stopTime));
+
+        int maximum = start.getActualMaximum(Calendar.DATE);
+        int dayOfMonth = stop.get(Calendar.DAY_OF_MONTH);
+        double month = (double) dayOfMonth / maximum;
+
+        Pair<Double, Long> monthAndDownTime = new Pair<>(month, monthDowntimeSum);
+        int findMonth = start.get(Calendar.MONTH) + 1;
+        Map<Integer, Pair<Double, Long>> monthToMonthAndDownTime = new HashMap<>();
+        monthToMonthAndDownTime.put(findMonth, monthAndDownTime);
+        int findYear = start.get(Calendar.YEAR);
+        Map<Integer, Map<Integer, Pair<Double, Long>>> yearToMonthToMonthAndDownTime = new HashMap<>();
+        yearToMonthToMonthAndDownTime.put(findYear, monthToMonthAndDownTime);
+        return yearToMonthToMonthAndDownTime;
+    }
+
+    private class DownTimeInfo {
+        private long downTime;
+        private long restoreTime;
+
+        public long getDownTime() {
+            return downTime;
+        }
+
+        public void setDownTime(long downTime) {
+            this.downTime = downTime;
+        }
+
+        public long getRestoreTime() {
+            return restoreTime;
+        }
+
+        public void setRestoreTime(long restoreTime) {
+            this.restoreTime = restoreTime;
+        }
+    }
 }
