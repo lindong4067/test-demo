@@ -1,0 +1,32 @@
+@startuml
+Consul -> OAMCenter: notify service down
+OAMCenter -> Cache: check downtime
+Cache --> OAMCenter: downtime not exist
+OAMCenter -> downtime.tmp: check file & read downtime
+downtime.tmp --> OAMCenter: file exist
+OAMCenter -> Cache: write downtime to cache
+downtime.tmp --> OAMCenter: file not exist
+OAMCenter -> downtime.tmp: write downtime to file
+OAMCenter -> Cache: write downtime to cache
+Cache --> OAMCenter: downtime exist
+OAMCenter -> OAMCenter: no operation
+Consul -> OAMCenter: notify service up
+OAMCenter -> downtime.tmp: check file & read downtime
+downtime.tmp --> OAMCenter: file exist
+OAMCenter -> planned.tmp: check file
+planned.tmp --> OAMCenter: file exist
+OAMCenter -> Postgres: downtime restoretime planned
+planned.tmp --> OAMCenter: file not exist
+OAMCenter -> Postgres: downtime restoretime unplanned
+downtime.tmp --> OAMCenter: file not exist
+OAMCenter -> OAMCenter: no operation
+CLI -> OAMCenter: planned
+OAMCenter -> planned.tmp: check file exist
+planned.tmp --> OAMCenter: file exist
+OAMCenter -> planned.tmp: delete file
+planned.tmp --> OAMCenter: file not exist
+OAMCenter -> OAMCenter: no operation
+CLI -> OAMCenter: compress
+OAMCenter -> Postgres: calculate availability
+OAMCenter -> Postgres: backup isp data and delete all
+@enduml
