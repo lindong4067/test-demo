@@ -51,11 +51,11 @@ import java.util.concurrent.Executors;
  * <p>
  * In this application the usage of promise is demonstrated with two examples:
  * <ul>
- * <li>Count Lines: In this example a file is downloaded and its line count is calculated.
+ * <li>Count Lines: In this example a FileNIO is downloaded and its line count is calculated.
  * The calculated line count is then consumed and printed on console.
- * <li>Lowest Character Frequency: In this example a file is downloaded and its lowest frequency
+ * <li>Lowest Character Frequency: In this example a FileNIO is downloaded and its lowest frequency
  * character is found and printed on console. This happens via a chain of promises, we start with
- * a file download promise, then a promise of character frequency, then a promise of lowest frequency
+ * a FileNIO download promise, then a promise of character frequency, then a promise of lowest frequency
  * character which is finally consumed and result is printed on console.
  * </ul>
  * 
@@ -124,7 +124,7 @@ public class App {
   }
 
   /*
-   * Calculate the character frequency of a file and when that promise is fulfilled,
+   * Calculate the character frequency of a FileNIO and when that promise is fulfilled,
    * then promise to apply function to calculate lowest character frequency.
    */
   private Promise<Character> lowestFrequencyChar() {
@@ -133,7 +133,7 @@ public class App {
   }
 
   /*
-   * Download the file at DEFAULT_URL and when that promise is fulfilled,
+   * Download the FileNIO at DEFAULT_URL and when that promise is fulfilled,
    * then promise to apply function to calculate character frequency.
    */
   private Promise<Map<Character, Integer>> characterFrequency() {
@@ -142,8 +142,8 @@ public class App {
   }
 
   /*
-   * Download the file at DEFAULT_URL and when that promise is fulfilled,
-   * then promise to apply function to count lines in that file.
+   * Download the FileNIO at DEFAULT_URL and when that promise is fulfilled,
+   * then promise to apply function to count lines in that FileNIO.
    */
   private Promise<Integer> countLines() {
     return download(DEFAULT_URL)
@@ -151,8 +151,8 @@ public class App {
   }
 
   /*
-   * Return a promise to provide the local absolute path of the file downloaded in background.
-   * This is an async method and does not wait until the file is downloaded.
+   * Return a promise to provide the local absolute path of the FileNIO downloaded in background.
+   * This is an async method and does not wait until the FileNIO is downloaded.
    */
   private Promise<String> download(String urlString) {
     Promise<String> downloadPromise = new Promise<String>()

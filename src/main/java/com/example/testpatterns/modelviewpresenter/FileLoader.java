@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
  * Every instance of this class represents the Model component in the Model-View-Presenter
  * architectural pattern.
  * <p>
- * It is responsible for reading and loading the contents of a given file.
+ * It is responsible for reading and loading the contents of a given FileNIO.
  */
 public class FileLoader implements Serializable {
 
@@ -46,17 +46,17 @@ public class FileLoader implements Serializable {
   private static final Logger LOGGER = LoggerFactory.getLogger(FileLoader.class);
 
   /**
-   * Indicates if the file is loaded or not.
+   * Indicates if the FileNIO is loaded or not.
    */
   private boolean loaded;
 
   /**
-   * The name of the file that we want to load.
+   * The name of the FileNIO that we want to load.
    */
   private String fileName;
 
   /**
-   * Loads the data of the file specified.
+   * Loads the data of the FileNIO specified.
    */
   public String loadData() {
     String dataFileName = this.fileName;
@@ -79,30 +79,30 @@ public class FileLoader implements Serializable {
   }
 
   /**
-   * Sets the path of the file to be loaded, to the given value.
+   * Sets the path of the FileNIO to be loaded, to the given value.
    * 
-   * @param fileName The path of the file to be loaded.
+   * @param fileName The path of the FileNIO to be loaded.
    */
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
 
   /**
-   * @return fileName The path of the file to be loaded.
+   * @return fileName The path of the FileNIO to be loaded.
    */
   public String getFileName() {
     return this.fileName;
   }
 
   /**
-   * @return True, if the file given exists, false otherwise.
+   * @return True, if the FileNIO given exists, false otherwise.
    */
   public boolean fileExists() {
     return new File(this.fileName).exists();
   }
 
   /**
-   * @return True, if the file is loaded, false otherwise.
+   * @return True, if the FileNIO is loaded, false otherwise.
    */
   public boolean isLoaded() {
     return this.loaded;

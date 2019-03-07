@@ -124,11 +124,11 @@ public class Audio {
   }
 
   /**
-   * Returns the AudioInputStream of a file
-   * @param filePath is the path of the audio file
+   * Returns the AudioInputStream of a FileNIO
+   * @param filePath is the path of the audio FileNIO
    * @return AudioInputStream
-   * @throws UnsupportedAudioFileException when the audio file is not supported 
-   * @throws IOException when the file is not readable
+   * @throws UnsupportedAudioFileException when the audio FileNIO is not supported
+   * @throws IOException when the FileNIO is not readable
    */
   public static AudioInputStream getAudioStream(String filePath) 
       throws UnsupportedAudioFileException, IOException {

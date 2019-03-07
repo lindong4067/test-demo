@@ -2,13 +2,12 @@
 package com.example.testdemo;
 
 import com.google.gson.Gson;
-import javafx.concurrent.Task;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.util.Asserts;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.util.ResourceUtils;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -24,13 +23,10 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
-import static org.apache.commons.lang3.StringUtils.trimToNull;
-import static sun.misc.PostVMInitHook.run;
 
 @Slf4j
 public class StringTest {
@@ -1205,5 +1201,164 @@ public class StringTest {
         public void setRestoreTime(long restoreTime) {
             this.restoreTime = restoreTime;
         }
+    }
+
+    public static void main(String[] args) {
+        String str1 = "abcdefg";
+        char ch1 = str1.charAt(0);
+        System.out.println("使用charAt()方法" +
+                "从字符串中提取字符,结果是：" + ch1);
+        int codePoint = 0;
+        for(int i = 0 ; i < 8 ; i ++){
+            try{
+                codePoint = str1.codePointAt(i);
+            }catch(StringIndexOutOfBoundsException e1){
+                System.out.println("codePointAy()所调用的索引值" + i +
+                        "已经超出所要查询的字符串的长度!");
+            }finally{
+                try{
+                    System.out.println(str1.charAt(i)
+                            + "的Unicode码为" + ":" + codePoint);
+                }catch(StringIndexOutOfBoundsException e2){
+                    System.out.println("charAt()所调用的索引值" + i +
+                            "已经超出所要查询的字符串的长度!");
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testString(){
+        String string = "abc";
+        // Get Unicode of char 'b'
+        int i = string.codePointAt(2);
+        System.out.println(i);
+        int i1 = string.codePointBefore(2);
+        System.out.println(i1);
+        int i2 = string.hashCode();
+        System.out.println(i2);
+        String str1 = new String("abcd");
+        String str2 = new String("abcd");
+        String str3 = "abcd";
+        System.out.println(str3 == str1.intern());
+        System.out.println(str3 == str2.intern());
+        System.out.println(str1 == str2);
+
+        double d1 = 3.14;
+        double d2 = d1 * 7;
+        System.out.println(d2);
+        BigDecimal weekDays = BigDecimal.valueOf(21.8975893478967349);
+        BigDecimal scale = weekDays.setScale(0, BigDecimal.ROUND_HALF_UP);
+        System.out.println(scale);
+
+        String format = String.format("%02d", 1);
+        System.out.println(format);
+    }
+
+    public enum Color2 {
+
+        BLUE(1, "蓝色"),
+        GREEN(2, "绿色"),
+        RED(0, "红色");
+
+
+        private int code;
+        private String desc;
+
+        Color2(int code, String desc) {
+            this.code = code;
+            this.desc = desc;
+        }
+
+        public static Color2 getValue(int code) {
+
+            for (Color2 color : values()) {
+                if (color.getCode() == code) {
+                    return color;
+                }
+            }
+            return null;
+
+        }
+
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+    }
+
+    @Test
+    public void testColor() {
+
+//        String s = Color2.getValue(0).getDesc();
+//        System.out.println("获取的值为:"+ s);
+//
+//        Color2 color = Color2.valueOf("GREEN");
+//        System.out.println(color.getDesc());
+//
+//
+//        Color2 s2 = Color2.getValue(0) ;
+//        System.out.println("获取的值为:"+ s2.toString());
+        String name = Color2.GREEN.name();
+        System.out.println(name);
+        String string = Color2.GREEN.toString();
+        System.out.println(string);
+    }
+
+    private static String getResourceAsString(Class cls, String resource) {
+        try {
+            File file = ResourceUtils.getFile("classpath:com/example/testdemo/client1.json");
+            System.out.println(file);
+        } catch (FileNotFoundException e) {
+            return null;
+        }
+//        InputStream is = cls.getClassLoader().getResourceAsStream(resource);
+//        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
+//        if (is != null) {
+//            return new BufferedReader(new InputStreamReader(is)).lines().collect(Collectors.joining("\n"));
+//        }
+        return null;
+    }
+
+    @Test
+    public void testPath(){
+        String string = getResourceAsString(this.getClass(), "client1.json");
+        System.out.println(string);
+    }
+
+    @Test
+    public void testIngeter() {
+        if (Integer.MAX_VALUE + 1 == Integer.MIN_VALUE) {
+            System.out.println("Max + 1 = Min, ");
+        }
+    }
+
+    @Test
+    public void testByte() {
+        int i = 5;
+        System.out.println(i << 1);//左移
+        System.out.println(i >> 1);//右移
+        System.out.println(i >>> 1);//无符号右移
+    }
+
+    @Test
+    public void testReflect() {
+
+    }
+
+    public class Person {
+        
     }
 }

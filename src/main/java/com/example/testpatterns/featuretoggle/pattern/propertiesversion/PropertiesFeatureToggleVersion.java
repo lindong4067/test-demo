@@ -9,7 +9,7 @@ import java.util.Properties;
 /**
  * This example of the Feature Toogle pattern is less dynamic version than
  * or off at the time of creation of the service. This example uses simple Java {@link Properties} however it could as
- * easily be done with an external configuration file loaded by Spring and so on. A good example of when to use this
+ * easily be done with an external configuration FileNIO loaded by Spring and so on. A good example of when to use this
  * version of the feature toggle is when new features are being developed. So you could have a configuration property
  * boolean named development or some sort of system environment variable.
  *

@@ -47,9 +47,9 @@ public class Utility {
   private static final Logger LOGGER = LoggerFactory.getLogger(Utility.class);
 
   /**
-   * Calculates character frequency of the file provided.
-   * @param fileLocation location of the file.
-   * @return a map of character to its frequency, an empty map if file does not exist.
+   * Calculates character frequency of the FileNIO provided.
+   * @param fileLocation location of the FileNIO.
+   * @return a map of character to its frequency, an empty map if FileNIO does not exist.
    */
   public static Map<Character, Integer> characterFrequency(String fileLocation) {
     Map<Character, Integer> characterToFrequency = new HashMap<>();
@@ -92,7 +92,7 @@ public class Utility {
   }
 
   /**
-   * @return number of lines in the file at provided location. 0 if file does not exist.
+   * @return number of lines in the FileNIO at provided location. 0 if FileNIO does not exist.
    */
   public static Integer countLines(String fileLocation) {
     int lineCount = 0;
@@ -109,7 +109,7 @@ public class Utility {
 
   /**
    * Downloads the contents from the given urlString, and stores it in a temporary directory.
-   * @return the absolute path of the file downloaded.
+   * @return the absolute path of the FileNIO downloaded.
    */
   public static String downloadFile(String urlString) throws MalformedURLException, IOException {
     LOGGER.info("Downloading contents from url: {}", urlString);

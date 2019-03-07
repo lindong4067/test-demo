@@ -476,8 +476,8 @@ public class SysContants {
     public static final String COMMON_NONE = "NONE";
     // ".jar"
     public static final String COMMON_JAR = ".jar";
-    // "file"
-    public static final String COMMON_FILE = "file";
+    // "FileNIO"
+    public static final String COMMON_FILE = "FileNIO";
     // "WBE"
     public static final String COMMON_WBE = "WBE";
     // "restful om center url="

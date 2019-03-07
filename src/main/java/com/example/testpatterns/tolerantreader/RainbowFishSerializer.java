@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * 
  * RainbowFishSerializer provides methods for reading and writing {@link RainbowFish} objects to
- * file. Tolerant Reader pattern is implemented here by serializing maps instead of
+ * FileNIO. Tolerant Reader pattern is implemented here by serializing maps instead of
  * {@link RainbowFish} objects. This way the reader does not break even though new properties are
  * added to the schema.
  *
@@ -22,7 +22,7 @@ final class RainbowFishSerializer {
   }
 
   /**
-   * Write V1 RainbowFish to file
+   * Write V1 RainbowFish to FileNIO
    */
   static void writeV1(RainbowFish rainbowFish, String filename) throws IOException {
     Map<String, String> map = new HashMap<>();
@@ -37,7 +37,7 @@ final class RainbowFishSerializer {
   }
 
   /**
-   * Write V2 RainbowFish to file
+   * Write V2 RainbowFish to FileNIO
    */
   static void writeV2(RainbowFishV2 rainbowFish, String filename) throws IOException {
     Map<String, String> map = new HashMap<>();
@@ -55,7 +55,7 @@ final class RainbowFishSerializer {
   }
 
   /**
-   * Read V1 RainbowFish from file
+   * Read V1 RainbowFish from FileNIO
    */
   static RainbowFish readV1(String filename) throws IOException, ClassNotFoundException {
     Map<String, String> map;

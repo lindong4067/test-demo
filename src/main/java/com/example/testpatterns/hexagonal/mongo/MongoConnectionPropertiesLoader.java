@@ -34,7 +34,7 @@ public class MongoConnectionPropertiesLoader {
   private static final int DEFAULT_PORT = 27017;
 
   /**
-   * Try to load connection properties from file.
+   * Try to load connection properties from FileNIO.
    * Fall back to default connection properties.
    */
   public static void load() {

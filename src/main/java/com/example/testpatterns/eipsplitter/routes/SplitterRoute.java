@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * forwards single objects to the endpoint.
  * </p>
  *
- * In this example input/output endpoints names are stored in <i>application.properties</i> file.
+ * In this example input/output endpoints names are stored in <i>application.properties</i> FileNIO.
  */
 @Component
 public class SplitterRoute extends RouteBuilder {

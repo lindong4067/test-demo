@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A mock database manager -- Fetches data from a raw file.
+ * A mock database manager -- Fetches data from a raw FileNIO.
  * 
  * @author swaisuan
  *
@@ -31,7 +31,7 @@ public class DataFetcher {
   }
 
   /**
-   * Fetches data/content from raw file.
+   * Fetches data/content from raw FileNIO.
    * 
    * @return List of strings
    */
@@ -39,7 +39,7 @@ public class DataFetcher {
     ClassLoader classLoader = getClass().getClassLoader();
     File file = new File(classLoader.getResource(filename).getFile());
     if (isDirty(file.lastModified())) {
-      System.out.println(filename + " is dirty! Re-fetching file content...");
+      System.out.println(filename + " is dirty! Re-fetching FileNIO content...");
 
       List<String> data = new ArrayList<>();
       try (BufferedReader br = new BufferedReader(new FileReader(file))) {

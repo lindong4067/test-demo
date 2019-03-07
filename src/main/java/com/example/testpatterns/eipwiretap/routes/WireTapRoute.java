@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * <i>direct:wireTapEndpoint</i>.
  * </p>
  *
- * In this example input/output endpoints names are stored in <i>application.properties</i> file.
+ * In this example input/output endpoints names are stored in <i>application.properties</i> FileNIO.
  */
 @Component
 public class WireTapRoute extends RouteBuilder {

@@ -46,7 +46,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
   private static final long serialVersionUID = 1L;
 
   /**
-   * The "OK" button for loading the file.
+   * The "OK" button for loading the FileNIO.
    */
   private JButton ok;
 
@@ -66,12 +66,12 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
   private JLabel contents;
 
   /**
-   * The text field for giving the name of the file that we want to open.
+   * The text field for giving the name of the FileNIO that we want to open.
    */
   private JTextField input;
 
   /**
-   * A text area that will keep the contents of the file opened.
+   * A text area that will keep the contents of the FileNIO opened.
    */
   private JTextArea area;
 
@@ -86,7 +86,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
   private FileSelectorPresenter presenter;
 
   /**
-   * The name of the file that we want to read it's contents.
+   * The name of the FileNIO that we want to read it's contents.
    */
   private String fileName;
 

@@ -93,9 +93,9 @@ public class App {
 
       // Print results of thread executions (converted dates and raised exceptions)
       // and count them
-      for (int i = 0; i < result.length; i++) {
-        counterDateValues = counterDateValues + printAndCountDates(result[i]);
-        counterExceptions = counterExceptions + printAndCountExceptions(result[i]);
+      for (Result result1 : result) {
+        counterDateValues = counterDateValues + printAndCountDates(result1);
+        counterExceptions = counterExceptions + printAndCountExceptions(result1);
       }
 
       // a correct run should deliver 20 times 15.12.2015

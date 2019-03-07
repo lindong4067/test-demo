@@ -97,7 +97,7 @@ public final class FileLoggerModule {
   /**
    * Used to print a message
    * 
-   * @param value will be printed in file
+   * @param value will be printed in FileNIO
    */
   public void printString(final String value) {
     this.output.println(value);
@@ -106,7 +106,7 @@ public final class FileLoggerModule {
   /**
    * Used to print a error message
    * 
-   * @param value will be printed on error file
+   * @param value will be printed on error FileNIO
    */
   public void printErrorString(final String value) {
     this.error.println(value);

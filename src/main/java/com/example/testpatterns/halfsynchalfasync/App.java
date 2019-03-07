@@ -52,7 +52,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * is inserted in the queuing layer which is then picked up by synchronous layer which processes the
  * request and sends response back to the client.<br>
  * Android AsyncTask framework - Framework provides a way to execute long running blocking
- * calls, such as downloading a file, in background threads so that the UI thread remains free to
+ * calls, such as downloading a FileNIO, in background threads so that the UI thread remains free to
  * respond to user inputs.<br>
  * 
  * <p>

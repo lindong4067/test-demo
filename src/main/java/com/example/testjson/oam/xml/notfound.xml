@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='no'?>
+<Response>
+    <Error>
+        <Code>0</Code>
+        <Reason>Parameter GNBId was not found</Reason>
+    </Error>
+</Response>

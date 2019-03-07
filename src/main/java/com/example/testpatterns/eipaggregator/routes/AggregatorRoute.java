@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * messages further.
  * </p>
  *
- * In this example input/output endpoints names are stored in <i>application.properties</i> file.
+ * In this example input/output endpoints names are stored in <i>application.properties</i> FileNIO.
  */
 @Component
 public class AggregatorRoute extends RouteBuilder {

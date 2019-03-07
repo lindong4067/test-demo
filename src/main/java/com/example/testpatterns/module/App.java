@@ -66,7 +66,7 @@ public final class App {
    */
   public static void execute(final String... args) {
 
-    /* Send logs on file system */
+    /* Send logs on FileNIO system */
     fileLoggerModule.printString("Message");
     fileLoggerModule.printErrorString("Error");
 

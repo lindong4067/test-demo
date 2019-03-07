@@ -58,14 +58,14 @@ public interface FileSelectorView extends Serializable {
   FileSelectorPresenter getPresenter();
 
   /**
-   * Sets the file's name, to the value given as parameter.
+   * Sets the FileNIO's name, to the value given as parameter.
    * 
-   * @param name The new name of the file.
+   * @param name The new name of the FileNIO.
    */
   void setFileName(String name);
 
   /**
-   * @return The name of the file.
+   * @return The name of the FileNIO.
    */
   String getFileName();
 

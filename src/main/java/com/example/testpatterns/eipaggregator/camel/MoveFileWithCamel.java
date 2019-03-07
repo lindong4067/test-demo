@@ -27,7 +27,7 @@ public class MoveFileWithCamel {
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("file:///C:/Temp/out/?delay=30000").to("file:///C:/Temp/in/");
+                from("FileNIO:///C:/Temp/out/?delay=30000").to("FileNIO:///C:/Temp/in/");
             }
         });
         context.start();

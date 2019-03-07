@@ -74,7 +74,7 @@ public class FileSelectorPresenter implements Serializable {
   }
 
   /**
-   * An "event" that fires when the name of the file to be loaded changes.
+   * An "event" that fires when the name of the FileNIO to be loaded changes.
    */
   public void fileNameChanged() {
     loader.setFileName(view.getFileName());
@@ -85,7 +85,7 @@ public class FileSelectorPresenter implements Serializable {
    */
   public void confirmed() {
     if (loader.getFileName() == null || loader.getFileName().equals("")) {
-      view.showMessage("Please give the name of the file first!");
+      view.showMessage("Please give the name of the FileNIO first!");
       return;
     }
 
@@ -93,12 +93,12 @@ public class FileSelectorPresenter implements Serializable {
       String data = loader.loadData();
       view.displayData(data);
     } else {
-      view.showMessage("The file specified does not exist.");
+      view.showMessage("The FileNIO specified does not exist.");
     }
   }
 
   /**
-   * Cancels the file loading process.
+   * Cancels the FileNIO loading process.
    */
   public void cancelled() {
     view.close();

@@ -5,7 +5,7 @@ import java.io.IOException;
 
 /**
  * 
- * Interface for specifying what to do with the file resource.
+ * Interface for specifying what to do with the FileNIO resource.
  *
  */
 public interface FileWriterAction {

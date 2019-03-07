@@ -45,7 +45,7 @@ public class FileSelectorStub implements FileSelectorView {
   private FileSelectorPresenter presenter;
 
   /**
-   * The current name of the file.
+   * The current name of the FileNIO.
    */
   private String name;
 
@@ -55,7 +55,7 @@ public class FileSelectorStub implements FileSelectorView {
   private int numOfMessageSent;
 
   /**
-   * Indicates if the data of the file where displayed or not.
+   * Indicates if the data of the FileNIO where displayed or not.
    */
   private boolean dataDisplayed;
 

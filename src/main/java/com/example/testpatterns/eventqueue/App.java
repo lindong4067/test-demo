@@ -21,8 +21,8 @@ public class App {
    * Program entry point.
    * 
    * @param args command line args
-   * @throws IOException when there is a problem with the audio file loading
-   * @throws UnsupportedAudioFileException  when the loaded audio file is unsupported 
+   * @throws IOException when there is a problem with the audio FileNIO loading
+   * @throws UnsupportedAudioFileException  when the loaded audio FileNIO is unsupported
    */
   public static void main(String[] args) throws UnsupportedAudioFileException, IOException {
     Audio.playSound(Audio.getAudioStream("queue/Bass-Drum-1.wav"), -0.0f);

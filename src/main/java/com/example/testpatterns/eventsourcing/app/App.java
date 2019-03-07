@@ -80,7 +80,7 @@ public class App {
     LOGGER.info("At that point system had a shot down, state in memory is cleared............");
     AccountAggregate.resetState();
 
-    LOGGER.info("Recover the system by the events in journal file............");
+    LOGGER.info("Recover the system by the events in journal FileNIO............");
 
     eventProcessor = new DomainEventProcessor();
     eventProcessor.recover();
