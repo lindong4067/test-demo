@@ -10,6 +10,9 @@ import org.junit.Test;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.Inet6Address;
 import java.net.InetAddress;
@@ -1354,11 +1357,74 @@ public class StringTest {
     }
 
     @Test
-    public void testReflect() {
-
+    public void testReflect() throws IllegalAccessException, NoSuchFieldException {
+        Person person = new Person();
+        Class<? extends Person> personClass = person.getClass();
+        Field name = personClass.getDeclaredField("name");
+        name.setAccessible(true);
+        name.set(person, "Lyndon");
+        Field age = personClass.getDeclaredField("age");
+        age.setAccessible(true);
+        age.set(person, 18);
+        System.out.println(person.getName());
+        System.out.println(person.getAge());
     }
 
     public class Person {
-        
+        private String name;
+        private int age;
+
+        public Person() {
+        }
+
+        private Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        private void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        private void setAge(int age) {
+            this.age = age;
+        }
+    }
+
+    @Test
+    public void testStackOverFlowError() {
+        addStackLength(0);
+    }
+
+    private void addStackLength(int i) {
+        System.out.println("Invoke times : " + i);
+        i++;
+        addStackLength(i);
+    }
+
+    /**
+     * With -Xms20m -Xmx20m -XX:PermSize=8m -XX:MaxPermSize=8m
+     */
+    @Test
+    public void testOutofMemoryError() {
+        addNewThread(0);
+    }
+
+    private void addNewThread(int i) {
+        while (true) {
+            System.out.println("Thread number : " + i);
+            i++;
+            new Thread(() -> {
+                while (true);
+            }).start();
+        }
     }
 }
