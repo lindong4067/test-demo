@@ -14,8 +14,8 @@ import java.util.concurrent.TimeUnit;
  *
  * In this example implementation WashingMachine is an object that has two states
  * in which it can be: ENABLED and WASHING. If the machine is ENABLED
- * the state is changed into WASHING that any other thread can't invoke this action on this and then do the job.
- * On the other hand if it have been already washing and any other thread execute wash()
+ * the state is changed into WASHING that any other MyThread can't invoke this action on this and then do the job.
+ * On the other hand if it have been already washing and any other MyThread execute wash()
  * it can't do that once again and returns doing nothing.
  */
 

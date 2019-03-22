@@ -1,7 +1,7 @@
 package com.example.testpractice.jni;
 
 /**
- * C:\Users\EZNLZHI\IdeaProjects\test-demo\src\main\java 下, 执行:
+ * C:\Users\EZNLZHI\IdeaProjects\test-abstractfactory\src\main\java 下, 执行:
  * javah -d ./jni -jni -classpath . com.example.testpractice.jni.HelloNative
  */
 public class HelloNative {

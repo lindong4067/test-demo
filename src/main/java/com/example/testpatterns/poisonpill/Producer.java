@@ -64,7 +64,7 @@ public class Producer {
     try {
       queue.put(msg);
     } catch (InterruptedException e) {
-      // allow thread to exit
+      // allow MyThread to exit
       LOGGER.error("Exception caught.", e);
     }
   }
@@ -77,7 +77,7 @@ public class Producer {
     try {
       queue.put(Message.POISON_PILL);
     } catch (InterruptedException e) {
-      // allow thread to exit
+      // allow MyThread to exit
       LOGGER.error("Exception caught.", e);
     }
   }

@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
+ * This class is a UI MyThread for drawing the {@link BallItem}, and provide the method for suspend
  * and resume. It hold the reference of {@link BallItem} to delegate the draw task.
  * 
  */
@@ -47,7 +47,7 @@ public class BallThread extends Thread {
   }
 
   /**
-   * Run the thread
+   * Run the MyThread
    */
   public void run() {
 

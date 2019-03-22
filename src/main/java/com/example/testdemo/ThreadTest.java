@@ -17,18 +17,18 @@ public class ThreadTest {
     }
 
     private void example(final int i){
-        new Thread(() -> System.out.println("Run Thread 01 : " + i)).start();
-        new Thread(() -> System.out.println("Run Thread 02 : " + i)).start();
-        new Thread(() -> System.out.println("Run Thread 03 : " + i)).start();
-        new Thread(() -> System.out.println("Run Thread 04 : " + i)).start();
-        new Thread(() -> System.out.println("Run Thread 05 : " + i)).start();
+        new Thread(() -> System.out.println("Run MyThread 01 : " + i)).start();
+        new Thread(() -> System.out.println("Run MyThread 02 : " + i)).start();
+        new Thread(() -> System.out.println("Run MyThread 03 : " + i)).start();
+        new Thread(() -> System.out.println("Run MyThread 04 : " + i)).start();
+        new Thread(() -> System.out.println("Run MyThread 05 : " + i)).start();
     }
 
     @Test
     public void testGroup(){
         ThreadGroup group = new ThreadGroup("Test");
         group.setMaxPriority(7);
-        Thread thread = new Thread(group, "test-Thread");
+        Thread thread = new Thread(group, "test-MyThread");
         thread.setPriority(10);//指定group的Thread优先级不能大于group的
         System.out.println(thread.getPriority());//线程优先级
         //main方法默认的线程优先级是5

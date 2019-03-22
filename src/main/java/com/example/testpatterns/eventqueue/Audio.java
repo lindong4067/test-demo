@@ -27,7 +27,7 @@ public class Audio {
   private static PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
 
   /**
-   * This method stops the Update Method's thread. 
+   * This method stops the Update Method's MyThread.
    */
   public static synchronized void stopService() {
     if (updateThread != null) {
@@ -36,7 +36,7 @@ public class Audio {
   }
   
   /**
-   * This method check the Update Method's thread is started.
+   * This method check the Update Method's MyThread is started.
    * @return boolean
    */
   public static synchronized boolean isServiceRunning() {
@@ -48,8 +48,8 @@ public class Audio {
   }
 
   /**
-   * Starts the thread for the Update Method pattern if it was not started previously.
-   * Also when the thread is is ready initializes the indexes of the queue 
+   * Starts the MyThread for the Update Method pattern if it was not started previously.
+   * Also when the MyThread is is ready initializes the indexes of the queue
    */
   public static void init() {
     if (updateThread == null) {
@@ -65,7 +65,7 @@ public class Audio {
   }
   
   /**
-   * This is a synchronized thread starter
+   * This is a synchronized MyThread starter
    */
   public static synchronized void startThread() {
     if (!updateThread.isAlive()) {

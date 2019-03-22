@@ -40,7 +40,7 @@ public class Mutex implements Lock {
   }
   
   /**
-   * Method called by a thread to acquire the lock. If the lock has already
+   * Method called by a MyThread to acquire the lock. If the lock has already
    * been acquired this will wait until the lock has been released to 
    * re-attempt the acquire.
    */
@@ -54,7 +54,7 @@ public class Mutex implements Lock {
   }
 
   /**
-   * Method called by a thread to release the lock.
+   * Method called by a MyThread to release the lock.
    */
   @Override
   public synchronized void release() {

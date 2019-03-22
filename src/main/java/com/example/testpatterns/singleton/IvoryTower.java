@@ -23,7 +23,7 @@
 package com.example.testpatterns.singleton;
 
 /**
- * Singleton class. Eagerly initialized static instance guarantees thread safety.
+ * Singleton class. Eagerly initialized static instance guarantees MyThread safety.
  */
 public final class IvoryTower {
 

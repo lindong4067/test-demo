@@ -78,8 +78,8 @@ import java.util.List;
  * </p>
  * </li>
  * </ul>
- * The application utilizes single thread to listen for requests on all ports. It does not create a
- * separate thread for each client, which provides better scalability under load (number of clients
+ * The application utilizes single MyThread to listen for requests on all ports. It does not create a
+ * separate MyThread for each client, which provides better scalability under load (number of clients
  * increase).
  * The example uses Java NIO framework to implement the Reactor.
  * 

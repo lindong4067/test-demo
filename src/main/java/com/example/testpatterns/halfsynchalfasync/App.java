@@ -47,18 +47,18 @@ import java.util.concurrent.LinkedBlockingQueue;
  * <i>APPLICABILITY</i> <br>
  * UNIX network subsystems - In operating systems network operations are carried out
  * asynchronously with help of hardware level interrupts.<br>
- * CORBA - At the asynchronous layer one thread is associated with each socket that is connected
- * to the client. Thread blocks waiting for CORBA requests from the client. On receiving request it
+ * CORBA - At the asynchronous layer one MyThread is associated with each socket that is connected
+ * to the client. MyThread blocks waiting for CORBA requests from the client. On receiving request it
  * is inserted in the queuing layer which is then picked up by synchronous layer which processes the
  * request and sends response back to the client.<br>
  * Android AsyncTask framework - Framework provides a way to execute long running blocking
- * calls, such as downloading a FileNIO, in background threads so that the UI thread remains free to
+ * calls, such as downloading a FileNIO, in background threads so that the UI MyThread remains free to
  * respond to user inputs.<br>
  * 
  * <p>
  * <i>IMPLEMENTATION</i> <br>
- * The MyMvcMain method creates an asynchronous service which does not block the MyMvcMain thread while the
- * task is being performed. The MyMvcMain thread continues its work which is similar to Async Method
+ * The MyMvcMain method creates an asynchronous service which does not block the MyMvcMain MyThread while the
+ * task is being performed. The MyMvcMain MyThread continues its work which is similar to Async Method
  * Invocation pattern. The difference between them is that there is a queuing layer between
  * Asynchronous layer and synchronous layer, which allows for different communication patterns
  * between both layers. Such as Priority Queue can be used as queuing layer to prioritize the way
@@ -78,9 +78,9 @@ public class App {
   public static void main(String[] args) {
     AsynchronousService service = new AsynchronousService(new LinkedBlockingQueue<>());
     /*
-     * A new task to calculate sum is received but as this is MyMvcMain thread, it should not block. So
+     * A new task to calculate sum is received but as this is MyMvcMain MyThread, it should not block. So
      * it passes it to the asynchronous task layer to compute and proceeds with handling other
-     * incoming requests. This is particularly useful when MyMvcMain thread is waiting on Socket to
+     * incoming requests. This is particularly useful when MyMvcMain MyThread is waiting on Socket to
      * receive new incoming requests and does not wait for particular request to be completed before
      * responding to new request.
      */
@@ -117,10 +117,10 @@ public class App {
     }
 
     /*
-     * This will be called in context of the MyMvcMain thread where some validations can be done
+     * This will be called in context of the MyMvcMain MyThread where some validations can be done
      * regarding the inputs. Such as it must be greater than 0. It's a small computation which can
-     * be performed in MyMvcMain thread. If we did validated the input in background thread then we pay
-     * the cost of context switching which is much more than validating it in MyMvcMain thread.
+     * be performed in MyMvcMain MyThread. If we did validated the input in background MyThread then we pay
+     * the cost of context switching which is much more than validating it in MyMvcMain MyThread.
      */
     @Override
     public void onPreCall() {

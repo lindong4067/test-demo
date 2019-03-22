@@ -25,7 +25,7 @@ package com.example.testpatterns.singleton;
 /**
  * Enum based singleton implementation. Effective Java 2nd Edition (Joshua Bloch) p. 18
  *
- * This implementation is thread safe, however adding any other method and its thread safety
+ * This implementation is MyThread safe, however adding any other method and its MyThread safety
  * is developers responsibility.
  */
 public enum EnumIvoryTower {

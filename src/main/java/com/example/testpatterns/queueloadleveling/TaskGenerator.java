@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * TaskGenerator class.
- * Each TaskGenerator thread will be a Worker which submit's messages to the queue.
+ * Each TaskGenerator MyThread will be a Worker which submit's messages to the queue.
  * We need to mention the message count for each of the TaskGenerator threads.
  * 
 */
@@ -60,8 +60,8 @@ public class TaskGenerator implements Task, Runnable {
   }
   
   /**
-   * Each TaskGenerator thread will submit all the messages to the Queue.
-   * After every message submission TaskGenerator thread will sleep for 1 second.
+   * Each TaskGenerator MyThread will submit all the messages to the Queue.
+   * After every message submission TaskGenerator MyThread will sleep for 1 second.
    */
   public void run() {
     
@@ -77,7 +77,7 @@ public class TaskGenerator implements Task, Runnable {
         // reduce the message count.
         count--;
         
-        // Make the current thread to sleep after every Message submission.
+        // Make the current MyThread to sleep after every Message submission.
         Thread.sleep(1000);
       }
     } catch (InterruptedException ie) {

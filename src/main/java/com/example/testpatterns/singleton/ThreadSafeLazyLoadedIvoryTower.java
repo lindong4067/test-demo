@@ -19,7 +19,7 @@
 package com.example.testpatterns.singleton;
 
 /**
- * Thread-safe Singleton class. The instance is lazily initialized and thus needs synchronization
+ * MyThread-safe Singleton class. The instance is lazily initialized and thus needs synchronization
  * mechanism.
  *
  * Note: if created by reflection then a singleton will not be created but multiple options in the

@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * Same as HolderNaive but with added synchronization. This implementation is thread safe, but each
+ * Same as HolderNaive but with added synchronization. This implementation is MyThread safe, but each
  * {@link #getHeavy()} call costs additional synchronization overhead.
  *
  */

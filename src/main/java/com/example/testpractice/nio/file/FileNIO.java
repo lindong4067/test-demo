@@ -32,7 +32,7 @@ public class FileNIO {
     }
 
     public static void main(String[] args) {
-        String fileContent = readFile("C:\\Users\\EZNLZHI\\IdeaProjects\\test-demo\\src\\main\\java\\com\\example\\testpractice\\nio\\file\\nio.txt");
+        String fileContent = readFile("C:\\Users\\EZNLZHI\\IdeaProjects\\test-abstractfactory\\src\\main\\java\\com\\example\\testpractice\\nio\\file\\nio.txt");
         System.out.println(fileContent);
     }
 }

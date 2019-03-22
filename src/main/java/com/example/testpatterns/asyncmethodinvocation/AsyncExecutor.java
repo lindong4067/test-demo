@@ -51,7 +51,7 @@ public interface AsyncExecutor {
   <T> AsyncResult<T> startProcess(Callable<T> task, AsyncCallback<T> callback);
 
   /**
-   * Ends processing of an async task. Blocks the current thread if necessary and returns the
+   * Ends processing of an async task. Blocks the current MyThread if necessary and returns the
    * evaluated value of the completed task.
    *
    * @param asyncResult async result of a task

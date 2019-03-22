@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * The resource class which serves customer information.
- * This class act as server in the demo. Which has all customer details.
+ * This class act as server in the abstractfactory. Which has all customer details.
  */
 public class CustomerResource {
   private List<CustomerDto> customers;

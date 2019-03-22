@@ -25,8 +25,8 @@
  * condition to be satisfied.
  * <p>
  * Implementation is based on GuardedQueue, which has two methods: get and put,
- * the condition is that we cannot get from empty queue so when thread attempt
- * to break the condition we invoke Object's wait method on him and when other thread put an element
+ * the condition is that we cannot get from empty queue so when MyThread attempt
+ * to break the condition we invoke Object's wait method on him and when other MyThread put an element
  * to the queue he notify the waiting one that now he can get from queue.
  */
 package com.example.testpatterns.guardedsuspension;
@@ -48,17 +48,17 @@ public class App {
     GuardedQueue guardedQueue = new GuardedQueue();
     ExecutorService executorService = Executors.newFixedThreadPool(3);
 
-    //here we create first thread which is supposed to get from guardedQueue
+    //here we create first MyThread which is supposed to get from guardedQueue
     executorService.execute(guardedQueue::get);
     executorService.execute(guardedQueue::get);
 
-    //here we wait two seconds to show that the thread which is trying to get from guardedQueue will be waiting
+    //here we wait two seconds to show that the MyThread which is trying to get from guardedQueue will be waiting
     try {
       Thread.sleep(2000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    //now we execute second thread which will put number to guardedQueue and notify first thread that it could get
+    //now we execute second MyThread which will put number to guardedQueue and notify first MyThread that it could get
     executorService.execute(() -> guardedQueue.put(20));
     executorService.shutdown();
     try {

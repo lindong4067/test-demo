@@ -25,9 +25,9 @@ package com.example.testpatterns.reactor.framework;
 import java.nio.channels.SelectionKey;
 
 /**
- * Dispatches the events in the context of caller thread. This implementation is a good fit for
+ * Dispatches the events in the context of caller MyThread. This implementation is a good fit for
  * small applications where there are limited clients. Using this implementation limits the
- * scalability because the I/O thread performs the application specific processing.
+ * scalability because the I/O MyThread performs the application specific processing.
  * 
  * <p>
  * For better performance use {@link ThreadPoolDispatcher}.
@@ -37,7 +37,7 @@ import java.nio.channels.SelectionKey;
 public class SameThreadDispatcher implements Dispatcher {
 
   /**
-   * Dispatches the read event in the context of caller thread. <br>
+   * Dispatches the read event in the context of caller MyThread. <br>
    * Note this is a blocking call. It returns only after the associated handler has handled the read
    * event.
    */

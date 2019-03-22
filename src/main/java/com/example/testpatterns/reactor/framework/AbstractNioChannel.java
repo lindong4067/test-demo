@@ -109,7 +109,7 @@ public abstract class AbstractNioChannel {
   }
 
   /*
-   * Called from the context of reactor thread when the key becomes writable. The channel writes the
+   * Called from the context of reactor MyThread when the key becomes writable. The channel writes the
    * whole pending block of data at once.
    */
   void flush(SelectionKey key) throws IOException {

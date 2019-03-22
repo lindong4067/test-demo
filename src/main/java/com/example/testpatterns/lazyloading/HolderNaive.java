@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * Simple implementation of the lazy loading idiom. However, this is not thread safe.
+ * Simple implementation of the lazy loading idiom. However, this is not MyThread safe.
  *
  */
 public class HolderNaive {

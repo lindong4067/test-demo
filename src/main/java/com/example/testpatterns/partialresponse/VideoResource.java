@@ -28,7 +28,7 @@ import java.util.Map;
 
 /**
  * The resource class which serves video information.
- * This class act as server in the demo. Which has all video details.
+ * This class act as server in the abstractfactory. Which has all video details.
  */
 public class VideoResource {
   private FieldJsonMapper fieldJsonMapper;

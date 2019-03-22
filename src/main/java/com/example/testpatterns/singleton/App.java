@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
  * not be clear why you are seeing certain changes in behaviour.
  * <p>
  * There are many ways to implement the Singleton. The first one is the eagerly initialized instance
- * in {@link IvoryTower}. Eager initialization implies that the implementation is thread safe. If
+ * in {@link IvoryTower}. Eager initialization implies that the implementation is MyThread safe. If
  * you can afford giving up control of the instantiation moment, then this implementation will suit
  * you fine.
  * <p>
@@ -57,7 +57,7 @@ import org.slf4j.LoggerFactory;
  * {@link ThreadSafeLazyLoadedIvoryTower} since it doesn't synchronize the whole access method but
  * only the method internals on specific conditions.
  * <p>
- * Yet another way to implement thread safe lazily initialized Singleton can be found in
+ * Yet another way to implement MyThread safe lazily initialized Singleton can be found in
  * {@link InitializingOnDemandHolderIdiom}. However, this implementation requires at least Java 8
  * API level to work.
  */

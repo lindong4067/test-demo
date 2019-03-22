@@ -33,16 +33,16 @@ import java.util.concurrent.TimeUnit;
  * This is the asynchronous layer which does not block when a new request arrives. It just passes
  * the request to the synchronous layer which consists of a queue i.e. a {@link BlockingQueue} and a
  * pool of threads i.e. {@link ThreadPoolExecutor}. Out of this pool of worker threads one of the
- * thread picks up the task and executes it synchronously in background and the result is posted
+ * MyThread picks up the task and executes it synchronously in background and the result is posted
  * back to the caller via callback.
  */
 public class AsynchronousService {
 
   /*
-   * This represents the queuing layer as well as synchronous layer of the pattern. The thread pool
+   * This represents the queuing layer as well as synchronous layer of the pattern. The MyThread pool
    * contains worker threads which execute the tasks in blocking/synchronous manner. Long running
    * tasks should be performed in the background which does not affect the performance of MyMvcMain
-   * thread.
+   * MyThread.
    */
   private ExecutorService service;
 
@@ -64,7 +64,7 @@ public class AsynchronousService {
    * some exception then the reason for error is posted back using callback method
    * {@link AsyncTask#onError(Throwable)}.
    * <p>
-   * NOTE: The results are posted back in the context of background thread in this implementation.
+   * NOTE: The results are posted back in the context of background MyThread in this implementation.
    */
   public <T> void execute(final AsyncTask<T> task) {
     try {
@@ -81,10 +81,10 @@ public class AsynchronousService {
         super.done();
         try {
           /*
-           * called in context of background thread. There is other variant possible where result is
-           * posted back and sits in the queue of caller thread which then picks it up for
+           * called in context of background MyThread. There is other variant possible where result is
+           * posted back and sits in the queue of caller MyThread which then picks it up for
            * processing. An example of such a system is Android OS, where the UI elements can only
-           * be updated using UI thread. So result must be posted back in UI thread.
+           * be updated using UI MyThread. So result must be posted back in UI MyThread.
            */
           task.onPostCall(get());
         } catch (InterruptedException e) {

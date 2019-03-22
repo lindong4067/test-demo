@@ -37,7 +37,7 @@ import java.util.List;
  * @author Thomas Bauer, 2017 
  */
 public class Result {
-  // A list to collect the date values created in one thread
+  // A list to collect the date values created in one MyThread
   private List<Date> dateList = new ArrayList<>();
 
   // A list to collect Exceptions thrown in one threads (should be none in
@@ -46,7 +46,7 @@ public class Result {
   
   /**
    * 
-   * @return List of date values collected within an thread execution
+   * @return List of date values collected within an MyThread execution
    */
   public List<Date> getDateList() {
     return dateList;
@@ -54,7 +54,7 @@ public class Result {
 
   /**
    * 
-   * @return List of exceptions thrown within an thread execution
+   * @return List of exceptions thrown within an MyThread execution
    */
   public List<String> getExceptionList() {
     return exceptionList;

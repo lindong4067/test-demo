@@ -34,7 +34,7 @@ import java.nio.channels.SelectionKey;
  * 
  * <p>
  * The application can customize the way in which event is dispatched such as using the reactor
- * thread to dispatch event to channels or use a worker pool to do the non I/O processing.
+ * MyThread to dispatch event to channels or use a worker pool to do the non I/O processing.
  * 
  * @see SameThreadDispatcher
  * @see ThreadPoolDispatcher

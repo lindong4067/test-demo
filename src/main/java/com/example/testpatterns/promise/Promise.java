@@ -85,7 +85,7 @@ public class Promise<T> extends PromiseSupport<T> {
   }
 
   /**
-   * Executes the task using the executor in other thread and fulfills the promise returned
+   * Executes the task using the executor in other MyThread and fulfills the promise returned
    * once the task completes either successfully or with an exception.
    * 
    * @param task the task that will provide the value to fulfill the promise.

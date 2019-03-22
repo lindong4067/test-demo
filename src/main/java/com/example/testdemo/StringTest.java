@@ -49,7 +49,7 @@ public class StringTest {
     }
 
     @Test
-    public void test02(){
+    public void test02() {
         //
         Integer integer = null;
         String value = String.valueOf(integer);
@@ -57,9 +57,9 @@ public class StringTest {
     }
 
     @Test
-    public void test03(){
+    public void test03() {
         String str = "{ \n" +
-        "\t\"mcc\": \"302\",\n" +
+                "\t\"mcc\": \"302\",\n" +
                 "\t\"mnc\": \"720\",\n" +
                 "\t\"cid\": \"117\",\n" +
                 "\t\"enodeb_id\": \"370856\",\n" +
@@ -89,8 +89,7 @@ public class StringTest {
                 "\t\"femto_cell_type\": \"\",\n" +
                 "\t\"prs_muting_info\": 0,\n" +
                 "\t\"cell_portion_available_flag\": false\n" +
-                "}"
-        ;
+                "}";
 
         System.out.println(str);
 
@@ -100,7 +99,7 @@ public class StringTest {
     }
 
     @Test
-    public void test04(){
+    public void test04() {
         // [-32768.0 , 32767]
         Float f1 = -32768.0f;
         Float f2 = 32767f;
@@ -115,7 +114,7 @@ public class StringTest {
     }
 
     @Test
-    public void test05(){
+    public void test05() {
         String mcc = "aaa";
         String mnc = "111";
         if (!isNumeric(mcc) || !isNumeric(mnc)) {
@@ -124,7 +123,7 @@ public class StringTest {
     }
 
     @Test
-    public void test06(){
+    public void test06() {
         StringBuilder value = new StringBuilder("123456789");
         String v = value.substring(0, value.length() - 1);
         System.out.println(v);
@@ -152,7 +151,7 @@ public class StringTest {
     }
 
     @Test
-    public void testvalue(){
+    public void testvalue() {
 //        String theValue = "null";
 //
 //        String value = theValue == null ? "" : theValue;
@@ -164,18 +163,18 @@ public class StringTest {
     }
 
     @Test
-    public void testfile(){
+    public void testfile() {
 
         boolean isModify = false;
         String fileName = "C:\\Temp\\msc.test";
         File file = new File("C:\\Temp\\msc.test");
         String modifyName = fileName + "." + System.currentTimeMillis();
-        if (file.exists()){
+        if (file.exists()) {
             file.renameTo(new File(modifyName));
             isModify = true;
         }
         System.out.println("Operation File!");
-        if(isModify){
+        if (isModify) {
             File modifyFile = new File(modifyName);
             modifyFile.renameTo(new File(fileName));
 //            modifyFile.delete();
@@ -183,7 +182,7 @@ public class StringTest {
     }
 
     @Test
-    public void testRex(){
+    public void testRex() {
         String mscNumber = "ALL+ALL";
         String[] split = mscNumber.split("\\+");
         Assert.assertTrue("ALL".equalsIgnoreCase(split[0]));
@@ -197,8 +196,9 @@ public class StringTest {
         NULL,
         BBB
     }
+
     @Test
-    public void testEum(){
+    public void testEum() {
         Assert.assertEquals("NULL", Color.NULL.name());
         Assert.assertEquals("NULL", Color.NULL.toString());
 //        Assert.assertEquals("NULL", Color.valueOf(""));
@@ -206,7 +206,7 @@ public class StringTest {
 
     public static String escapeEncode(String originStr) {
         String escapedString = originStr;
-        try{
+        try {
             escapedString = URLEncoder.encode(originStr, "utf-8");
         } catch (Exception e) {
             log.error("Encode failed");
@@ -214,10 +214,10 @@ public class StringTest {
         return escapedString;
     }
 
-    public static String base64Encode(String str){
+    public static String base64Encode(String str) {
         String encodeStr = null;
         try {
-            encodeStr =  Base64.getEncoder().encodeToString(str.getBytes("UTF-8"));
+            encodeStr = Base64.getEncoder().encodeToString(str.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -225,7 +225,7 @@ public class StringTest {
     }
 
     @Test
-    public void testEncode(){
+    public void testEncode() {
         String encode = escapeEncode("https://www.baidu.com");
         System.out.println(encode);
         String encode1 = escapeEncode(encode);
@@ -233,31 +233,32 @@ public class StringTest {
     }
 
     @Test
-    public void testBase64Encode(){
+    public void testBase64Encode() {
         String encode = base64Encode("bbb");
         System.out.println(encode);
     }
 
-    private static int change(int i){
-        if(i >= 3 && i <= 6){
+    private static int change(int i) {
+        if (i >= 3 && i <= 6) {
             return 9 - i;
-        }else {
+        } else {
             return i;
         }
     }
 
-    private static int back(int i){
-        if(i >= 3 && i <= 6){
+    private static int back(int i) {
+        if (i >= 3 && i <= 6) {
             return 9 - i;
-        }else {
+        } else {
             return i;
         }
     }
-//      3 4 5 6 2 1
+
+    //      3 4 5 6 2 1
 //
 //      6 5 4 3 2 1
     @Test
-    public void testInt(){
+    public void testInt() {
         Assert.assertEquals(6, change(3));
         Assert.assertEquals(5, change(4));
         Assert.assertEquals(4, change(5));
@@ -274,7 +275,7 @@ public class StringTest {
     }
 
     @Test
-    public void stringFormat(){
+    public void stringFormat() {
 //        String format = String.format("aaa %s bbb cc%s d%sd", "", 1000.1010, "d");
 //        System.out.println(format);
         String hostname = "linux-tot-49,linux-tot-50,linux-tot-51,linux-tot-52";
@@ -287,7 +288,7 @@ public class StringTest {
     }
 
     @Test
-    public void testIP(){
+    public void testIP() {
         try {
             boolean flag = InetAddress.getByName("CN00212361").isReachable(3000);
             String hostName = InetAddress.getLocalHost().getHostName();
@@ -300,7 +301,7 @@ public class StringTest {
     }
 
     @Test
-    public void testBigDecimal(){
+    public void testBigDecimal() {
         double d1 = 1.01;
         double d2 = 2.02;
         double d3 = d1 + d2;
@@ -313,12 +314,12 @@ public class StringTest {
     }
 
     @Test
-    public void testRegular(){
+    public void testRegular() {
         String ip = "2001:1b70:200:1000::164";
         String ipv4 = "192.168.0.1";
         String pattern = "^([\\da-fA-F]{1,4}:){7}[\\da-fA-F]{1,4}$";
         String pattern2 = "^([\\da-fA-F]{1,4}:){7}[\\da-fA-F]{1,4}$";
-        String pattern3 =  "^\\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$";
+        String pattern3 = "^\\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$";
         String pattern4 = "([a-f0-9]{1,4}(:[a-f0-9]{1,4}){7}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){0,7}::[a-f0-9]{0,4}(:[a-f0-9]{1,4}){0,7})";
         String pattern5 = ".*[a-fA-F].*";
         boolean matches = ip.matches(pattern5);
@@ -328,18 +329,18 @@ public class StringTest {
     }
 
     @Test
-    public void testHost(){
+    public void testHost() {
         String address = "linux-tot-49.tot";
         String memberAddress = "linux-tot-49";
-        if(memberAddress != null && !"".equals(memberAddress)){
-            if(address.contains(memberAddress) || memberAddress.contains(address)){
+        if (memberAddress != null && !"".equals(memberAddress)) {
+            if (address.contains(memberAddress) || memberAddress.contains(address)) {
                 System.out.println(address);
             }
         }
     }
 
     @Test
-    public void testBoolean(){
+    public void testBoolean() {
         boolean a = true;
         boolean b = true;
         boolean c = false;
@@ -363,10 +364,10 @@ public class StringTest {
     public void testIPv4IPv6() throws UnknownHostException {
         String ipv4 = "192.168.1.1";
         String ipv6 = "FE80:98FA::B45A";
-        if(!ipv4.matches(".*[a-fA-F].*")){
+        if (!ipv4.matches(".*[a-fA-F].*")) {
             System.out.println(ipv4 + " is IPv4.");
         }
-        if(ipv6.matches(".*[a-fA-f].*")){
+        if (ipv6.matches(".*[a-fA-f].*")) {
             System.out.println(ipv6 + " is IPv6.");
         }
         String address = InetAddress.getByName(ipv6).getHostAddress();
@@ -381,7 +382,7 @@ public class StringTest {
     }
 
     @Test
-    public void testPlmn(){
+    public void testPlmn() {
         String plmnValue = "1234567,123;2345678,;,234;";
         String[] gtspcs = plmnValue.split(";");
         for (String gtspc : gtspcs) {
@@ -400,7 +401,7 @@ public class StringTest {
     }
 
     @Test
-    public void testArray(){
+    public void testArray() {
         //One
         String[] arr1 = new String[3];
         arr1[0] = "AAA";
@@ -422,7 +423,7 @@ public class StringTest {
     }
 
     @Test
-    public void testRegx(){
+    public void testRegx() {
         String reg = "^([0-1](\\.[0-9][0-9]?))$|^([0-2])$";
         String str = "0:2";
         boolean matches = str.matches(reg);
@@ -439,7 +440,7 @@ public class StringTest {
 
         byte[] buffer = new byte[1024];
         int length;
-        while ((length = inputStream.read(buffer)) != -1){
+        while ((length = inputStream.read(buffer)) != -1) {
             result.write(buffer, 0, length);
         }
         String string = result.toString(StandardCharsets.UTF_8.name());
@@ -448,14 +449,14 @@ public class StringTest {
     }
 
     private static String getFormatClusterValue(String cluster) {
-        if(cluster != null && cluster.contains("_")){
+        if (cluster != null && cluster.contains("_")) {
             return cluster.replace("_", "-");
         }
         return cluster;
     }
 
     @Test
-    public void testCluster(){
+    public void testCluster() {
         String cluster1 = "18-smpc-cluster";
         String cluster2 = "18_smpc-cluster";
         String cluster3 = "18-smpc_cluster";
@@ -474,7 +475,7 @@ public class StringTest {
     }
 
     @Test
-    public void testParam(){
+    public void testParam() {
         String cluster1 = "18-smpc-cluster";
         String cluster2 = "18_smpc-cluster";
         String cluster3 = "18_smpc_cluster";
@@ -487,20 +488,20 @@ public class StringTest {
     }
 
     private boolean checkParameter(String cluster) {
-        if(StringUtils.isEmpty(cluster)
+        if (StringUtils.isEmpty(cluster)
                 || (cluster.contains("-")
                 && cluster.split("-").length != 3)
                 || (cluster.contains("_")
-                && cluster.split("_").length != 3)){
+                && cluster.split("_").length != 3)) {
             return false;
         }
         return true;
     }
 
-    public static String getFormatIP(String ip){
-        if(ip == null || "".equals(ip)){
+    public static String getFormatIP(String ip) {
+        if (ip == null || "".equals(ip)) {
             return ip;
-        }else if(ip.contains(":")){
+        } else if (ip.contains(":")) {
             try {
                 ip = InetAddress.getByName(ip).getHostAddress();
             } catch (UnknownHostException e) {
@@ -512,7 +513,7 @@ public class StringTest {
     }
 
     @Test
-    public void test10(){
+    public void test10() {
         String ipv4 = "192.168.1.1";
         String ipv6 = "[FE80:98FA::B45A]";
         String ip4 = getFormatIP(ipv4);
@@ -531,7 +532,7 @@ public class StringTest {
     }
 
     @Test
-    public void testUpdateMany(){
+    public void testUpdateMany() {
         List<String> stringList = new ArrayList<>();
         stringList.add("ABC");
         stringList.add("ABC");
@@ -544,17 +545,17 @@ public class StringTest {
     }
 
     @Test
-    public void testMap(){
+    public void testMap() {
         Map<Object, Object> kvs = new HashMap<>();
         kvs.put(null, "null");
         kvs.put("null", null);
         for (Map.Entry<Object, Object> entry : kvs.entrySet()) {
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (Objects.equals(null, key)){
+            if (Objects.equals(null, key)) {
                 key = "NULL";
             }
-            if (Objects.equals(null, value)){
+            if (Objects.equals(null, value)) {
                 value = "NULL";
             }
             System.out.println(key);
@@ -564,7 +565,7 @@ public class StringTest {
     }
 
     @Test
-    public void testNull(){
+    public void testNull() {
         List list = new ArrayList();
         // list = null;
         //NullPointerException
@@ -574,7 +575,7 @@ public class StringTest {
     }
 
     @Test
-    public void testEnv(){
+    public void testEnv() {
         String oam_center_ip = EnvironmentVariables.get("OAM_Center_IP");
         String oam_center_local_ip = EnvironmentVariables.get("OAM_Center_Local_IP");
         String oam_center_local_vip = EnvironmentVariables.get("OAM_Center_Local_VIP");
@@ -587,7 +588,7 @@ public class StringTest {
     private static Boolean sended = false;
 
     @Test
-    public void testStatic(){
+    public void testStatic() {
         num++;
         num++;
         //It's OK.
@@ -618,7 +619,7 @@ public class StringTest {
     public static boolean raisedDB = false;
     public static boolean clearedDB = false;
 
-    public static void raiseAlarm(){
+    public static void raiseAlarm() {
         if (!raisedDB) {
             log.info("Raise an Alarm...");
             raisedDB = true;
@@ -626,7 +627,7 @@ public class StringTest {
         }
     }
 
-    public static void clearAlarm(){
+    public static void clearAlarm() {
         if (!clearedDB) {
             log.info("Clear an Alarm...");
             clearedDB = true;
@@ -635,7 +636,7 @@ public class StringTest {
     }
 
     @Test
-    public void testAlarm(){
+    public void testAlarm() {
         log.info("Start...");
         clearAlarm();
         clearAlarm();
@@ -658,15 +659,15 @@ public class StringTest {
         log.info("Stop...");
     }
 
-    public static boolean checkByRegex(String myString, String regex){
+    public static boolean checkByRegex(String myString, String regex) {
         Pattern p = Pattern.compile("^" + regex + "$");
-        Matcher m=p.matcher(myString);
+        Matcher m = p.matcher(myString);
         boolean result = m.find();
         return result;
     }
 
     @Test
-    public void testregex(){
+    public void testregex() {
         String regex = "((((([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))|((([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))):([0-9]|[1-9]\\d{1}|[1-9]\\d{2}|[1-9]\\d{3}|[1-5]\\d{4}|6[0-4]\\d{3}|65[0-4]\\d{2}|655[0-2]\\d|6553[0-5]));)+";
         String regex2 = "(\\[(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]:([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])|((([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])):([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))";
         String str = "[fe80::d88e:b7ff:fe6a:d961]:22";
@@ -675,28 +676,28 @@ public class StringTest {
     }
 
     @Test
-    public void testNum(){
+    public void testNum() {
         int a = 20;
         Integer b = 20;
         System.out.println(b.equals(a));
     }
 
     @Test
-    public void testsubstring(){
+    public void testsubstring() {
         String str = "123456";
         String sub = str.substring(0, str.length() - 1);
         System.out.println(sub);
     }
 
     @Test
-    public void testJson(){
+    public void testJson() {
         String info = "[]";
         List<Map<String, Object>> invocation = new Gson().fromJson(info, List.class);
         log.info("invocation : {}", invocation);
     }
 
     @Test
-    public void testFuture(){
+    public void testFuture() {
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> System.out.println("Hello"));
         try {
             future.get();
@@ -709,18 +710,18 @@ public class StringTest {
 
     private boolean analyzeCache(Map<String, Map<String, Boolean>> ispCache) {
         boolean status = true;
-        for(Map.Entry<String, Map<String, Boolean>> entry : ispCache.entrySet()) {
+        for (Map.Entry<String, Map<String, Boolean>> entry : ispCache.entrySet()) {
 
             boolean statusOfOneTypeService = false;
-            for(Map.Entry<String, Boolean> entry1 : entry.getValue().entrySet()) {
+            for (Map.Entry<String, Boolean> entry1 : entry.getValue().entrySet()) {
                 // If any service of the same type is good, this kind of service is considered as good. For example, type oam-fds--fdsserver.
-                if(entry1.getValue()) {
+                if (entry1.getValue()) {
                     statusOfOneTypeService = true;
                     break;
                 }
             }
             // If any kind of service is not good, system is considered as down
-            if(!statusOfOneTypeService) {
+            if (!statusOfOneTypeService) {
                 status = false;
                 break;
             }
@@ -729,7 +730,7 @@ public class StringTest {
     }
 
     @Test
-    public void testISP(){
+    public void testISP() {
         Map<String, Map<String, Boolean>> ispCache = new ConcurrentHashMap<>();
         Map<String, Boolean> fdsmap = new HashMap<>();
         fdsmap.put("fds-1", true);
@@ -751,36 +752,36 @@ public class StringTest {
     }
 
     @Test
-    public void testSingleBoolen(){
+    public void testSingleBoolen() {
         String a = null;
         String b = "";
 
-        if (agency(a) || agency(b)){
+        if (agency(a) || agency(b)) {
             log.info("Short circuit.\n");
         }
-        if (agency(a) | agency(b)){
+        if (agency(a) | agency(b)) {
             log.info("Both sides run.\n");
         }
     }
 
-    private boolean agency(String string){
+    private boolean agency(String string) {
         log.info("Check parameter : {}", string);
         return StringUtils.isEmpty(string);
     }
 
     @Test
-    public void testNotNull(){
+    public void testNotNull() {
         String s = null;
         try {
             Objects.requireNonNull(s, "parameter is not null.");
-        }catch (Exception e){
-            assert(e instanceof NullPointerException);
+        } catch (Exception e) {
+            assert (e instanceof NullPointerException);
         }
         log.info("go on..."); //not come here
     }
 
     @Test
-    public void testCompare(){
+    public void testCompare() {
         CounterValue value1 = new CounterValue("A");
         CounterValue value2 = new CounterValue("B");
         CounterValue value3 = new CounterValue("C");
@@ -811,16 +812,16 @@ public class StringTest {
 
     public static boolean compareList(List<CounterValue> list1, List<CounterValue> list2) {
 
-        for(CounterValue value : list1) {
-            for(CounterValue value1 : list2) {
+        for (CounterValue value : list1) {
+            for (CounterValue value1 : list2) {
                 System.out.println(value + " compare to " + value1);
-                if(null != value){
-                    if(value.equals(value1)) {
+                if (null != value) {
+                    if (value.equals(value1)) {
                         list2.remove(value1);
                         break;
-                    }else{
-                        System.out.println("*******************************************************"+list1);
-                        System.out.println("*******************************************************"+list2);
+                    } else {
+                        System.out.println("*******************************************************" + list1);
+                        System.out.println("*******************************************************" + list2);
                     }
                 }
             }
@@ -863,10 +864,10 @@ public class StringTest {
     }
 
     @Test
-    public void init(){
+    public void init() {
 //        ExecutorService executorService = Executors.newFixedThreadPool(10);
         Runnable runnable = () -> log.debug("OK");
-        for (int i = 0; i <= 100; i++){
+        for (int i = 0; i <= 100; i++) {
 //            executorService.execute(runnable);
             runnable.run();
         }
@@ -886,7 +887,7 @@ public class StringTest {
 //    }
 
     @Test
-    public void time(){
+    public void time() {
         long l = System.currentTimeMillis();
         System.out.println(l);
         Date date = new Date(l);
@@ -894,13 +895,13 @@ public class StringTest {
     }
 
     @Test
-    public void testStatus(){
+    public void testStatus() {
         String ssl = System.getProperty("ssl");
         System.out.println(ssl);
     }
 
     @Test
-    public void testUrlMapping(){
+    public void testUrlMapping() {
         String uri = "/v1/data/18-gmpc-cluster/gmpc/network/hlrs_hsss_for_imsi";
         String mspping = "/v1/data/{cluster}/gmpc/network/hlrs_hsss_for_imsi";
         long timeMillis = System.currentTimeMillis();
@@ -968,7 +969,7 @@ public class StringTest {
     }
 
     @Test
-    public void testLock(){
+    public void testLock() {
         Calendar now = Calendar.getInstance();
         System.out.println(now.getActualMaximum(Calendar.DAY_OF_MONTH));
         System.out.println(now.getActualMaximum(Calendar.DAY_OF_WEEK));
@@ -1043,7 +1044,7 @@ public class StringTest {
     }
 
     @Test
-    public void testAA(){
+    public void testAA() {
         Calendar calendar = Calendar.getInstance();
         System.out.println(calendar.get(Calendar.YEAR));
         System.out.println(calendar.get(Calendar.MONTH));
@@ -1083,7 +1084,7 @@ public class StringTest {
 
     }
 
-    public static Date getWeekStartDate(){
+    public static Date getWeekStartDate() {
         Calendar cal = Calendar.getInstance();
         Date time1 = cal.getTime();
         System.out.println(time1);
@@ -1112,12 +1113,12 @@ public class StringTest {
         return date;
     }
 
-    public enum BreakPointType { MONTHLY, WEEKLY }
+    public enum BreakPointType {MONTHLY, WEEKLY}
 
-    public List<Pair<Long, Long>> getBreakPoints(long oamStartTime, BreakPointType pointsType){
+    public List<Pair<Long, Long>> getBreakPoints(long oamStartTime, BreakPointType pointsType) {
         int e;
         boolean flag;
-        if (pointsType.equals(BreakPointType.MONTHLY)){
+        if (pointsType.equals(BreakPointType.MONTHLY)) {
             e = 6;
             flag = true;
         } else {
@@ -1137,7 +1138,7 @@ public class StringTest {
         long startTime = cal.getTimeInMillis();
 
         List<Pair<Long, Long>> pairList = new ArrayList<>();
-        for (int i = 0; i <= e; i++){
+        for (int i = 0; i <= e; i++) {
             if (startTime > oamStartTime) {
                 Pair<Long, Long> pair = new Pair<>(startTime, stopTime);
                 pairList.add(pair);
@@ -1162,7 +1163,7 @@ public class StringTest {
         return pairList;
     }
 
-    public Map<Integer, Map<Integer, Pair<Double, Long>>> getDowntimeTree(long startTime, long stopTime, List<DownTimeInfo> downTimeInfoList){
+    public Map<Integer, Map<Integer, Pair<Double, Long>>> getDowntimeTree(long startTime, long stopTime, List<DownTimeInfo> downTimeInfoList) {
         long monthDowntimeSum = downTimeInfoList.stream().filter(e ->
                 e.getDownTime() >= startTime && e.getDownTime() <= stopTime)
                 .mapToLong(e -> e.getRestoreTime() - e.getDownTime()).sum();
@@ -1212,17 +1213,17 @@ public class StringTest {
         System.out.println("使用charAt()方法" +
                 "从字符串中提取字符,结果是：" + ch1);
         int codePoint = 0;
-        for(int i = 0 ; i < 8 ; i ++){
-            try{
+        for (int i = 0; i < 8; i++) {
+            try {
                 codePoint = str1.codePointAt(i);
-            }catch(StringIndexOutOfBoundsException e1){
+            } catch (StringIndexOutOfBoundsException e1) {
                 System.out.println("codePointAy()所调用的索引值" + i +
                         "已经超出所要查询的字符串的长度!");
-            }finally{
-                try{
+            } finally {
+                try {
                     System.out.println(str1.charAt(i)
                             + "的Unicode码为" + ":" + codePoint);
-                }catch(StringIndexOutOfBoundsException e2){
+                } catch (StringIndexOutOfBoundsException e2) {
                     System.out.println("charAt()所调用的索引值" + i +
                             "已经超出所要查询的字符串的长度!");
                 }
@@ -1231,7 +1232,7 @@ public class StringTest {
     }
 
     @Test
-    public void testString(){
+    public void testString() {
         String string = "abc";
         // Get Unicode of char 'b'
         int i = string.codePointAt(2);
@@ -1328,7 +1329,7 @@ public class StringTest {
             return null;
         }
 //        InputStream is = cls.getClassLoader().getResourceAsStream(resource);
-//        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
+//        InputStream is = MyThread.currentThread().getContextClassLoader().getResourceAsStream(resource);
 //        if (is != null) {
 //            return new BufferedReader(new InputStreamReader(is)).lines().collect(Collectors.joining("\n"));
 //        }
@@ -1336,7 +1337,7 @@ public class StringTest {
     }
 
     @Test
-    public void testPath(){
+    public void testPath() {
         String string = getResourceAsString(this.getClass(), "client1.json");
         System.out.println(string);
     }
@@ -1420,11 +1421,87 @@ public class StringTest {
 
     private void addNewThread(int i) {
         while (true) {
-            System.out.println("Thread number : " + i);
+            System.out.println("MyThread number : " + i);
             i++;
             new Thread(() -> {
-                while (true);
+                while (true) ;
             }).start();
         }
+    }
+
+    @Test
+    public void bitOperation() {
+        int a = 1100111000;
+        int b = 0000111000;
+        System.out.println(a & b);//如果相对应位都是1，则结果为1，否则为0
+
+        System.out.println(a | b);//如果相对应位都是0，则结果为0，否则为1
+
+        System.out.println(a ^ b);//如果相对应位值相同，则结果为0，否则为1
+
+        System.out.println(~a);//按位取反运算符翻转操作数的每一位，即0变成1，1变成0。
+    }
+
+    @Test
+    public void operation() {
+        int i = 1 + 2 * 4;
+        System.out.println(i);
+    }
+
+    @Test
+    public void switchcase1() {
+        int i = 5;
+        //如果 case 语句块中没有 break 语句时，JVM 并不会顺序输出每一个 case 对应的返回值，而是继续匹配，匹配不成功则返回默认 case。
+        switch (i) {
+            case 0:
+                System.out.println("0");
+            case 1:
+                System.out.println("1");
+            case 2:
+                System.out.println("2");
+            default:
+                System.out.println("default");
+        }
+        //default
+    }
+
+    @Test
+    public void switchcase2() {
+        int i = 1;
+        //如果 case 语句块中没有 break 语句时，匹配成功后，从当前 case 开始，后续所有 case 的值都会输出。
+        switch (i) {
+            case 0:
+                System.out.println("0");
+            case 1:
+                System.out.println("1");
+            case 2:
+                System.out.println("2");
+            default:
+                System.out.println("default");
+        }
+        //1
+        //2
+        //default
+    }
+
+    @Test
+    public void switchcase3() {
+        int i = 1;
+        //如果当前匹配成功的 case 语句块没有 break 语句，则从当前 case 开始，后续所有 case 的值都会输出，如果后续的 case 语句块有 break 语句则会跳出判断。
+        switch(i){
+            case 0:
+                System.out.println("0");
+            case 1:
+                System.out.println("1");
+            case 2:
+                System.out.println("2");
+            case 3:
+                System.out.println("3"); break;
+            default:
+                System.out.println("default");
+        }
+        //1
+        //2
+        //3
     }
 }

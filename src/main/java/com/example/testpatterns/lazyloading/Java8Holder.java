@@ -29,7 +29,7 @@ import java.util.function.Supplier;
 
 /**
  * 
- * This lazy loader is thread safe and more efficient than {@link HolderThreadSafe}. It utilizes
+ * This lazy loader is MyThread safe and more efficient than {@link HolderThreadSafe}. It utilizes
  * Java 8 functional interface {@link Supplier} as {@link Heavy} factory.
  *
  */

@@ -46,12 +46,12 @@ public class App {
    */
   public static void main(String[] args) {
 
-    // Simple lazy loader - not thread safe
+    // Simple lazy loader - not MyThread safe
     HolderNaive holderNaive = new HolderNaive();
     Heavy heavy = holderNaive.getHeavy();
     LOGGER.info("heavy={}", heavy);
 
-    // Thread safe lazy loader, but with heavy synchronization on each access
+    // MyThread safe lazy loader, but with heavy synchronization on each access
     HolderThreadSafe holderThreadSafe = new HolderThreadSafe();
     Heavy another = holderThreadSafe.getHeavy();
     LOGGER.info("another={}", another);

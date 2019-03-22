@@ -32,22 +32,22 @@ import java.util.concurrent.Future;
 /**
  * ThreadLocal pattern
  * <p>
- * This App shows how to create an isolated space per each thread. In this
- * example the usage of SimpleDateFormat is made to be thread-safe. This is an
+ * This App shows how to create an isolated space per each MyThread. In this
+ * example the usage of SimpleDateFormat is made to be MyThread-safe. This is an
  * example of the ThreadLocal pattern.
  * <p>
  * By applying the ThreadLocal pattern you can keep track of application
  * instances or locale settings throughout the handling of a request. The
  * ThreadLocal class works like a static variable, with the exception that it is
- * only bound to the current thread! This allows us to use static variables in a
- * thread-safe way.
+ * only bound to the current MyThread! This allows us to use static variables in a
+ * MyThread-safe way.
  * <p>
- * In Java, thread-local variables are implemented by the ThreadLocal class
+ * In Java, MyThread-local variables are implemented by the ThreadLocal class
  * object. ThreadLocal holds a variable of type T, which is accessible via get/set
  * methods.
  * <p>
- * SimpleDateFormat is one of the basic Java classes and is not thread-safe. If
- * you do not isolate the instance of SimpleDateFormat per each thread then
+ * SimpleDateFormat is one of the basic Java classes and is not MyThread-safe. If
+ * you do not isolate the instance of SimpleDateFormat per each MyThread then
  * problems arise. 
  * <p>
  * App converts the String date value 15/12/2015 to the Date format using the
@@ -58,8 +58,8 @@ import java.util.concurrent.Future;
  * see what will happen without the ThreadLocal. Most likely you will get incorrect 
  * date values and / or exceptions.
  * <p>
- * This example clearly show what will happen when using non thread-safe classes
- * in a thread. In real life this may happen one in of 1.000 or 10.000 conversions
+ * This example clearly show what will happen when using non MyThread-safe classes
+ * in a MyThread. In real life this may happen one in of 1.000 or 10.000 conversions
  * and those are really hard to find errors.
  * 
  * @author Thomas Bauer, 2017 
@@ -91,7 +91,7 @@ public class App {
       result[2] = futureResult3.get();
       result[3] = futureResult4.get();
 
-      // Print results of thread executions (converted dates and raised exceptions)
+      // Print results of MyThread executions (converted dates and raised exceptions)
       // and count them
       for (Result result1 : result) {
         counterDateValues = counterDateValues + printAndCountDates(result1);
@@ -110,12 +110,12 @@ public class App {
   }
 
   /**
-   * Print result (date values) of a thread execution and count dates
+   * Print result (date values) of a MyThread execution and count dates
    * 
-   * @param res  contains results of a thread execution
+   * @param res  contains results of a MyThread execution
    */
   private static int printAndCountDates(Result res) {
-    // a correct run should deliver 5 times 15.12.2015 per each thread
+    // a correct run should deliver 5 times 15.12.2015 per each MyThread
     int counter = 0;
     for (Date dt : res.getDateList()) {
       counter++;
@@ -129,9 +129,9 @@ public class App {
   }
 
   /**
-   * Print result (exceptions) of a thread execution and count exceptions
+   * Print result (exceptions) of a MyThread execution and count exceptions
    * 
-   * @param res  contains results of a thread execution
+   * @param res  contains results of a MyThread execution
    * @return number of dates
    */
   private static int printAndCountExceptions(Result res) {

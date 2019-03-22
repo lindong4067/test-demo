@@ -43,7 +43,7 @@ public class ServiceExecutor implements Runnable {
   }
 
   /**
-   * The ServiceExecutor thread will retrieve each message and process it.
+   * The ServiceExecutor MyThread will retrieve each message and process it.
    */
   public void run() {
     try {

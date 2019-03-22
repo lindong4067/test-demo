@@ -34,8 +34,8 @@ import java.util.concurrent.Callable;
  */
 public interface AsyncTask<O> extends Callable<O> {
   /**
-   * Is called in context of caller thread before call to {@link #call()}. Large tasks should not be
-   * performed in this method as it will block the caller thread. Small tasks such as validations
+   * Is called in context of caller MyThread before call to {@link #call()}. Large tasks should not be
+   * performed in this method as it will block the caller MyThread. Small tasks such as validations
    * can be performed here so that the performance penalty of context switching is not incurred in
    * case of invalid requests.
    */
@@ -43,9 +43,9 @@ public interface AsyncTask<O> extends Callable<O> {
 
   /**
    * A callback called after the result is successfully computed by {@link #call()}. In our
-   * implementation this method is called in context of background thread but in some variants, such
-   * as Android where only UI thread can change the state of UI widgets, this method is called in
-   * context of UI thread.
+   * implementation this method is called in context of background MyThread but in some variants, such
+   * as Android where only UI MyThread can change the state of UI widgets, this method is called in
+   * context of UI MyThread.
    */
   void onPostCall(O result);
 
@@ -59,7 +59,7 @@ public interface AsyncTask<O> extends Callable<O> {
 
   /**
    * This is where the computation of task should reside. This method is called in context of
-   * background thread.
+   * background MyThread.
    */
   @Override
   O call() throws Exception;

@@ -45,7 +45,7 @@ public class DateFormatCallable implements Callable<Result> {
     private ThreadLocal<DateFormat> df;    //TLTL
 //    private DateFormat df;                 //NTLNTL
 
-    private String dateValue; // for dateValue Thread Local not needed
+    private String dateValue; // for dateValue MyThread Local not needed
   
 
   /**
@@ -86,7 +86,7 @@ public class DateFormatCallable implements Callable<Result> {
 
     }
 
-    System.out.println(Thread.currentThread() + " finished processing part of the thread");
+    System.out.println(Thread.currentThread() + " finished processing part of the MyThread");
 
     return result;
   }

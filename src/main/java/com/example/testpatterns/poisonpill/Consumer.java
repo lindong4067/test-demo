@@ -53,7 +53,7 @@ public class Consumer {
           break;
         }
       } catch (InterruptedException e) {
-        // allow thread to exit
+        // allow MyThread to exit
         LOGGER.error("Exception caught.", e);
         return;
       }

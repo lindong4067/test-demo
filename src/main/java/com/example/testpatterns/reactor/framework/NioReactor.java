@@ -46,7 +46,7 @@ import java.util.concurrent.TimeUnit;
  * {@link Dispatcher}.
  * 
  * <p>
- * Implementation: A NIO reactor runs in its own thread when it is started using {@link #start()} method.
+ * Implementation: A NIO reactor runs in its own MyThread when it is started using {@link #start()} method.
  * {@link NioReactor} uses {@link Selector} for realizing Synchronous Event De-multiplexing.
  * 
  * <p>
@@ -83,7 +83,7 @@ public class NioReactor {
   }
 
   /**
-   * Starts the reactor event loop in a new thread.
+   * Starts the reactor event loop in a new MyThread.
    */
   public void start() {
     reactorMain.execute(() -> {

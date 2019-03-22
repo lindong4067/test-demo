@@ -97,7 +97,7 @@ public class App {
       executor.submit(taskRunnable2);
       executor.submit(taskRunnable3);
       
-      // submitting serviceExecutor thread to the Executor service.
+      // submitting serviceExecutor MyThread to the Executor service.
       executor.submit(srvRunnable);
       
       // Initiates an orderly shutdown.

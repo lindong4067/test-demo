@@ -1,0 +1,13 @@
+类初始化方式
+1.new对象
+2.使用Class类的newInstance方法
+3.使用Constructor类的newInstance方法
+4.使用Clone的方法
+5.使用反序列化
+
+3与4的区别:
+(1)Class类位于java的lang包中，而构造器类是java反射机制的一部分。
+(2)Class类的newInstance只能触发无参数的构造方法创建对象，而构造器类的newInstance能触发有参数或者任意参数的构造方法来创建对象。
+(3)Class类的newInstance需要其构造方法是共有的或者对调用方法可见的，而构造器类的newInstance可以在特定环境下调用私有构造方法来创建对象。
+(4)Class类的newInstance抛出类构造函数的异常，而构造器类的newInstance包装了一个InvocationTargetException异常。
+(5)Class类本质上调用了反射包构造器类中无参数的newInstance方法，捕获了InvocationTargetException，将构造器本身的异常抛出。

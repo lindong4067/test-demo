@@ -43,7 +43,7 @@ public class Reader implements Runnable {
   /**
    * Create new Reader
    * 
-   * @param name - Name of the thread owning the reader
+   * @param name - Name of the MyThread owning the reader
    * @param readLock - Lock for this reader
    * @param readingTime - amount of time (in milliseconds) for this reader to engage reading
    */
@@ -56,7 +56,7 @@ public class Reader implements Runnable {
   /**
    * Create new Reader who reads for 250ms
    * 
-   * @param name - Name of the thread owning the reader
+   * @param name - Name of the MyThread owning the reader
    * @param readLock - Lock for this reader
    */
   public Reader(String name, Lock readLock) {

@@ -17,7 +17,7 @@
 package com.example.testpatterns.eventasynchronous;
 
 /**
- * Interface with listener behaviour related to Thread Completion.
+ * Interface with listener behaviour related to MyThread Completion.
  */
 public interface ThreadCompleteListener {
   void completedEventHandler(final int eventId);

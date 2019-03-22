@@ -58,7 +58,7 @@ public final class HibernateUtil {
                 .addAnnotatedClass(Spell.class)
                 .setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect")
                 .setProperty("hibernate.connection.url", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1")
-                .setProperty("hibernate.current_session_context_class", "thread")
+                .setProperty("hibernate.current_session_context_class", "MyThread")
                 .setProperty("hibernate.show_sql", "false")
                 .setProperty("hibernate.hbm2ddl.auto", "create-drop").buildSessionFactory();
       } catch (Throwable ex) {

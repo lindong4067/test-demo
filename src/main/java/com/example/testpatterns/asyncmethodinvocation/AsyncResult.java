@@ -47,7 +47,7 @@ public interface AsyncResult<T> {
   T getValue() throws ExecutionException;
 
   /**
-   * Blocks the current thread until the async task is completed.
+   * Blocks the current MyThread until the async task is completed.
    *
    * @throws InterruptedException if the execution is interrupted
    */

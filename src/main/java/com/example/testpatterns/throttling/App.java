@@ -82,7 +82,7 @@ public class App {
       try {
         Thread.sleep(1);
       } catch (InterruptedException e) {
-        LOGGER.error("Thread interrupted: {}", e.getMessage());
+        LOGGER.error("MyThread interrupted: {}", e.getMessage());
       }
     }
   }
