@@ -45,9 +45,9 @@ public class ElfMage extends Mage {
     return new ElfMage(this);
   }
 
-  @Override
-  public String toString() {
-    return "Elven mage helps in " + helpType;
-  }
+//  @Override
+//  public String toString() {
+//    return "Elven mage helps in " + helpType;
+//  }
 
 }

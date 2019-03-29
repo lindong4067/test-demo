@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
@@ -30,6 +32,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
+import static org.apache.commons.lang3.StringUtils.replaceOnce;
 
 @Slf4j
 public class StringTest {
@@ -1485,7 +1488,7 @@ public class StringTest {
     }
 
     @Test
-    public void switchcase3() {
+    public void switchcase3() throws InterruptedException {
         int i = 1;
         //如果当前匹配成功的 case 语句块没有 break 语句，则从当前 case 开始，后续所有 case 的值都会输出，如果后续的 case 语句块有 break 语句则会跳出判断。
         switch(i){
@@ -1503,5 +1506,18 @@ public class StringTest {
         //1
         //2
         //3
+        Object object = new Object();
+        //Object类的所有public方法
+        object.toString();
+        object.equals(object);
+        object.hashCode();
+        object.getClass();
+        object.notify();
+        object.notifyAll();
+        object.wait();
+        object.wait(1000L);
+        object.wait(1000L, 1);
+
+        Exception exception = new Exception();
     }
 }
