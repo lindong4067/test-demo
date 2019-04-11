@@ -7,11 +7,11 @@
             http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
     <!-- 配置目标类 -->
-    <bean id="helloWorldService" class="com.example.testframe.aop.HelloServiceImpl"/>
+    <bean id="helloWorldService" class="com.example.testframe.aop.demo.HelloServiceImpl"/>
     <!-- 配置切面 -->
-    <bean id="aspect" class="com.example.testframe.aop.HelloServiceAspect"/>
+    <bean id="aspect" class="com.example.testframe.aop.demo.HelloServiceAspect"/>
     <aop:config>
-        <aop:pointcut id="pointcut" expression="execution(* com.example.testframe.aop.HelloServiceImpl.*(..))"/>
+        <aop:pointcut id="pointcut" expression="execution(* com.example.testframe.aop.demo.HelloServiceImpl.*(..))"/>
         <!-- aop:aspect的ref引用切面支持类的方法 -->
         <aop:aspect ref="aspect">
             <aop:before pointcut-ref="pointcut"

@@ -202,6 +202,40 @@ finalize() 方法只会被系统自动调用一次。
     并行收集
     并发收集
 
+## GC原理
+1. 分代回收
+采用分治思想，进行代的划分，把不同生命周期的对象放在不同的代上，不同代上采用最合适它的垃圾回收方式进行回收。
+2. GC回收
+GC有Scavenge GC(新生代回收)和Full GC(整个堆回收)。应该尽量减少Full GC的次数，在对JVM调优的过程中，很大一部分工作就是对于Full GC的调节。
+* 如下原因可能导致Full GC：
+Old Gen满、Perm Gen满、System.gc()调用、上次GC之后Heap的各域分配策略动态变化。
+* 常用的GC收集器：
+串行收集器 	-XX:+UseSerialGC
+并行收集器		-XX:+UseParallelOldGC
+并发收集器		-XX:+UseConcMarkSweepGC
+* 基本算法：
+标记-清除算法
+复制算法
+标记-整理算法
+分代收集算法
+
+## 类加载器
+1. 概念：Java类加载器的作用是运行时加载类。
+	*Java源代码通过javac编译器编译成类文件；
+	*JVM执行类文件中的字节码来执行程序；
+	*类加载器负责加载文件系统、网络或其他来源的类文件。
+	*有三种类型的类加载器：
+		Bootstrap类加载器			
+			*Bootstrap类加载器负责加载rt.jar中的JDK类文件，它是所有类加载器的父加载器。Bootstrap类加载器没有任何父类加载器，如果你调用String.class.getClassLoader()，会返回null，任何基于此的代码会抛出NUllPointerException异常。Bootstrap加载器被称为初始类加载器。
+		Extension类加载器
+			Extension将加载类的请求先委托给它的父加载器，也就是Bootstrap，如果没有成功加载的话，再从jre/lib/ext目录下或者java.ext.dirs系统属性定义的目录下加载类。Extension加载器由sun.misc.Launcher$ExtClassLoader实现。
+		Application类加载器
+			Application类加载器负责从classpath环境变量中加载某些应用相关的类，classpath环境变量通常由-classpath或-cp命令行选项来定义，或者是JAR中的Manifest的classpath属性。Application类加载器是Extension类加载器的子加载器。通过sun.misc.Launcher$AppClassLoader实现
+2. Java类加载器基于三个机制：委托、可见性和单一性。			 		
+	委托机制是指将加载一个类的请求交给父类加载器，如果这个父类加载器不能够找到或者加载这个类，那么再加载它。
+	可见性的原理是子类的加载器可以看见所有的父类加载器加载的类，而父类加载器看不到子类加载器加载的类。
+	单一性原理是指仅加载一个类一次，这是由委托机制确保子类加载器不会再次加载父类加载器加载过的类。
+	
 
 
 
