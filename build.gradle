@@ -53,5 +53,5 @@ dependencies {
     compile group: 'org.scala-lang.modules', name: 'scala-java8-compat_2.11', version: '0.8.0'
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
-        
+    compile group: 'org.apache.dubbo', name: 'dubbo', version: '2.7.1'    
 }

@@ -21,6 +21,13 @@
 	3.4 ApplicationContext
 	3.5 BeanFactory
 
+## spring中bean的scope属性，有如下5种类型：
+    1. singleton 表示在spring容器中的单例，通过spring容器获得该bean时总是返回唯一的实例
+    2. prototype表示每次获得bean都会生成一个新的对象
+    3. request表示在一次http请求内有效（只适用于web应用）
+    4. session表示在一个用户会话内有效（只适用于web应用）
+    5. globalSession表示在全局会话内有效（只适用于web应用）
+
 
 
 

@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.util.ResourceUtils;
+import sun.misc.Unsafe;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -26,6 +27,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -1519,5 +1522,111 @@ public class StringTest {
         object.wait(1000L, 1);
 
         Exception exception = new Exception();
+    }
+
+    @Test
+    public void testJDKClass() {
+        String string;
+        StringBuilder stringBuilder;
+        StringBuffer stringBuffer;
+
+        Byte by;
+        Short sh;
+        Integer in;
+        Long lo;
+        Double dou;
+        Float fl;
+        Boolean b;
+        Character ch;
+        Void voidd;
+
+        HashMap hashMap;
+        Hashtable hashtable;
+        ConcurrentHashMap concurrentHashMap;
+
+        Thread thread;
+        ThreadLocal threadLocal;
+
+        Enum enumm;
+
+        Throwable throwable;
+        Error error;
+        Exception exception;
+
+        Class clazz;
+        ClassLoader classLoader;
+
+        Unsafe unsafe;
+        AtomicInteger atomicInteger;
+
+        Compiler compiler;
+        System system;
+        Package packagee;
+
+        //interface
+        Collection collection;
+            Set set;
+            List list;
+            Queue queue;
+
+        //class
+        AbstractCollection abstractCollection;
+            AbstractList abstractList;
+                ArrayList arrayList;
+                Vector vector;
+                    Stack stack;
+                AbstractSequentialList abstractSequentialList;
+                    LinkedList linkedList;
+            AbstractSet abstractSet;
+                TreeSet treeSet;
+                HashSet hashSet;
+                    LinkedHashSet linkedHashSet;
+            AbstractQueue abstractQueue;
+                PriorityQueue priorityQueue;
+            ArrayDeque arrayDeque;
+
+        // interface
+        Map map;
+            SortedMap sortedMap;
+                NavigableMap navigableMap;
+
+        //class
+        AbstractMap abstractMap;
+            HashMap hashMapp;
+            TreeMap treeMap;//红黑树
+            WeakHashMap weakHashMap;
+
+        Hashtable hashtable1;
+            Properties properties;
+
+        Collections collections;
+        Arrays arrays;
+        Comparator comparator;
+        Iterator iterator;
+
+        Base64 base64;
+        Date date;
+
+        EventListener eventListener;
+        Random random;
+        Timer timer;
+        UUID uuid;
+
+        //current
+        ConcurrentHashMap concurrentHashMap1;
+        Executor executor;
+        AbstractExecutorService abstractExecutorService;
+        ThreadPoolExecutor threadPoolExecutor;
+        BlockingQueue blockingQueue;
+        AbstractQueuedSynchronizer abstractQueuedSynchronizer;
+        CountDownLatch countDownLatch;
+        FutureTask futureTask;
+        Semaphore semaphore;
+        CyclicBarrier cyclicBarrier;
+        CopyOnWriteArrayList copyOnWriteArrayList;
+        SynchronousQueue synchronousQueue;
+        BlockingDeque blockingDeque;
+        Callable callable;
+
     }
 }

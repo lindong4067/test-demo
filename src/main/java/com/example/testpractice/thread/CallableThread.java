@@ -16,9 +16,7 @@ public class CallableThread implements Callable<Integer> {
         }
         try {
             System.out.println("子线程的返回值：" + futureTask.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
     }
