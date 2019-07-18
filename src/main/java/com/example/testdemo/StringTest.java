@@ -4,6 +4,7 @@ package com.example.testdemo;
 import com.google.gson.Gson;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -1250,9 +1251,11 @@ public class StringTest {
         String str1 = new String("abcd");
         String str2 = new String("abcd");
         String str3 = "abcd";
+        String str4 = "abcd";
         System.out.println(str3 == str1.intern());
         System.out.println(str3 == str2.intern());
         System.out.println(str1 == str2);
+        System.out.println(str3 == str4);
 
         double d1 = 3.14;
         double d2 = d1 * 7;
@@ -1522,6 +1525,22 @@ public class StringTest {
         object.wait(1000L, 1);
 
         Exception exception = new Exception();
+    }
+
+    @Test
+    public void testIntern() {
+        System.out.println("Test");
+//        String a= “abc” String b = “abc” String c = new String(“abc”) String d = “ab” + “c”
+        String a = "abc";
+        String b = "abc";
+        String c = new String("abc");
+        String d = "ab" + "c";
+        System.out.println(a == b); //true
+        System.out.println(a == c); //false
+        System.out.println(a == d); //true
+        System.out.println(b == c); //false
+        System.out.println(b == d); //true
+        System.out.println(c == d); //false
     }
 
     @Test
