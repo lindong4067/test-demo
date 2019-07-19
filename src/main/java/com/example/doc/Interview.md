@@ -140,7 +140,7 @@ Java8 ConcurrentHashMap结构基本上和Java8的HashMap一样，不过保证线
 	* 微服务
 
 3. 说说你知道的几个Java集合类：list、set、queue、map实现类咯。。。
-
+	
 queue的实现类： 
 AbstractQueue, 
 ArrayBlockingQueue, 
