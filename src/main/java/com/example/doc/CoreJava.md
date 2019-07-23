@@ -127,17 +127,17 @@ remove()用来移除当前线程中变量的副本，initialValue()是一个prot
 使用时进行重写的，它是一个延迟加载方法
 
 ## 集合
-ArrayList
+### ArrayList
 	默认容量 10
 	实现了List、RandomAccess接口，可以插入空数据，也支持随机访问
 	属性：elementData数组、size大小
 	当调用add时，首先进行扩容校验，将插入的值放到尾部，并将size+1
 
-Vector
+### Vector
 	实现List接口，结构与ArrayList类似，也是一个动态数组存放数据
 	add操作是使用加锁，保证线程安全
 	
-LinkedList
+### LinkedList
 	实现List、Deque接口
 	基于双向链表的
 	add操作每次插入都是移动指针
@@ -145,7 +145,7 @@ LinkedList
 	查询时遍历链表，所以效率比较低
 	当查询时，利用双向链表的特性，如果index离链表头比较近就从节点头遍历，否则就从节点尾遍历，复杂度O(n/2)
 	
-HashMap
+### HashMap
 	1.7
 	底层基于数组和链表
 	两个重要参数：容量（默认16）、负载因子（默认0.75）
@@ -162,7 +162,7 @@ HashMap
 	假设Hash冲突的非常严重，一个数组后面接了很长的链表，此时查询的时间复杂度就是O(n)。
 	如果是红黑树，时间复杂度就是O(logN),大大提高了查询效率。
 	
-红黑树	
+### 红黑树	
 	红黑树是一种平衡二叉树，具有以下特性：
 	1.节点是红色或者黑色；
 	2.根节点是黑色；
@@ -171,14 +171,14 @@ HashMap
 	5.从任意节点到其每个叶子节点的所有路径都包含相同的黑色节点。
 	为了符合规则，左旋、右旋或者变色
 	
-HashSet
+### HashSet
 	不允许存储重复元素的集合
 	成员变量：
 		map 用于存放最终数据的
 		PRESENT 是所有写入map的value值
 	add 比较关键的就是这个 add() 方法。 可以看出它是将存放的对象当做了 HashMap 的健，value 都是相同的 PRESENT 。由于 HashMap 的 key 是不能重复的，所以每当有重复的值写入到 HashSet 时，value 会被覆盖，但 key 不会受到影响，这样就保证了 HashSet 中只能存放不重复的元素。
 	
-LinkedHashMap
+### LinkedHashMap
 	HashMap是无序的，遍历的顺序并不是写入的顺序
 	LinkedHashMap是有序的，底层继承了HashMap，由一个双向链表构成
 	排序方式有两种：
@@ -186,7 +186,7 @@ LinkedHashMap
 		根据访问顺序排序
 		
 ## Java多线程
-多线程常见问题
+### 多线程常见问题
 	上下文切换
 		CPU通过给每个线程分配一定的时间片，CPU可以在不同的线程之间切换
 		但是由于在线程切换的时候需要保存本次执行的信息(详见)，在该线程被 CPU 剥夺时间片后又再次运行恢复上次所保存的信息的过程就称为上下文切换
@@ -204,7 +204,7 @@ LinkedHashMap
 		当在带宽有限的情况下一个线程下载某个资源需要 1M/S,当开 10 个线程时速度并不会乘 10 倍，反而还会增加时间，毕竟上下文切换比较耗时。
 		如果是受限于资源的话可以采用集群来处理任务，不同的机器来处理不同的数据，就类似于开始提到的无锁编程。
 
-Synchronized 关键字原理
+### Synchronized 关键字原理
 	使用方法：
 		1.同步普通方法，锁的是当前对象
 		2.同步静态方法，锁的是当前Class对象
@@ -239,7 +239,7 @@ Synchronized 关键字原理
 
 		如果某个锁自旋很少成功获得，那么下一次就会减少自旋。
 	
-多线程的三大核心
+### 多线程的三大核心
 	原子性
 		Java 的原子性就和数据库事务的原子性差不多，一个操作中要么全部执行成功或者失败。
 
@@ -276,21 +276,315 @@ Synchronized 关键字原理
 		可以用 volatile 实现一个双重检查锁的单例模式：
 		这里主要利用的是 volatile 的内存可见性。
 		volatile 关键字只能保证可见性，顺序性，不能保证原子性。
-对锁的一些认识 有哪些锁
+### 对锁的一些认识 有哪些锁
 	同一进程
+		重入锁
+			使用ReentrantLock获取锁的时候会判断当前线程是否为获取锁的线程，如果是则将同步状态+1，释放锁的时候将同步状态-1，只有同步状态为0时才会释放锁。
+		读写锁
+			使用ReentrantReadWriteLock同时维护一对锁，读锁与写锁，当写线程访问时其他线程都将阻塞，读线程访问则不会。通过读写锁的分离可以提高并发量和吞吐量。
 	不同进程
+		基于数据库
+			可以创建一张表，将其中的某个字段设置为唯一索引，当多个请求过来的时候只有新建记录成功的请求才算获取到锁，当使用完毕删除这条记录的时候即释放锁。
+			存在的问题:
 
+				数据库单点问题，挂了怎么办？
+				不是重入锁，同一进程无法在释放锁之前再次获得锁，因为数据库中已经存在了一条记录了。
+				锁是非阻塞的，一旦 insert 失败则会立即返回，并不会进入阻塞队列只能下一次再次获取。
+				锁没有失效时间，如果那个进程解锁失败那就没有请求可以再次获取锁了。
 
+			解决方案:
 
+				数据库切换为主从，不存在单点。
+				在表中加入一个同步状态字段，每次获取锁的是加 1 ，释放锁的时候-1，当状态为 0 的时候就删除这条记录，即释放锁。
+				非阻塞的情况可以用 while 循环来实现，循环的时候记录时间，达到 X 秒记为超时，break。
+				可以开启一个定时任务每隔一段时间扫描找出多少 X 秒都没有被删除的记录，主动删除这条记录。
+				
+		基于Redis
+			使用 setNX(key) setEX(timeout) 命令，只有在该 key 不存在的时候创建这个 key，就相当于获取了锁。由于有超时时间，所以过了规定时间会自动删除，这样也可以避免死锁。
+			
+		基于ZK
+			多个客户端（jvm），同时在zk上创建相同的一个临时节点，因为临时节点路径是保证唯一，只要谁能够创建节点成功，谁就能够获取到锁，没有创建成功节点，就会进行等待，当释放锁的时候，采用事件通知给客户端重新获取锁的资源。
 
+### ReentrantLock 实现原理
+	使用synchronized来做同步处理，锁的获取和释放都是隐式的，实现的原理是通过编译后加上不同的机器指令来实现
+	而 ReentrantLock 就是一个普通的类，它是基于 AQS(AbstractQueuedSynchronizer)来实现的。
 
+	是一个重入锁：一个线程获得了锁之后仍然可以反复的加锁，不会出现自己阻塞自己的情况。
 
+    AQS 是 Java 并发包里实现锁、同步的一个重要的基础框架。
+	
+	锁类型
+		ReentrantLock分为公平锁和非公平锁，可以通过构造方法来指定具体类型：
+		默认一般使用非公平锁，它的效率和吞吐量都比公平锁高的多
+	获取锁
+		private ReentrantLock lock = new ReentrantLock();
+		public void run() {
+			lock.lock();
+			try {
+				//do bussiness
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} finally {
+				lock.unlock();
+			}
+		}
+	释放锁
+	总结
 
+### ConcurrentHashMap 实现原理
+	HashMap在容量大于总量\*负载因子发生扩容时会出现环形链表导致死循环。
+		JDK1.7
+			组成：Segment数组、HashEntry数组组成，和HashMap一样，仍有数组加链表组成。
+			ConcurrentHashMap采用分段锁设计，其中Segment继承于ReentrantLock。不会像HashTable那样不管是put还是get操作都需要做同步处理，理论上ConcurrentHashMap支持CurrencyLevel（Segment数组数量）的线程并发，当一个线程锁占用一个Segment时，不会影响到其他的Segment。
+			
+			put方法
+			虽然 HashEntry 中的 value 是用 volatile 关键词修饰的，但是并不能保证并发的原子性，所以 put 操作时仍然需要加锁处理。
+			首先也是通过 Key 的 Hash 定位到具体的 Segment，在 put 之前会进行一次扩容校验。这里比 HashMap 要好的一点是：HashMap 是插入元素之后再看是否需要扩容，有可能扩容之后后续就没有插入就浪费了本次扩容(扩容非常消耗性能)。
+			而 ConcurrentHashMap 不一样，它是在将数据插入之前检查是否需要扩容，之后再做插入操作。
+			
+			size 方法
+			每个 Segment 都有一个 volatile 修饰的全局变量 count ,求整个 ConcurrentHashMap 的 size 时很明显就是将所有的 count 累加即可。但是 volatile 修饰的变量却不能保证多线程的原子性，所有直接累加很容易出现并发问题。
+			但如果每次调用 size 方法将其余的修改操作加锁效率也很低。所以做法是先尝试两次将 count 累加，如果容器的 count 发生了变化再加锁来统计 size。
+			至于 ConcurrentHashMap 是如何知道在统计时大小发生了变化呢，每个 Segment 都有一个 modCount 变量，每当进行一次 put remove 等操作，modCount 将会 +1。只要 modCount 发生了变化就认为容器的大小也在发生变化。
+		JDK1.8
+			1.抛弃了原有的Segment分段锁。而采用CAS + synchronized来保证并发安全性。
+			2.将HashEntry改为Node，但作用都是相同的。
+			3.其中val next都用了volatile修饰，保证了可见性。
+			
+			put方法
+			    根据 key 计算出 hashcode 。
+				判断是否需要进行初始化。
+				f 即为当前 key 定位出的 Node，如果为空表示当前位置可以写入数据，利用 CAS 尝试写入，失败则自旋保证成功。
+				如果当前位置的 hashcode == MOVED == -1,则需要进行扩容。
+				如果都不满足，则利用 synchronized 锁写入数据。
+				如果数量大于 TREEIFY_THRESHOLD 则要转换为红黑树。
+			
+			get方法
+				根据计算出来的 hashcode 寻址，如果就在桶上那么直接返回值。
+				如果是红黑树那就按照树的方式获取值。
+				都不满足那就按照链表的方式遍历获取值。
 
+### 如何优雅的使用和理解线程池
+	前言
+		使用线程池的目的：
+		线程是稀缺资源，不能频繁创建
+		解耦作用；线程的创建于执行分开，方便维护
+		复用线程
+	线程池原理
+		谈到线程池就会想到池化技术，其中最核心的思想就是把宝贵的资源放到一个池子中；每次使用都从里面获取，用完之后又放回池子供其他人使用，有点吃大锅饭的意思。
+		那在 Java 中又是如何实现的呢？
+		在 JDK 1.5 之后推出了相关的 api，常见的创建线程池方式有以下几种：
 
+			Executors.newCachedThreadPool()：无限线程池。
+			Executors.newFixedThreadPool(nThreads)：创建固定大小的线程池。
+			Executors.newSingleThreadExecutor()：创建单个线程的线程池。
 
+		其实看这三种方式创建的源码就会发现：
 
+			public static ExecutorService newCachedThreadPool() {
+				return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+											  60L, TimeUnit.SECONDS,
+											  new SynchronousQueue<Runnable>());
+			}
 
+		实际上还是利用 ThreadPoolExecutor 类实现的。
+
+		所以我们重点来看下 ThreadPoolExecutor 是怎么玩的。
+		首先是创建线程的 api：
+
+		ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, RejectedExecutionHandler handler) 
+
+		这几个核心参数的作用：
+
+			corePoolSize 为线程池的基本大小。
+			maximumPoolSize 为线程池最大线程大小。
+			keepAliveTime 和 unit 则是线程空闲后的存活时间。
+			workQueue 用于存放任务的阻塞队列。
+			handler 当队列和最大线程池都满了之后的饱和策略。
+
+		了解了这几个参数再来看看实际的运用。
+
+		通常我们都是使用:
+
+		threadPool.execute(new Job());
+		
+		然后看看 execute() 方法是如何处理的：
+
+		获取当前线程池的状态。
+		当前线程数量小于 coreSize 时创建一个新的线程运行。
+		如果当前线程处于运行状态，并且写入阻塞队列成功。
+		双重检查，再次获取线程状态；如果线程状态变了（非运行状态）就需要从阻塞队列移除任务，并尝试判断线程是否全部执行完毕。同时执行拒绝策略。
+		如果当前线程池为空就新创建一个线程并执行。
+		如果在第三步的判断为非运行状态，尝试新建线程，如果失败则执行拒绝策略。
+		
+		流程聊完了再来看看上文提到了几个核心参数应该如何配置呢？
+
+		有一点是肯定的，线程池肯定是不是越大越好。
+
+		通常我们是需要根据这批任务执行的性质来确定的。
+
+			IO 密集型任务：由于线程并不是一直在运行，所以可以尽可能的多配置线程，比如 CPU 个数 * 2
+			CPU 密集型任务（大量复杂的运算）应当分配较少的线程，比如 CPU 个数相当的大小。
+
+		当然这些都是经验值，最好的方式还是根据实际情况测试得出最佳配置。
+		
+		有运行任务自然也有关闭任务，从上文提到的 5 个状态就能看出如何来关闭线程池。
+
+		其实无非就是两个方法 shutdown()/shutdownNow()。
+
+		但他们有着重要的区别：
+
+			shutdown() 执行后停止接受新任务，会把队列的任务执行完毕。
+			shutdownNow() 也是停止接受新任务，但会中断所有的任务，将线程池状态变为 stop。
+
+			两个方法都会中断线程，用户可自行判断是否需要响应中断。
+
+		shutdownNow() 要更简单粗暴，可以根据实际场景选择不同的方法。
+		
+	Spring Boot使用线程池
+		使用Spring管理线程池
+		```java
+		@Configuration
+		public class TreadPoolConfig {
+
+			/**
+			 * 消费队列线程
+			 * @return
+			 */
+			@Bean(value = "consumerQueueThreadPool")
+			public ExecutorService buildConsumerQueueThreadPool(){
+				ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+						.setNameFormat("consumer-queue-thread-%d").build();
+
+				ExecutorService pool = new ThreadPoolExecutor(5, 5, 0L, TimeUnit.MILLISECONDS,
+						new ArrayBlockingQueue<Runnable>(5),namedThreadFactory,new ThreadPoolExecutor.AbortPolicy());
+
+				return pool ;
+			}
+
+		}
+		```
+		使用时
+		@Resource(name = "consumerQueueThreadPool")
+		private ExecutorService consumerQueueThreadPool;
+
+		@Override
+		public void execute() {
+
+			//消费队列
+			for (int i = 0; i < 5; i++) {
+				consumerQueueThreadPool.execute(new ConsumerQueueThread());
+			}
+
+		}
+	监控线程池
+		也可利用它 actuator 组件来做线程池的监控
+		
+	线程池隔离		
+		如果我们很多业务都依赖于同一个线程池,当其中一个业务因为各种不可控的原因消耗了所有的线程，导致线程池全部占满。
+
+		这样其他的业务也就不能正常运转了，这对系统的打击是巨大的。
+
+		比如我们 Tomcat 接受请求的线程池，假设其中一些响应特别慢，线程资源得不到回收释放；线程池慢慢被占满，最坏的情况就是整个应用都不能提供服务。
+
+		所以我们需要将线程池进行隔离。
+
+		通常的做法是按照业务进行划分：
+		比如下单的任务用一个线程池，获取数据的任务用另一个线程池。这样即使其中一个出现问题把线程池耗尽，那也不会影响其他的任务运行。
+	总结
+
+### 深入理解线程通信
+	前言
+		开发中不免会遇到需要所有子线程执行完毕通知主线程处理某些逻辑的场景。
+
+		或者是线程 A 在执行到某个条件通知线程 B 执行某个操作。
+
+		可以通过以下几种方式实现：
+	
+	等待通知机制
+		等待通知模式是 Java 中比较经典的线程通信方式。
+		两个线程通过对同一对象调用等待wait()和通知notify()方法来进行通信
+		这里的线程 A 和线程 B 都对同一个对象 TwoThreadWaitNotify.class 获取锁，A 线程调用了同步对象的 wait() 方法释放了锁并进入 WAITING 状态。
+
+		B 线程调用了 notify() 方法，这样 A 线程收到通知之后就可以从 wait() 方法中返回。
+
+		这里利用了 TwoThreadWaitNotify.class 对象完成了通信。
+
+		有一些需要注意:
+
+			wait() 、notify()、notifyAll() 调用的前提都是获得了对象的锁(也可称为对象监视器)。
+			调用 wait() 方法后线程会释放锁，进入 WAITING 状态，该线程也会被移动到等待队列中。
+			调用 notify() 方法会将等待队列中的线程移动到同步队列中，线程状态也会更新为 BLOCKED
+			从 wait() 方法返回的前提是调用 notify() 方法的线程释放锁，wait() 方法的线程获得锁。
+
+		等待通知有着一个经典范式：
+		
+		线程 A 作为消费者：
+
+			获取对象的锁。
+			进入 while(判断条件)，并调用 wait() 方法。
+			当条件满足跳出循环执行具体处理逻辑。
+
+		线程 B 作为生产者:
+
+			获取对象锁。
+			更改与线程 A 共用的判断条件。
+			调用 notify() 方法。
+
+	join()
+		在 t1.join() 时会一直阻塞到 t1 执行完毕，所以最终主线程会等待 t1 和 t2 线程执行完毕。
+		在 join 线程完成后会调用 notifyAll() 方法，是在 JVM 实现中调用，所以这里看不出来。
+	
+	volatile共享内存
+		这里的 flag 存放于主内存中，所以主线程和线程 A 都可以看到。
+		flag 采用 volatile 修饰主要是为了内存可见性，
+		
+	CountDownLatch并发工具
+		CountDownLatch 也是基于 AQS(AbstractQueuedSynchronizer) 实现的，更多实现参考 ReentrantLock 实现原理
+		初始化一个 CountDownLatch 时告诉并发的线程，然后在每个线程处理完毕之后调用 countDown() 方法。
+		该方法会将 AQS 内置的一个 state 状态 -1 。
+		最终在主线程调用 await() 方法，它会阻塞直到 state == 0 的时候返回。
+		
+	CyclicBarrier并发工具
+		CyclicBarrier 中文名叫做屏障或者是栅栏，也可以用于线程间通信。
+
+		它可以等待 N 个线程都达到某个状态后继续运行的效果。
+
+			首先初始化线程参与者。
+			调用 await() 将会在所有参与者线程都调用之前等待。
+			直到所有参与者都调用了 await() 后，所有线程从 await() 返回继续后续逻辑。
+		可以看出由于其中一个线程休眠了五秒，所有其余所有的线程都得等待这个线程调用 await() 。
+		该工具可以实现 CountDownLatch 同样的功能，但是要更加灵活。
+		甚至可以调用 reset() 方法重置 CyclicBarrier (需要自行捕获 BrokenBarrierException 处理) 然后重新执行。
+
+	CountDownLatch（闭锁）与CyclicBarrier（栅格）
+		CountDownLatch : 一个线程(或者多个)， 等待另外N个线程完成某个事情之后才能执行。  
+		CyclicBarrier : N个线程相互等待，任何一个线程完成之前，所有的线程都必须等待。
+		这样应该就清楚一点了，对于CountDownLatch来说，重点是那个“一个线程”, 是它在等待， 而另外那N的线程在把“某个事情”做完之后可以继续等待，可以终止。
+		而对于CyclicBarrier来说，重点是那N个线程，他们之间任何一个没有完成，所有的线程都必须等待。
+		
+		CountDownLatch 是计数器, 线程完成一个就记一个, 就像 报数一样, 只不过是递减的。
+		而CyclicBarrier更像一个水闸, 线程执行就想水流, 在水闸处都会堵住, 等到水满(线程到齐)了, 才开始泄流.
+
+	线程相应中断
+		可以采用中断线程的方式来通信，调用了 thread.interrupt() 方法其实就是将 thread 中的一个标志属性置为了 true。
+
+		并不是说调用了该方法就可以中断线程，如果不对这个标志进行响应其实是没有什么作用(这里对这个标志进行了判断)。
+
+		但是如果抛出了 InterruptedException 异常，该标志就会被 JVM 重置为 false。
+	
+	线程池awaitTermination()方法
+		如果是用线程池来管理线程，可以使用以下方式来让主线程等待线程池中所有任务执行完毕:
+		使用这个 awaitTermination() 方法的前提需要关闭线程池，如调用了 shutdown() 方法。
+
+		调用了 shutdown() 之后线程池会停止接受新任务，并且会平滑的关闭线程池中现有的任务。
+	
+	管道通信
+		Java 虽说是基于内存通信的，但也可以使用管道通信。
+
+		需要注意的是，输入流和输出流需要首先建立连接。这样线程 B 就可以收到线程 A 发出的消息了。
+
+		实际开发中可以灵活根据需求选择最适合的线程通信方式。
 
 
 
