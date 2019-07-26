@@ -125,17 +125,17 @@ commit;/commit work;
     Row Lock与Table Lock
 
 使用select…for update会把数据给锁住，不过我们需要注意一些锁的级别，MySQL InnoDB默认Row-Level Lock，所以只有「明确」地指定主键或者索引，MySQL 才会执行Row lock (只锁住被选取的数据) ，否则MySQL 将会执行Table Lock (将整个数据表单给锁住)。举例如下：
-1、select * from t_items where id=1 for update;
+1、select \* from t_items where id=1 for update;
 这条语句明确指定主键（id=1），并且有此数据（id=1的数据存在），则采用row lock。只锁定当前这条数据。
-2、select * from t_items where id=3 for update;
+2、select \* from t_items where id=3 for update;
 这条语句明确指定主键，但是却查无此数据，此时不会产生lock（没有元数据，又去lock谁呢？）。
-3、select * from t_items where name='手机' for update;
+3、select \* from t_items where name='手机' for update;
 这条语句没有指定数据的主键，那么此时产生table lock，即在当前事务提交前整张数据表的所有字段将无法被查询。
-4、select * from t_items where id>0 for update; 或者select * from t_items where id<>1 for update;（注：<>在SQL中表示不等于）
+4、select \* from t_items where id>0 for update; 或者select \* from t_items where id<>1 for update;（注：<>在SQL中表示不等于）
 上述两条语句的主键都不明确，也会产生table lock。
-5、select * from t_items where status=1 for update;（假设为status字段添加了索引）
+5、select \* from t_items where status=1 for update;（假设为status字段添加了索引）
 这条语句明确指定了索引，并且有此数据，则产生row lock。
-6、select * from t_items where status=3 for update;（假设为status字段添加了索引）
+6、select \* from t_items where status=3 for update;（假设为status字段添加了索引）
 这条语句明确指定索引，但是根据索引查无此数据，也就不会产生lock。
 
     悲观锁小结
@@ -149,3 +149,107 @@ commit;/commit work;
     使用数据版本（Version）记录机制实现，这是乐观锁最常用的一种实现方式。何谓数据版本？即为数据增加一个版本标识，一般是通过为数据库表增加一个数字类型的 “version” 字段来实现。当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加一。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对，如果数据库表当前版本号与第一次取出来的version值相等，则予以更新，否则认为是过期数据。
     使用时间戳
     乐观锁定的第二种实现方式和第一种差不多，同样是在需要乐观锁控制的table中增加一个字段，名称无所谓，字段类型使用时间戳（timestamp）, 和上面的version类似，也是在更新提交的时候检查当前数据库中数据的时间戳和自己更新前取到的时间戳进行对比，如果一致则OK，否则就是版本冲突。
+
+四、MySQL索引原理
+
+1. B+ Tree的数据结构
+
+	B+Tree的定义
+
+	B+Tree是B树的变种，有着比B树更高的查询性能，来看下m阶B+Tree特征：
+
+	1、有m个子树的节点包含有m个元素（B-Tree中是m-1）
+
+	2、根节点和分支节点中不保存数据，只用于索引，所有数据都保存在叶子节点中。
+
+	3、所有分支节点和根节点都同时存在于子节点中，在子节点元素中是最大或者最小的元素。
+
+	4、叶子节点会包含所有的关键字，以及指向数据记录的指针，并且叶子节点本身是根据关键字的大小从小到大顺序链接。
+
+2. SQL优化
+	
+	负向查询不能使用索引
+	
+		select name from user where id not in (1,3,4);
+		应该修改为:
+		select name from user where id in (2,5,6);
+	
+	前导模糊查询不能使用索引
+
+		如:
+		select name from user where name like '%zhangsan'
+		非前导则可以:
+		select name from user where name like 'zhangsan%'
+		建议可以考虑使用 Lucene 等全文索引工具来代替频繁的模糊查询。
+
+	数据区分不明显的不建议创建索引
+		
+		如 user 表中的性别字段，可以明显区分的才建议创建索引，如身份证等字段。
+		
+	字段的默认值不要为 null
+
+		这样会带来和预期不一致的查询结果。	
+
+	在字段上进行计算不能命中索引
+
+		select name from user where FROM_UNIXTIME(create_time) < CURDATE();
+		应该修改为:
+		select name from user where create_time < FROM_UNIXTIME(CURDATE());
+
+	最左前缀问题
+
+		如果给 user 表中的 username pwd 字段创建了复合索引那么使用以下SQL 都是可以命中索引:
+		select username from user where username='zhangsan' and pwd ='axsedf1sd'
+		select username from user where pwd ='axsedf1sd' and username='zhangsan'
+		select username from user where username='zhangsan'
+		但是使用
+		select username from user where pwd ='axsedf1sd'
+		是不能命中索引的。
+
+	如果明确知道只有一条记录返回
+
+		select name from user where username='zhangsan' limit 1
+		可以提高效率，可以让数据库停止游标移动。
+
+	不要让数据库帮我们做强制类型转换
+
+		select name from user where telno=18722222222
+		这样虽然可以查出数据，但是会导致全表扫描。
+		需要修改为
+		select name from user where telno='18722222222'
+
+	如果需要进行 join 的字段两表的字段类型要相同
+
+		不然也不会命中索引。
+
+3. 数据库水平垂直拆分
+
+	当数据库量非常大的时候，DB 已经成为系统瓶颈时就可以考虑进行水平垂直拆分了。
+
+	水平拆分
+
+		一般水平拆分是根据表中的某一字段(通常是主键 ID )取模处理，将一张表的数据拆分到多个表中。这样每张表的表结构是相同的但是数据不同。
+
+		不但可以通过 ID 取模分表还可以通过时间分表，比如每月生成一张表。 按照范围分表也是可行的:一张表只存储 0~1000W的数据，超过只就进行分表，这样分表的优点是扩展灵活，但是存在热点数据。
+
+		按照取模分表拆分之后我们的查询、修改、删除也都是取模。比如新增一条数据的时候往往需要一张临时表来生成 ID,然后根据生成的 ID 取模计算出需要写入的是哪张表(也可以使用分布式 ID 生成器来生成 ID)。
+
+		分表之后不能避免的就是查询要比以前复杂，通常不建议 join ，一般的做法是做两次查询。
+		
+	垂直拆分
+
+		当一张表的字段过多时则可以考虑垂直拆分。 通常是将一张表的字段才分为主表以及扩展表，使用频次较高的字段在一张表，其余的在一张表。
+
+		这里的多表查询也不建议使用 join ，依然建议使用两次查询。
+		拆分之后带来的问题
+
+		拆分之后由一张表变为了多张表，一个库变为了多个库。最突出的一个问题就是事务如何保证。
+	两段提交
+	最终一致性
+
+		如果业务对强一致性要求不是那么高那么最终一致性则是一种比较好的方案。
+
+		通常的做法就是补偿，比如 一个业务是 A 调用 B，两个执行成功才算最终成功，当 A 成功之后，B 执行失败如何来通知 A 呢。
+
+		比较常见的做法是 失败时 B 通过 MQ 将消息告诉 A，A 再来进行回滚。这种的前提是 A 的回滚操作得是幂等的，不然 B 重复发消息就会出现问题。
+

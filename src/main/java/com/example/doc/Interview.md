@@ -702,6 +702,8 @@ ApplicationContext常用的实现类是FileSystemXmlApplicationContext、ClassPa
 
 1.常用的linux下的命令
 
+Redis、Zookeeper、Kafka、MySQL
+
 Talk：
 1.ISP Refact
 	使用缓存
