@@ -28,7 +28,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Inventory Application starts container (Spring Boot) and exposes the Inventory micro-service.
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class InformationApplication {
 
   public static void main(String[] args) {

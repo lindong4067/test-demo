@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.util.ResourceUtils;
-import sun.misc.Unsafe;
+//import sun.misc.Unsafe;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -1587,7 +1587,7 @@ public class StringTest {
         Class clazz;
         ClassLoader classLoader;
 
-        Unsafe unsafe;
+//        Unsafe unsafe;
         AtomicInteger atomicInteger;
 
         Compiler compiler;

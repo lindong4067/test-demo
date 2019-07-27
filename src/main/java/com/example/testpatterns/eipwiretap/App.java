@@ -17,7 +17,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * output channels.
  * </p>
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class App {
 
   /**

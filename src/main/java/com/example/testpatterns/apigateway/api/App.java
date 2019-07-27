@@ -29,7 +29,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * users, the {@link ApiGateway} only retrieves price information, which it uses to populate the
  * {@link MobileProduct}.
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class App {
 
   /**

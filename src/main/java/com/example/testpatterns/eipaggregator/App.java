@@ -17,7 +17,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * </p>
  *
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class App {
 
   /**

@@ -1,10 +1,13 @@
 package com.example.testpractice.thread;
 
+import org.springframework.stereotype.Component;
+
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class AwaitTerminationMethod {
     private static void executorService() throws InterruptedException {
         BlockingDeque<Runnable> blockingDeque = new LinkedBlockingDeque<>(10);

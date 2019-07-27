@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * ImageApplication starts up Spring Boot, exposing endpoints for the Image microservice through
  * the {@link ImageController}.
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class ImageApplication {
 
   /**

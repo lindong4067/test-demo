@@ -34,13 +34,13 @@ public class ThreadExceptionTest {
                 System.out.println("=== 222 === " + count);
                 if (count == 10) {
                     //throw exception, cannot continue
-                    //System.out.println(1 / 0);
+                    System.out.println(1 / 0);
                     //catch exception
-                    try {
-                        System.out.println(1 / 0);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        System.out.println(1 / 0);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
                 }
                 if (count == 20) {
                     System.out.println("count=" + count);

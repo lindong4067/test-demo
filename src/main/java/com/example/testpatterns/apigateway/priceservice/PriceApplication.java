@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * PriceApplication starts up Spring Boot, exposing endpoints for the Price microservice through
  * the {@link PriceController}.
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class PriceApplication {
 
   /**
