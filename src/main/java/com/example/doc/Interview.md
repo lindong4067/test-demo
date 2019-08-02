@@ -791,13 +791,34 @@ Redis、Zookeeper、Kafka、MySQL
 
 7.AQS
 
+	AQS(AbstractQueuedSynchronizer)，AQS是JDK下提供的一套用于实现基于FIFO等待队列的阻塞锁和相关的同步器的一个同步框架。这个抽象类被设计为作为一些可用原子int值来表示状态的同步器的基类。如果你有看过类似 CountDownLatch 类的源码实现，会发现其内部有一个继承了 AbstractQueuedSynchronizer 的内部类 Sync。可见 CountDownLatch 是基于AQS框架来实现的一个同步器.类似的同步器在JUC下还有不少。
+
 8.线程池原理及参数配置
+	corePoolSize：线程池中的常驻核心线程数
+	maximumPoolSize：线程池能够容纳同时执行的最大线程数，此值必须大于1
+	keepAliveTime：多余的空闲线程存活时间。当前线程数量超过maximumPoolSize时，当空闲时间达到keepAliveTime时，多余空闲线程会被销毁直到只剩下corePoolSize个线程为止。
+	unit：keepAliveTime的单位
+	workQueue：任务队列，被提交但尚未执行的任务
+	threadFactory：表示生成线程池中工作线程的线程工厂，用于创建线程，一般用默认的即可
+	handler：决绝策略，表示当队列满了并且线程大于线程池的最大线程数（maximumPoolSize）
 
 9.ThreadLocal
+
+	ThreadLocal为解决多线程程序的并发问题提供了一种新的思路。使用这个工具类可以很简洁地编写出优美的多线程程序。
+
+	当使用ThreadLocal维护变量时，ThreadLocal为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。
+	从线程的角度看，目标变量就象是线程的本地变量，这也是类名中“Local”所要表达的意思。
 
 10.Eureka和Zookeeper做服务发现的区别 consul
 
 11.分布式限流有哪些方案
+
+	(1)提供给业务方的controller层进行控制 guava的RateLimiter
+	Java的delayqueue延迟队列实现
+	Redis实现，存储两个Key，一个用于计时，一个用于计数，请求每调用一次，计数器增加1，若在计数器时间内计数器未超过阀值，则可以执行任务 配合lua脚本
+	(2)Nginx前端限流
+	(3)业务系统限流 客户端 服务端
+	(4)数据库限流 力保数据库
 
 12.线程池限流的缺陷是什么
 
@@ -812,6 +833,12 @@ Redis、Zookeeper、Kafka、MySQL
 17.垃圾收集器
 
 18.项目中的设计模式
+
+	(1)策略模式根据不同的network_type,选择对应的Parser
+	(2)观察者模式，applicationlistener
+	(3)单例模式
+	(4)代理模式
+	(5)发布订阅模式
 
 19.设计模式的原则
 
@@ -943,8 +970,27 @@ Docker
 Shell Python
 Gradle Git	
 	
+基础知识部分
+	进程和线程管理
+	TCP和HTTP协议
+	数据结构
+	经典算法
+	常用设计模式
 	
-	
+OSI 7层模型
+物理层
+数据链路层
+传输层
+会话层
+表示层
+应用层
+
+TCP/IP 5层模型
+物理层
+数据链路层
+网络层
+传输层
+应用层	
 	
 	
 	
