@@ -8,7 +8,7 @@ public class SearchBigData {
         long star = System.currentTimeMillis();
 
         Set<Integer> hashset = new HashSet<>(100) ;
-        for (int i = 0; i < 10000000; i++) {
+        for (int i = 0; i < 100; i++) {
             hashset.add(i) ;
         }
         System.out.println("Set contains 1: " + hashset.contains(1));
