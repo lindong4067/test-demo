@@ -707,29 +707,118 @@ ApplicationContext常用的实现类是FileSystemXmlApplicationContext、ClassPa
 
 Redis、Zookeeper、Kafka、MySQL
 
-30K面试
+面试
 
 1.事务的隔离级别
 
+	Read uncommitted	
+	Read committed		解决脏读
+	Repeatable read		解决不可重复读
+	Serializable		解决幻读
+	
 2.MySQL实现可重复读的原理
+
+	使用的是一种叫MVCC的控制方式，即多版本并发控制，类似于乐观锁的一种实现方式。
+	InnoDB在每行记录后面都保存两个隐藏的列，分别保存了这个行的创建时间和行的删除时间，这里存储的并不是实际的时间，而是系统版本号，当数据被修改时版本号加一，在读取事务开始，系统会给当前读事务一个版本号，事务会读取版本号《=当前版本号的数据，此时如果其他事务修改了这条数据，那么这条数据的版本号就加一，从而比当前读事务的版本号高，读事务自然读不到更新后的数据。
 
 3.索引
 
+	Myisam索引（非聚集索引）
+		若以这个引擎创建数据库表Create table user （…..），它实际是生成三个文件：
+
+		user.myi   索引文件     user.myd数据文件     user.frm数据结构类型。
+
+		如下图：当我们执行  select \* from user where id = 1的时候，它的执行流程。
+
+		(1)查看该表的myi文件有没有以id为索引的索引树。
+
+		(2)根据这个id索引找到叶子节点的id值，从而得到它里面的数据地址。(叶子节点存的是索引和数据地址)。
+
+		(3)根据数据地址去myd文件里面找到对应的数据返回出来。
+		
+	Innodb引擎(聚集索引)
+
+	　　	若以这个引擎创建数据库表Create table user （…..），它实际是生成两个文件：
+
+	　　	user.ibd   索引文件        user.frm数据结构类型
+
+	　　	因为innodb引擎创建表默认就是以主键为索引，所以不需要myi文件。
+
+		　　	下图为innodb表的结构图：很显然它与myisam最大的区别是将整条数据存在叶子节点，而不是地址。(叶子节点存的是主键索引和数据信息)
+
+		　　	若此时，你在其他列创建索引例如name，它就会另外创建一个以name为索引的索引树，(叶子节点存的是索引和主键索引)。
+
+	　　	你在执行select \* from user where name = ‘吴磊’，他的执行过程如下：
+
+	　　　　	(1)找到name索引树
+
+	　　　　	(2)根据name的值找到该树下叶子的name索引和主键值
+
+	　　　　	(3)用主键值去主键索引树去叶子节点到该条数据信息
+	加了索引之后能够大幅度的提高查询速度，但是索引也不是越多越好，一方面它会占用存储空间，另一方面它会使得写操作变得很慢。
+	通常我们对查询次数比较频繁，值比较多的列才建索引。
+　　	例如：select \* from user where sex = "女"， 这个就不需要建立索引，因为性别一共就两个值，查询本身就是比较快的。
+　　　　select \* from user where user_id = 1995 ,这个就需要建立索引，因为user_id的值是非常多的。
+
+	B+Tree的特性
+
+　　	(1)由图能看出，单节点能存储更多数据，使得磁盘IO次数更少。
+
+　　	(2)叶子节点形成有序链表，便于执行范围操作。
+
+　　	(3)聚集索引中，叶子节点的data直接包含数据；非聚集索引中，叶子节点存储数据地址的指针。
+
 4.数据库主从同步
 
+	形式
+		一主一从
+		一主多从，提高系统的读性能
+		多主一从，数据备份
+		双主复制
+		级联复制，多级复制，缓解主节点压力
+	
+	原理
+		(1)mysql主从复制涉及到三个线程，一个运行在主节点（log dump thread），其余两个（I/O thread, SQL thread ）运行在从节点。
+		(2)当从节点连接主节点时，主节点会创建一个log dump 线程，用于发送bin-log的内容。在读取bin-log中的操作时，此线程会对主节点上的bin-log加锁，当读取完成，甚至在发动给从节点之前，锁会被释放。
+		(3)当从节点上执行`start slave`命令之后，从节点会创建一个I/O线程用来连接主节点，请求主库中更新的bin-log。I/O线程接收到主节点binlog dump 进程发来的更新之后，保存在本地relay-log中。
+		(4)SQL线程负责读取relay log中的内容，解析成具体的操作并执行，最终保证主从数据的一致性。
+		
 5.用什么锁对象内存占用最小
 
 6.Collections.sort()使用的排序算法
+	
+	归并排序
 
 7.AQS
 
+	AQS(AbstractQueuedSynchronizer)，AQS是JDK下提供的一套用于实现基于FIFO等待队列的阻塞锁和相关的同步器的一个同步框架。这个抽象类被设计为作为一些可用原子int值来表示状态的同步器的基类。如果你有看过类似 CountDownLatch 类的源码实现，会发现其内部有一个继承了 AbstractQueuedSynchronizer 的内部类 Sync。可见 CountDownLatch 是基于AQS框架来实现的一个同步器.类似的同步器在JUC下还有不少。
+
 8.线程池原理及参数配置
+	corePoolSize：线程池中的常驻核心线程数
+	maximumPoolSize：线程池能够容纳同时执行的最大线程数，此值必须大于1
+	keepAliveTime：多余的空闲线程存活时间。当前线程数量超过maximumPoolSize时，当空闲时间达到keepAliveTime时，多余空闲线程会被销毁直到只剩下corePoolSize个线程为止。
+	unit：keepAliveTime的单位
+	workQueue：任务队列，被提交但尚未执行的任务
+	threadFactory：表示生成线程池中工作线程的线程工厂，用于创建线程，一般用默认的即可
+	handler：决绝策略，表示当队列满了并且线程大于线程池的最大线程数（maximumPoolSize）
 
 9.ThreadLocal
+
+	ThreadLocal为解决多线程程序的并发问题提供了一种新的思路。使用这个工具类可以很简洁地编写出优美的多线程程序。
+
+	当使用ThreadLocal维护变量时，ThreadLocal为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。
+	从线程的角度看，目标变量就象是线程的本地变量，这也是类名中“Local”所要表达的意思。
 
 10.Eureka和Zookeeper做服务发现的区别 consul
 
 11.分布式限流有哪些方案
+
+	(1)提供给业务方的controller层进行控制 guava的RateLimiter
+	Java的delayqueue延迟队列实现
+	Redis实现，存储两个Key，一个用于计时，一个用于计数，请求每调用一次，计数器增加1，若在计数器时间内计数器未超过阀值，则可以执行任务 配合lua脚本
+	(2)Nginx前端限流
+	(3)业务系统限流 客户端 服务端
+	(4)数据库限流 力保数据库
 
 12.线程池限流的缺陷是什么
 
@@ -744,6 +833,12 @@ Redis、Zookeeper、Kafka、MySQL
 17.垃圾收集器
 
 18.项目中的设计模式
+
+	(1)策略模式根据不同的network_type,选择对应的Parser
+	(2)观察者模式，applicationlistener
+	(3)单例模式
+	(4)代理模式
+	(5)发布订阅模式
 
 19.设计模式的原则
 
@@ -833,6 +928,71 @@ Redis、Zookeeper、Kafka、MySQL
 	TPS数过低
 	模拟调用CellDate的接口
 	问题解决
+4.使用到的设计模式
+	单例模式 CSClient
+	工厂方法 数据校验，根据不同的对象调用不同校验类的校验逻辑
+	策略方法 Response数据的解析策略
+	
+口语面试：
+
+1. Why do you choose our company to apply for a job?
+	
+	I wish to have a job in which I can make good use of my strengths and have further improvement. And your company meets all my requirements.
+	
+2. Have you got a clear idea about our company?
+
+	Yes, I have purposefully done some homework in advance.
+	
+3. How long would you work here if you were admitted?
+
+	I hope to grow with the company
+	
+4. Do you expect a high salary?
+
+	In my mind, salary is not the most important thing.
+
+Resume:
+
+*Java语言
+*设计模式
+*编码习惯
+*内存模型
+*类加载机制
+*GC原理
+*JVM调优
+*Spring AOP IOC
+*Spring Boot MVC Mybatis JPA
+*Spring Cloud Dubbo Zookeeper
+*Consul
+Mysql数据库
+Netty Akka
+Docker
+Shell Python
+Gradle Git	
+	
+基础知识部分
+	进程和线程管理
+	TCP和HTTP协议
+	数据结构
+	经典算法
+	常用设计模式
+	
+OSI 7层模型
+物理层
+数据链路层
+传输层
+会话层
+表示层
+应用层
+
+TCP/IP 5层模型
+物理层
+数据链路层
+网络层
+传输层
+应用层	
+	
+	
 	
 	
 	
