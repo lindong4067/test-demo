@@ -1661,5 +1661,8 @@ public class StringTest {
 
 //        Collections.sort();
 //        Arrays.sort();
+
+//        synchronized (){ }
+        Throwable throwable1;
     }
 }

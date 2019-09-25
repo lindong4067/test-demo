@@ -1,0 +1,10 @@
+{
+  "interfaces": "interface=com.study.rpc.test.producer.HelloService;method=sayHello;parameter=com.study.rpc.test.producer.TestBean",
+  "requestId": "3",
+  "parameter": {
+    "com.study.rpc.test.producer.TestBean": {
+      "age": 20,
+      "name": "张三"
+    }
+  }
+}
