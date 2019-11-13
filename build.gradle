@@ -7,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.1'
     }
 }
 
@@ -14,6 +15,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.google.protobuf'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -39,6 +41,11 @@ dependencies {
     compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.8.0'
     compile group: 'com.google.guava', name: 'guava', version: '25.1-jre'
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.8.0'
+    compile group: 'com.google.protobuf', name: 'protobuf-java-util', version: '3.8.0'
+    compile group: 'io.grpc', name: 'grpc-all', version: '1.24.0'
+    compile group: 'io.grpc', name: 'grpc-netty', version: '1.24.0'
+    compile group: 'io.grpc', name: 'grpc-protobuf', version: '1.24.0'
+    compile group: 'io.grpc', name: 'grpc-stub', version: '1.24.0'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.3.3.Final'
     compile group: 'com.h2database', name: 'h2', version: '1.4.197'
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
@@ -60,4 +67,20 @@ dependencies {
     compile group: 'org.apache.curator', name: 'curator-recipes', version: '2.3.0'
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.59'
 //    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.26'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.10.0"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.24.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
 }
